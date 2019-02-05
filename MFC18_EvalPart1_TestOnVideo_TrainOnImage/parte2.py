@@ -3,6 +3,10 @@
 
 import csv
 import json
+# import matplotlib.pyplot as plt
+# import pandas as pd
+# import numpy as np
+# from collections import Counter
 
 def CSVreader(path):
 	with open(path) as f:
@@ -15,6 +19,19 @@ def CSVreader(path):
 def printInColumn(A):
 	for i in range(len(A)):
 		print(A[i])
+
+def sortScoreMatrix(matrix):
+	tmpRows = []
+	for i in range(len(matrix)):
+		for k in range(i,len(matrix)):
+			if matrix[i][1] < matrix[k][1]:
+				tmpRows = matrix[i]
+				matrix[i] = matrix[k]
+				matrix[k] = tmpRows
+				tmpRows = []
+	return matrix
+
+
 
 # Leggo json
 with open('./myoperations.json') as f:
@@ -124,6 +141,17 @@ for i in range(len(scoreMatrix_no_one)):
 			tmp = []
 scoreMatrix_no_one = X+Y
 
+# ANALISI di scoreMatrix_no_one
+MATCHED = []
+NOMATCHED = []
+for i in range(len(scoreMatrix_no_one)):
+	if (float(scoreMatrix_no_one[i][2]) <= 50):
+		MATCHED.append(scoreMatrix_no_one[i])
+	else:
+		NOMATCHED.append(scoreMatrix_no_one[i])
+
+
+
 # noJSON è una matrice contenente: ProbeID,score,isManipulated/notManipulated raggruppata per Y(yes is manipulated)
 X = []
 Y = []
@@ -161,15 +189,6 @@ for i in range(len(noJSON)):
 #print(W)
 
 
-# ANALISI di scoreMatrix_no_one
-MATCHED = []
-NOMATCHED = []
-for i in range(len(scoreMatrix_no_one)):
-	if (float(scoreMatrix_no_one[i][2]) <= 50):
-		MATCHED.append(scoreMatrix_no_one[i])
-	else:
-		NOMATCHED.append(scoreMatrix_no_one[i])
-
 
 
 finalMatrix = []
@@ -180,12 +199,126 @@ finalMatrix.append(noJSON)
 #print(finalMatrix[1])  # Stampa scoreMatrix_no_one
 #print(finalMatrix[2])  # Stampa noJSON
 
-probe_journal_join_csv = CSVreader('./Reference/probejournaljoin.csv')
-probe_journal_join_csv.remove(probe_journal_join_csv[0])
 
-count = 0
-for i in range(len(probe_journal_join_csv)):
-	for j in range(len(noJSON)):
-		if probe_journal_join_csv[i][0] == noJSON[j][0]:
-			count = count + 1
-print(count)
+# Controllo se i probe noJSON sono presenti nel journal
+# probe_journal_join_csv = CSVreader('./Reference/probejournaljoin.csv')
+# probe_journal_join_csv.remove(probe_journal_join_csv[0])
+# count = 0
+# for i in range(len(probe_journal_join_csv)):
+# 	for j in range(len(noJSON)):
+# 		if probe_journal_join_csv[i][0] == noJSON[j][0]:
+# 			count = count + 1
+# print(count)
+
+
+tmp = []
+scoreOperations_one = []
+for i in range(len(scoreMatrix_one)):
+	for j in range(len(data['probesFileID'])):
+		if scoreMatrix_one[i][0] == data['probesFileID'][j]['probeID']:
+			tmp.append(scoreMatrix_one[i][0])
+			tmp.append(scoreMatrix_one[i][1])
+			tmp.append(scoreMatrix_one[i][2])
+			tmp.append(scoreMatrix_one[i][3])
+			tmp.append(data['probesFileID'][j]['operations'])
+			scoreOperations_one.append(tmp)
+			tmp = []
+
+tmp = []
+scoreOperations_no_one_matched = []
+for i in range(len(MATCHED)):
+	for j in range(len(data['probesFileID'])):
+		if MATCHED[i][0] == data['probesFileID'][j]['probeID']:
+			tmp.append(MATCHED[i][0])
+			tmp.append(MATCHED[i][1])
+			tmp.append(MATCHED[i][2])
+			tmp.append(MATCHED[i][3])
+			tmp.append(data['probesFileID'][j]['operations'])
+			scoreOperations_no_one_matched.append(tmp)
+			tmp = []
+
+tmp = []
+scoreOperations_no_one_no_matched = []
+for i in range(len(NOMATCHED)):
+	for j in range(len(data['probesFileID'])):
+		if NOMATCHED[i][0] == data['probesFileID'][j]['probeID']:
+			tmp.append(NOMATCHED[i][0])
+			tmp.append(NOMATCHED[i][1])
+			tmp.append(NOMATCHED[i][2])
+			tmp.append(NOMATCHED[i][3])
+			tmp.append(data['probesFileID'][j]['operations'])
+			scoreOperations_no_one_no_matched.append(tmp)
+			tmp = []
+
+
+countOp =  0
+tmp =  []
+repeatOp_matched = []
+with open('./Reference/operations.json') as f:
+	data2 = json.load(f)
+
+
+
+###numero di volte in cui le operazioni si ripetono nelle matrici
+for k in range(len(data2['operations'])):
+	for i in range(len(scoreOperations_no_one_matched)):
+		for j in range(len( scoreOperations_no_one_matched[i][4])):
+			if data2['operations'][k]['name'] == scoreOperations_no_one_matched[i][4][j]['name']:
+				countOp =  countOp + 1
+	if countOp > 0:
+		tmp.append(data2['operations'][k]['name'])
+		tmp.append(countOp)
+		repeatOp_matched.append(tmp)
+	countOp = 0
+	tmp = []
+
+
+tmp = []
+countOp = 0
+repeatOp_noMatched = []
+for k in range(len(data2['operations'])):
+	for i in range(len(scoreOperations_no_one_no_matched)):
+		for j in range(len(scoreOperations_no_one_no_matched[i][4])):
+			if data2['operations'][k]['name'] == scoreOperations_no_one_no_matched[i][4][j]['name']:
+				countOp =  countOp + 1
+	if countOp > 0:
+		tmp.append(data2['operations'][k]['name'])
+		tmp.append(countOp)
+		repeatOp_noMatched.append(tmp)
+	countOp = 0
+	tmp = []
+
+tmp = []
+countOp = 0
+repeatOp_one = []
+
+for k in range(len(data2['operations'])):
+	for i in range(len(scoreOperations_one)):
+		for j in range(len(scoreOperations_one[i][4])):
+			if data2['operations'][k]['name'] == scoreOperations_one[i][4][j]['name']:
+				countOp =  countOp + 1
+	if countOp > 0:
+		tmp.append(data2['operations'][k]['name'])
+		tmp.append(countOp)
+		repeatOp_one.append(tmp)
+	countOp = 0
+	tmp = []
+
+repeatOp_oneSorted = sortScoreMatrix(repeatOp_one)
+repeatOp_no_MatchedSorted = sortScoreMatrix(repeatOp_noMatched)
+repeatOp_matchedSorted = sortScoreMatrix(repeatOp_matched)
+print(repeatOp_oneSorted)
+print("")
+print(repeatOp_no_MatchedSorted)
+print("")
+print(repeatOp_matchedSorted)
+
+# PLOT
+# x = []
+# y = []
+# for i in  range(len(repeatOp_oneSorted)):
+# 	x.append(repeatOp_oneSorted[i][0])
+# 	y.append(repeatOp_oneSorted[i][1])
+# centers = range(len(x))
+# plt.bar(centers,y,align='center', tick_label= x)
+# plt.show()
