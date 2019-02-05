@@ -188,4 +188,4 @@ for i in range(len(probe_journal_join_csv)):
 	for j in range(len(noJSON)):
 		if probe_journal_join_csv[i][0] == noJSON[j][0]:
 			count = count + 1
-print(count)
+print(boa)
