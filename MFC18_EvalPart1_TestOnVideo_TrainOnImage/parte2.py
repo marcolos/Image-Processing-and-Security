@@ -265,6 +265,7 @@ for k in range(len(data2['operations'])):
 		for j in range(len( scoreOperations_no_one_matched[i][4])):
 			if data2['operations'][k]['name'] == scoreOperations_no_one_matched[i][4][j]['name']:
 				countOp =  countOp + 1
+				break
 	if countOp > 0:
 		tmp.append(data2['operations'][k]['name'])
 		tmp.append(countOp)
@@ -281,6 +282,7 @@ for k in range(len(data2['operations'])):
 		for j in range(len(scoreOperations_no_one_no_matched[i][4])):
 			if data2['operations'][k]['name'] == scoreOperations_no_one_no_matched[i][4][j]['name']:
 				countOp =  countOp + 1
+				break
 	if countOp > 0:
 		tmp.append(data2['operations'][k]['name'])
 		tmp.append(countOp)
@@ -297,6 +299,7 @@ for k in range(len(data2['operations'])):
 		for j in range(len(scoreOperations_one[i][4])):
 			if data2['operations'][k]['name'] == scoreOperations_one[i][4][j]['name']:
 				countOp =  countOp + 1
+				break
 	if countOp > 0:
 		tmp.append(data2['operations'][k]['name'])
 		tmp.append(countOp)
