@@ -16,7 +16,7 @@
     <SUITE FILE_PATH="coverage/LABIPS$parte1__3_.coverage" NAME="parte1 (3) Coverage Results" MODIFIED="1549020050918" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MFC18_Eval_GAN_Image_Crop" />
     <SUITE FILE_PATH="coverage/LABIPS$control.coverage" NAME="control Coverage Results" MODIFIED="1543921896101" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/LABIPS$Unittests_in_MFC18_EvalPart1_TestOnVideo_TrainOnVideo.coverage" NAME="Unittests in MFC18_EvalPart1_TestOnVideo_TrainOnVideo Coverage Results" MODIFIED="1549020129412" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo" />
-    <SUITE FILE_PATH="coverage/LABIPS$parte2.coverage" NAME="parte2 Coverage Results" MODIFIED="1549379897516" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage" />
+    <SUITE FILE_PATH="coverage/LABIPS$parte2.coverage" NAME="parte2 Coverage Results" MODIFIED="1549538917896" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage" />
     <SUITE FILE_PATH="coverage/LABIPS$parte1__2_.coverage" NAME="parte1 (2) Coverage Results" MODIFIED="1549019072302" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MFC18_EvalPart1_TestOnImage_TrainOnImage" />
     <SUITE FILE_PATH="coverage/LABIPS$parte1__1_.coverage" NAME="parte1 (1) Coverage Results" MODIFIED="1549019990072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage" />
     <SUITE FILE_PATH="coverage/LABIPS$parte1.coverage" NAME="parte1 Coverage Results" MODIFIED="1549020094250" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MFC18_Eval_GAN_Video_Ver3" />
@@ -28,22 +28,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/parte2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="666">
-              <caret line="351" lean-forward="true" selection-start-line="351" selection-end-line="351" />
+            <state relative-caret-position="315">
+              <caret line="338" lean-forward="true" selection-start-line="338" selection-end-line="338" />
               <folding>
                 <element signature="e#122#132#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/parte1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="110" selection-start-line="110" selection-end-line="111" selection-end-column="63" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -107,6 +95,11 @@
             <path>
               <item name="LABIPS" type="b2602c69:ProjectViewProjectNode" />
               <item name="LABIPS" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LABIPS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LABIPS" type="462c0819:PsiDirectoryNode" />
+              <item name="MFC18_EvalPart1_TestOnVideo_TrainOnImage" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -273,7 +266,7 @@
       <workItem from="1547649083253" duration="8000" />
       <workItem from="1548160597956" duration="7295000" />
       <workItem from="1549014401683" duration="2497000" />
-      <workItem from="1549362630282" duration="13857000" />
+      <workItem from="1549362630282" duration="14153000" />
     </task>
     <servers />
   </component>
@@ -283,17 +276,18 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68754000" />
+    <option name="totallyTimeSpent" value="69050000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25822604" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25822604" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24964234" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2951807" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2939759" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -397,13 +391,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnImage_TrainOnImage/parte2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="175" column="34" selection-start-line="175" selection-start-column="34" selection-end-line="175" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/parte2[with operation].py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1139">
@@ -414,9 +401,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnImage_TrainOnImage/parte2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="175" column="34" selection-start-line="175" selection-start-column="34" selection-end-line="175" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/parte1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
+        <state relative-caret-position="593">
           <caret line="110" selection-start-line="110" selection-end-line="111" selection-end-column="63" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
@@ -426,8 +420,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/parte2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="351" lean-forward="true" selection-start-line="351" selection-end-line="351" />
+        <state relative-caret-position="315">
+          <caret line="338" lean-forward="true" selection-start-line="338" selection-end-line="338" />
           <folding>
             <element signature="e#122#132#0" expanded="true" />
           </folding>

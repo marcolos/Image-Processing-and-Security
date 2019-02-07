@@ -336,7 +336,7 @@ print(repeatOp_one)
 print("")
 print(repeatOp_matchedSorted)
 
-<<<<<<< HEAD
+
 trovato = False
 for i in range(len(repeatOp_one)):
 	for j in range(len(repeatOp_matchedSorted)):
@@ -350,7 +350,7 @@ for i in range(len(repeatOp_one)):
 
 
 
-=======
+
 # PLOT
 # x = []
 # y = []
@@ -360,4 +360,4 @@ for i in range(len(repeatOp_one)):
 # centers = range(len(x))
 # plt.bar(centers,y,align='center', tick_label= x)
 # plt.show()
->>>>>>> 9289c718540580cab36aab13b2ffb9141f5e96cd
+
