@@ -1,0 +1,2310 @@
+[
+    [
+        "75ed2ccf33845a44f0590c9482cf1ca3",
+        "ES-D5100_primary_image",
+        "170.6",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "AddAudioSample",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Adding a donor audio stream to a video"
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "7199d714a3e9f54c6b070ddbe364d4c3",
+        "ES-D5100_primary_image",
+        "151.45",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "SelectCutFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove a series of frames from a video clip."
+            },
+            {
+                "name": "TimeAlterationWarp",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter frame rate and frame blending to change playback rate. Vector Detail is a integer that determines how many motion vectors are used during interpolation. Methods include 'Whole Frames', 'Frame Mix' and 'Pixel Motion'. Adjust Time By controls is a percentage of reduction."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "f8d2ed5d34124e8ad3bd4d4a1d108184",
+        "ES-D5100_primary_image",
+        "153.8",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "CopyPaste",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy & Paste a series of frames within the same video"
+            },
+            {
+                "name": "TimeAlterationWarp",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter frame rate and frame blending to change playback rate. Vector Detail is a integer that determines how many motion vectors are used during interpolation. Methods include 'Whole Frames', 'Frame Mix' and 'Pixel Motion'. Adjust Time By controls is a percentage of reduction."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "83db8eb578ee88537e851c3c17a4de5c",
+        "ES-D5100_primary_image",
+        "158.28",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "PasteOverlay",
+                "purpose": "add",
+                "operationArgument": "",
+                "description": "Paste a series of green screen frames from a donor video clip, overlaying frames."
+            },
+            {
+                "name": "ColorBalance",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter the Color Temperature of an image on a Yellow Blue Scale."
+            },
+            {
+                "name": "CameraMovement",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Make it appear is if the camera is moving or not moving"
+            },
+            {
+                "name": "ColorBalance",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter the Color Temperature of an image on a Yellow Blue Scale."
+            },
+            {
+                "name": "AddAudioSample",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Adding a donor audio stream to a video"
+            },
+            {
+                "name": "SocialMedia",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Laundering"
+            }
+        ]
+    ],
+    [
+        "9fc9a7459f21b23f09f49dbe5e3a0663",
+        "ES-D5100_primary_image",
+        "152.72",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "CopyPaste",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy & Paste a series of frames within the same video"
+            },
+            {
+                "name": "TimeAlterationWarp",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter frame rate and frame blending to change playback rate. Vector Detail is a integer that determines how many motion vectors are used during interpolation. Methods include 'Whole Frames', 'Frame Mix' and 'Pixel Motion'. Adjust Time By controls is a percentage of reduction."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "1dcbd3d40a8c63a30ed226c2e38dbfd4",
+        "ES-D5100_primary_image",
+        "174.72",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "SelectCutFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove a series of frames from a video clip."
+            },
+            {
+                "name": "TimeAlterationWarp",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter frame rate and frame blending to change playback rate. Vector Detail is a integer that determines how many motion vectors are used during interpolation. Methods include 'Whole Frames', 'Frame Mix' and 'Pixel Motion'. Adjust Time By controls is a percentage of reduction."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "0679b7e6a1688ff412e18bdebe246442",
+        "ES-D5100_primary_image",
+        "156.72",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "SelectCutFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove a series of frames from a video clip."
+            },
+            {
+                "name": "TimeAlterationWarp",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter frame rate and frame blending to change playback rate. Vector Detail is a integer that determines how many motion vectors are used during interpolation. Methods include 'Whole Frames', 'Frame Mix' and 'Pixel Motion'. Adjust Time By controls is a percentage of reduction."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "1c20c5778d792d5803de04662e359ccc",
+        "ES-D5100_primary_image",
+        "67.66",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "SelectCutFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove a series of frames from a video clip."
+            },
+            {
+                "name": "TimeAlterationWarp",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter frame rate and frame blending to change playback rate. Vector Detail is a integer that determines how many motion vectors are used during interpolation. Methods include 'Whole Frames', 'Frame Mix' and 'Pixel Motion'. Adjust Time By controls is a percentage of reduction."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "2bfe7d6a032e7460add10311a04d01cb",
+        "ES-D5100_primary_image",
+        "158.92",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "SelectCutFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove a series of frames from a video clip."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "d7e636ba4b0c30e65353d653246ec126",
+        "ES-D5100_primary_image",
+        "136.86",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "CopyPaste",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy & Paste a series of frames within the same video"
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "80a13f08653249baaba174a34b09f7ea",
+        "ES-D5100_primary_image",
+        "125.57",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "SelectCutFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove a series of frames from a video clip."
+            },
+            {
+                "name": "TimeAlterationWarp",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter frame rate and frame blending to change playback rate. Vector Detail is a integer that determines how many motion vectors are used during interpolation. Methods include 'Whole Frames', 'Frame Mix' and 'Pixel Motion'. Adjust Time By controls is a percentage of reduction."
+            },
+            {
+                "name": "RemoveCamFingerprintPRNU",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove PRNU fingerprint from image."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "0ce2fb2790997ec0e368b74d9db2ea28",
+        "ES-D5100_primary_image",
+        "146.76",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "CopyPaste",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy & Paste a series of frames within the same video"
+            },
+            {
+                "name": "TimeAlterationWarp",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter frame rate and frame blending to change playback rate. Vector Detail is a integer that determines how many motion vectors are used during interpolation. Methods include 'Whole Frames', 'Frame Mix' and 'Pixel Motion'. Adjust Time By controls is a percentage of reduction."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "b44d7dfd0d1cef2f13e15296d0f073d8",
+        "ES-D5100_primary_image",
+        "166.84",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "SelectCutFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove a series of frames from a video clip."
+            },
+            {
+                "name": "TimeAlterationWarp",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter frame rate and frame blending to change playback rate. Vector Detail is a integer that determines how many motion vectors are used during interpolation. Methods include 'Whole Frames', 'Frame Mix' and 'Pixel Motion'. Adjust Time By controls is a percentage of reduction."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "b073e8576f15867fe8e7a691985271ad",
+        "ES-D5100_primary_image",
+        "152.8",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "SelectCutFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove a series of frames from a video clip."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "be5ba8e769915b5a4371d37b16df76c1",
+        "ES-D5100_primary_image",
+        "65.05",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "WarpStabilize",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Distort and/or crop video layers in order to remove camera shake"
+            },
+            {
+                "name": "SelectCutFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove a series of frames from a video clip."
+            },
+            {
+                "name": "AddTransitions",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Add a series of frame modifications that create a visual blend between two pieces of media"
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "36cd4d83519648c15ef6fbe310a9e0ba",
+        "PAR-1579_primary_image",
+        "50.5",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "PasteImageSpliceToFrames",
+                "purpose": "add",
+                "operationArgument": "man-made object",
+                "description": "Paste into a series of frames an image spliced from another image.  The other image is a Donor image.  The donor image should first be prepared by using an alpha channel to exclude the unselected regions of the image."
+            },
+            {
+                "name": "PasteImageSpliceToFrames",
+                "purpose": "add",
+                "operationArgument": "large man-made object",
+                "description": "Paste into a series of frames an image spliced from another image.  The other image is a Donor image.  The donor image should first be prepared by using an alpha channel to exclude the unselected regions of the image."
+            },
+            {
+                "name": "ReduceInterlaceFlicker",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Smooth the artifacts resultant from interlacing."
+            },
+            {
+                "name": "PasteOverlay",
+                "purpose": "add",
+                "operationArgument": "",
+                "description": "Paste a series of green screen frames from a donor video clip, overlaying frames."
+            },
+            {
+                "name": "PasteSampled",
+                "purpose": "clone",
+                "operationArgument": "",
+                "description": "Use sampled imagery from a given area to fill an area on the canvas."
+            },
+            {
+                "name": "OutputMP4",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the MP4 format."
+            }
+        ]
+    ],
+    [
+        "d0a6d1ea77975e7da35bfd81063fd3fe",
+        "MK-NEX5T_primary_image",
+        "51.98",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "SelectCutFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove a series of frames from a video clip."
+            },
+            {
+                "name": "TimeAlterationWarp",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter frame rate and frame blending to change playback rate. Vector Detail is a integer that determines how many motion vectors are used during interpolation. Methods include 'Whole Frames', 'Frame Mix' and 'Pixel Motion'. Adjust Time By controls is a percentage of reduction."
+            },
+            {
+                "name": "AddCamFingerprintPRNU",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Add PRNU fingerprint trace from an image."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "a94d40dabf90ddcfff0b3afda3e02ad4",
+        "MK-NEX5T_primary_image",
+        "52.2",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "CopyPaste",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy & Paste a series of frames within the same video"
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            },
+            {
+                "name": "AntiForensicEditExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter image metadata."
+            }
+        ]
+    ],
+    [
+        "a4fee39a25f2355bcc987037cb144cd4",
+        "MK-NEX5T_primary_image",
+        "54.4",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "Hue",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter the color of a selection or image without adjusting saturation or luminance."
+            },
+            {
+                "name": "OverlayObject",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Add an object to another image or selection. Do not use a donor image.  Consider using ObjectCGI."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            },
+            {
+                "name": "AddAudioSample",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Adding a donor audio stream to a video"
+            },
+            {
+                "name": "SocialMedia",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Laundering"
+            }
+        ]
+    ],
+    [
+        "8fd2a6c09064750da1ed54befe22edbf",
+        "MK-NEX5T_primary_image",
+        "58.18",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "Hue",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter the color of a selection or image without adjusting saturation or luminance."
+            },
+            {
+                "name": "OverlayObject",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Add an object to another image or selection. Do not use a donor image.  Consider using ObjectCGI."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            },
+            {
+                "name": "AddAudioSample",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Adding a donor audio stream to a video"
+            },
+            {
+                "name": "SocialMedia",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Laundering"
+            }
+        ]
+    ],
+    [
+        "47cb70ae40f72761687088958131ceb6",
+        "MK-NEX5T_primary_image",
+        "50.9",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "TransformDownSample",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Down sample a video to a lower frame resolution."
+            },
+            {
+                "name": "PasteOverlay",
+                "purpose": "add",
+                "operationArgument": "",
+                "description": "Paste a series of green screen frames from a donor video clip, overlaying frames."
+            },
+            {
+                "name": "AddAudioSample",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Adding a donor audio stream to a video"
+            },
+            {
+                "name": "SocialMedia",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Laundering"
+            }
+        ]
+    ],
+    [
+        "771a485b6b16fb8218e04986164f781d",
+        "MK-NEX5T_primary_image",
+        "50.07",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "SelectCutFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove a series of frames from a video clip."
+            },
+            {
+                "name": "TimeAlterationWarp",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter frame rate and frame blending to change playback rate. Vector Detail is a integer that determines how many motion vectors are used during interpolation. Methods include 'Whole Frames', 'Frame Mix' and 'Pixel Motion'. Adjust Time By controls is a percentage of reduction."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "fb7d68d138740670ed9f388ce1c7a341",
+        "MK-NEX5T_primary_image",
+        "58.63",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "SelectCutFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove a series of frames from a video clip."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "1ccd679cc4c3d872c6dbf7c11e900d72",
+        "MK-NEX5T_primary_image",
+        "65.49",
+        "Y",
+        [
+            {
+                "name": "PasteSampled",
+                "purpose": "remove",
+                "operationArgument": "",
+                "description": "Use sampled imagery from a given area to fill an area on the canvas."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "601a9fec8060c3a45175d0d6f127d5d6",
+        "MK-NEX5T_primary_image",
+        "50.62",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "SelectCutFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove a series of frames from a video clip."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "26e9f8415c7b7cd8844e08a0764f4fc1",
+        "MK-NEX5T_primary_image",
+        "53.51",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "TransformDownSample",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Down sample a video to a lower frame resolution."
+            },
+            {
+                "name": "SelectCutFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove a series of frames from a video clip."
+            },
+            {
+                "name": "PasteOverlay",
+                "purpose": "add",
+                "operationArgument": "",
+                "description": "Paste a series of green screen frames from a donor video clip, overlaying frames."
+            },
+            {
+                "name": "AddAudioSample",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Adding a donor audio stream to a video"
+            },
+            {
+                "name": "SocialMedia",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Laundering"
+            }
+        ]
+    ],
+    [
+        "221b0253859a5aaed59b9b9c4fbc905a",
+        "MK-NEX5T_primary_image",
+        "51.21",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "TransformDownSample",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Down sample a video to a lower frame resolution."
+            },
+            {
+                "name": "SelectCutFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove a series of frames from a video clip."
+            },
+            {
+                "name": "PasteOverlay",
+                "purpose": "add",
+                "operationArgument": "",
+                "description": "Paste a series of green screen frames from a donor video clip, overlaying frames."
+            },
+            {
+                "name": "AddAudioSample",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Adding a donor audio stream to a video"
+            },
+            {
+                "name": "SocialMedia",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Laundering"
+            }
+        ]
+    ],
+    [
+        "db42f94eeaa82e3814bbcc2f221333f8",
+        "MK-NEX5T_primary_image",
+        "56.48",
+        "Y",
+        [
+            {
+                "name": "OutputMOV",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the MOV format."
+            },
+            {
+                "name": "SelectCropFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove all frames before and after the selected video clip."
+            },
+            {
+                "name": "PasteOverlay",
+                "purpose": "add",
+                "operationArgument": "",
+                "description": "Paste a series of green screen frames from a donor video clip, overlaying frames."
+            },
+            {
+                "name": "SelectRegionFromFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Create a limited selection,removing background,from a donor video,for the intent of pasting.  The result should be a black back ground for non-keyed manipulations."
+            },
+            {
+                "name": "ArtificialShadow",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Add shadows that were not originally present."
+            },
+            {
+                "name": "ColorBalance",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter the Color Temperature of an image on a Yellow Blue Scale."
+            },
+            {
+                "name": "SocialMedia",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Laundering"
+            }
+        ]
+    ],
+    [
+        "6d06bcef8c653bdeee8ee1e5af649861",
+        "MK-NEX5T_primary_image",
+        "53.52",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "SelectCutFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove a series of frames from a video clip."
+            },
+            {
+                "name": "TimeAlterationWarp",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter frame rate and frame blending to change playback rate. Vector Detail is a integer that determines how many motion vectors are used during interpolation. Methods include 'Whole Frames', 'Frame Mix' and 'Pixel Motion'. Adjust Time By controls is a percentage of reduction."
+            },
+            {
+                "name": "RemoveCamFingerprintPRNU",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove PRNU fingerprint from image."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "224936ac66aedfacc427526167e845f3",
+        "MK-NEX5T_primary_image",
+        "52.09",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "ObjectCGI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Create objects that were not originally present in an image."
+            },
+            {
+                "name": "ArtificialShadow",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Add shadows that were not originally present."
+            },
+            {
+                "name": "Sharpening",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Enhance edge definition within an image."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "64928d8d0267b49830b2ca5f6b850b5f",
+        "PAR-1477_primary_image",
+        "6915.33",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "ObjectCGI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Create objects that were not originally present in an image."
+            },
+            {
+                "name": "Exposure",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Shift all luminance values on a histogram to higher or lower values."
+            },
+            {
+                "name": "Hue",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter the color of a selection or image without adjusting saturation or luminance."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "dc9dcb28f7515b85e36995ca4465769c",
+        "PAR-1477_primary_image",
+        "65.06",
+        "Y",
+        [
+            {
+                "name": "AddAudioSample",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Adding a donor audio stream to a video"
+            },
+            {
+                "name": "SocialMedia",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Laundering"
+            }
+        ]
+    ],
+    [
+        "0b62bd579dbf1797e188679a0d87481c",
+        "PAR-1477_primary_image",
+        "101.62",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "PasteOverlay",
+                "purpose": "add",
+                "operationArgument": "",
+                "description": "Paste a series of green screen frames from a donor video clip, overlaying frames."
+            },
+            {
+                "name": "ColorBalance",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter the Color Temperature of an image on a Yellow Blue Scale."
+            },
+            {
+                "name": "CameraMovement",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Make it appear is if the camera is moving or not moving"
+            },
+            {
+                "name": "ColorBalance",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter the Color Temperature of an image on a Yellow Blue Scale."
+            },
+            {
+                "name": "AddAudioSample",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Adding a donor audio stream to a video"
+            },
+            {
+                "name": "SocialMedia",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Laundering"
+            }
+        ]
+    ],
+    [
+        "84aac34d61796362ef3c27cfb9e633f3",
+        "PAR-1477_primary_image",
+        "50.58",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "CopyPaste",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy & Paste a series of frames within the same video"
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "c110a14b7bbdf383f9ea380363c72c6d",
+        "PAR-1233_primary_image",
+        "50.21",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "SelectCutFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove a series of frames from a video clip."
+            },
+            {
+                "name": "TimeAlterationWarp",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter frame rate and frame blending to change playback rate. Vector Detail is a integer that determines how many motion vectors are used during interpolation. Methods include 'Whole Frames', 'Frame Mix' and 'Pixel Motion'. Adjust Time By controls is a percentage of reduction."
+            },
+            {
+                "name": "AddCamFingerprintPRNU",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Add PRNU fingerprint trace from an image."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "29f61f508bfa57840587cd2f5c13ea9d",
+        "PAR-1233_primary_image",
+        "50.96",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "SelectCutFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove a series of frames from a video clip."
+            },
+            {
+                "name": "TimeAlterationWarp",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter frame rate and frame blending to change playback rate. Vector Detail is a integer that determines how many motion vectors are used during interpolation. Methods include 'Whole Frames', 'Frame Mix' and 'Pixel Motion'. Adjust Time By controls is a percentage of reduction."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "f8d2ed5d34124e8ad3bd4d4a1d108184",
+        "PAR-3196_primary_image",
+        "1706.65",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "CopyPaste",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy & Paste a series of frames within the same video"
+            },
+            {
+                "name": "TimeAlterationWarp",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter frame rate and frame blending to change playback rate. Vector Detail is a integer that determines how many motion vectors are used during interpolation. Methods include 'Whole Frames', 'Frame Mix' and 'Pixel Motion'. Adjust Time By controls is a percentage of reduction."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "99ab4d8abd343a4302569a054da37eeb",
+        "PAR-3196_primary_image",
+        "875.41",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "SelectCutFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove a series of frames from a video clip."
+            },
+            {
+                "name": "TimeAlterationWarp",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter frame rate and frame blending to change playback rate. Vector Detail is a integer that determines how many motion vectors are used during interpolation. Methods include 'Whole Frames', 'Frame Mix' and 'Pixel Motion'. Adjust Time By controls is a percentage of reduction."
+            },
+            {
+                "name": "RemoveCamFingerprintPRNU",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove PRNU fingerprint from image."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            },
+            {
+                "name": "AntiForensicEditExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter image metadata."
+            }
+        ]
+    ],
+    [
+        "a94d40dabf90ddcfff0b3afda3e02ad4",
+        "PAR-3196_primary_image",
+        "1743.07",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "CopyPaste",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy & Paste a series of frames within the same video"
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            },
+            {
+                "name": "AntiForensicEditExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter image metadata."
+            }
+        ]
+    ],
+    [
+        "61d7466fce5b3f1f57cba5fce87e445c",
+        "PAR-3196_primary_image",
+        "1730.56",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "SelectCutFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove a series of frames from a video clip."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            },
+            {
+                "name": "AntiForensicEditExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter image metadata."
+            }
+        ]
+    ],
+    [
+        "b0a761cc3519d7dc5292af2c780d136b",
+        "PAR-3196_primary_image",
+        "1748.36",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "SelectCutFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove a series of frames from a video clip."
+            },
+            {
+                "name": "TimeAlterationWarp",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter frame rate and frame blending to change playback rate. Vector Detail is a integer that determines how many motion vectors are used during interpolation. Methods include 'Whole Frames', 'Frame Mix' and 'Pixel Motion'. Adjust Time By controls is a percentage of reduction."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            },
+            {
+                "name": "AntiForensicEditExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter image metadata."
+            }
+        ]
+    ],
+    [
+        "713d55990723712210f15f6af0ad0355",
+        "PAR-3196_primary_image",
+        "2886.09",
+        "Y",
+        [
+            {
+                "name": "PasteSampled",
+                "purpose": "remove",
+                "operationArgument": "",
+                "description": "Use sampled imagery from a given area to fill an area on the canvas."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "714974ca5d63f24982c32187b4df6be3",
+        "PAR-3196_primary_image",
+        "54.63",
+        "Y",
+        [
+            {
+                "name": "AddAudioSample",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Adding a donor audio stream to a video"
+            },
+            {
+                "name": "SocialMedia",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Laundering"
+            }
+        ]
+    ],
+    [
+        "5c5f5dac9857bb5b22a691ce95df86f5",
+        "PAR-3196_primary_image",
+        "54.63",
+        "Y",
+        [
+            {
+                "name": "AudioSample",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Extract audio stream(s) from a video"
+            },
+            {
+                "name": "AudioReverb",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Add Reverb or Dampen an Audio Signal to alter the perception of the room size."
+            },
+            {
+                "name": "AddAudioSample",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Adding a donor audio stream to a video"
+            },
+            {
+                "name": "SocialMedia",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Laundering"
+            }
+        ]
+    ],
+    [
+        "9a09380e01269d02990a944b782ea902",
+        "PAR-3196_primary_image",
+        "58.07",
+        "Y",
+        [
+            {
+                "name": "AudioSample",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Extract audio stream(s) from a video"
+            },
+            {
+                "name": "AudioReverb",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Add Reverb or Dampen an Audio Signal to alter the perception of the room size."
+            },
+            {
+                "name": "AddAudioSample",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Adding a donor audio stream to a video"
+            },
+            {
+                "name": "SocialMedia",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Laundering"
+            }
+        ]
+    ],
+    [
+        "dc9dcb28f7515b85e36995ca4465769c",
+        "PAR-3196_primary_image",
+        "54.63",
+        "Y",
+        [
+            {
+                "name": "AddAudioSample",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Adding a donor audio stream to a video"
+            },
+            {
+                "name": "SocialMedia",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Laundering"
+            }
+        ]
+    ],
+    [
+        "23c81796258a9124b6c4f61a2157a936",
+        "PAR-3196_primary_image",
+        "109.08",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "PasteSampled",
+                "purpose": "remove",
+                "operationArgument": "",
+                "description": "Use sampled imagery from a given area to fill an area on the canvas."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "a95314d44b50f88b43e1c4ad288a6d42",
+        "PAR-3196_primary_image",
+        "53.94",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "CopyPaste",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy & Paste a series of frames within the same video"
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "6e546b9da1742556be0ff41a5be903d9",
+        "PAR-3196_primary_image",
+        "1023.23",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "SelectCutFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove a series of frames from a video clip."
+            },
+            {
+                "name": "TimeAlterationWarp",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter frame rate and frame blending to change playback rate. Vector Detail is a integer that determines how many motion vectors are used during interpolation. Methods include 'Whole Frames', 'Frame Mix' and 'Pixel Motion'. Adjust Time By controls is a percentage of reduction."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            },
+            {
+                "name": "AntiForensicEditExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter image metadata."
+            }
+        ]
+    ],
+    [
+        "ba3a8cd85472f5c32cef9e05d98a2edc",
+        "PAR-3196_primary_image",
+        "1124.36",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "CopyPaste",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy & Paste a series of frames within the same video"
+            },
+            {
+                "name": "TimeAlterationWarp",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter frame rate and frame blending to change playback rate. Vector Detail is a integer that determines how many motion vectors are used during interpolation. Methods include 'Whole Frames', 'Frame Mix' and 'Pixel Motion'. Adjust Time By controls is a percentage of reduction."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "8fceed32c3d4dc31e39670e7b5ec562a",
+        "PAR-3196_primary_image",
+        "1186.18",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "CopyPaste",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy & Paste a series of frames within the same video"
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            },
+            {
+                "name": "AntiForensicEditExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter image metadata."
+            }
+        ]
+    ],
+    [
+        "f2216a894706616e5ea3f4185727d896",
+        "PAR-3196_primary_image",
+        "531.32",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "SelectCutFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove a series of frames from a video clip."
+            },
+            {
+                "name": "TimeAlterationWarp",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter frame rate and frame blending to change playback rate. Vector Detail is a integer that determines how many motion vectors are used during interpolation. Methods include 'Whole Frames', 'Frame Mix' and 'Pixel Motion'. Adjust Time By controls is a percentage of reduction."
+            },
+            {
+                "name": "RemoveCamFingerprintPRNU",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove PRNU fingerprint from image."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            },
+            {
+                "name": "AntiForensicEditExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter image metadata."
+            }
+        ]
+    ],
+    [
+        "4ed8f0f64ea0f93ed4a8f36ffa34046e",
+        "PAR-3196_primary_image",
+        "1177.94",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "SelectCutFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove a series of frames from a video clip."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            },
+            {
+                "name": "AntiForensicEditExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter image metadata."
+            }
+        ]
+    ],
+    [
+        "eeb5fef2f2a880aba8eb8d2e2adf41fd",
+        "PAR-2936_primary_image",
+        "55.22",
+        "Y",
+        [
+            {
+                "name": "AddAudioSample",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Adding a donor audio stream to a video"
+            },
+            {
+                "name": "SocialMedia",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Laundering"
+            }
+        ]
+    ],
+    [
+        "54987819fec81f501235eac6f74a5b3d",
+        "PAR-2936_primary_image",
+        "55.14",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "PasteOverlay",
+                "purpose": "add",
+                "operationArgument": "",
+                "description": "Paste a series of green screen frames from a donor video clip, overlaying frames."
+            },
+            {
+                "name": "ColorBalance",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter the Color Temperature of an image on a Yellow Blue Scale."
+            },
+            {
+                "name": "CameraMovement",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Make it appear is if the camera is moving or not moving"
+            },
+            {
+                "name": "ColorBalance",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter the Color Temperature of an image on a Yellow Blue Scale."
+            },
+            {
+                "name": "AddAudioSample",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Adding a donor audio stream to a video"
+            },
+            {
+                "name": "SocialMedia",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Laundering"
+            }
+        ]
+    ],
+    [
+        "a8c0ae8e7482505d8e6fd49243b3c426",
+        "PAR-2936_primary_image",
+        "50.23",
+        "Y",
+        [
+            {
+                "name": "PasteSampled",
+                "purpose": "remove",
+                "operationArgument": "",
+                "description": "Use sampled imagery from a given area to fill an area on the canvas."
+            },
+            {
+                "name": "OutputCopy",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the in the same format. Used to branch off a final image  node"
+            }
+        ]
+    ],
+    [
+        "98ad522bd60c5c0e67dcb568e1562071",
+        "PAR-2936_primary_image",
+        "50.22",
+        "Y",
+        [
+            {
+                "name": "PasteSampled",
+                "purpose": "remove",
+                "operationArgument": "",
+                "description": "Use sampled imagery from a given area to fill an area on the canvas."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "e26e86c72de5298efe679592b6b33c65",
+        "PAR-2629_primary_image",
+        "60.04",
+        "Y",
+        [
+            {
+                "name": "AddAudioSample",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Adding a donor audio stream to a video"
+            },
+            {
+                "name": "SocialMedia",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Laundering"
+            }
+        ]
+    ],
+    [
+        "58638109260cdb4475913845df5f14e9",
+        "PAR-2629_primary_image",
+        "55.48",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "SelectCutFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove a series of frames from a video clip."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "efa1a84c278b64d5708b7a2d07e3b263",
+        "PAR-2629_primary_image",
+        "56.15",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "CopyPaste",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy & Paste a series of frames within the same video"
+            },
+            {
+                "name": "TimeAlterationWarp",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter frame rate and frame blending to change playback rate. Vector Detail is a integer that determines how many motion vectors are used during interpolation. Methods include 'Whole Frames', 'Frame Mix' and 'Pixel Motion'. Adjust Time By controls is a percentage of reduction."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "78949baf9fdf4308ef0560271e2866bf",
+        "PAR-2629_primary_image",
+        "52.8",
+        "Y",
+        [
+            {
+                "name": "OutputMOV",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the MOV format."
+            },
+            {
+                "name": "SelectCropFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Remove all frames before and after the selected video clip."
+            },
+            {
+                "name": "PasteOverlay",
+                "purpose": "add",
+                "operationArgument": "",
+                "description": "Paste a series of green screen frames from a donor video clip, overlaying frames."
+            },
+            {
+                "name": "SelectRegionFromFrames",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Create a limited selection,removing background,from a donor video,for the intent of pasting.  The result should be a black back ground for non-keyed manipulations."
+            },
+            {
+                "name": "ArtificialShadow",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Add shadows that were not originally present."
+            },
+            {
+                "name": "ColorBalance",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Alter the Color Temperature of an image on a Yellow Blue Scale."
+            },
+            {
+                "name": "SocialMedia",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Laundering"
+            }
+        ]
+    ],
+    [
+        "2b66c237b04c88068f827f9d1a9fe72a",
+        "PAR-2629_primary_image",
+        "55.13",
+        "Y",
+        [
+            {
+                "name": "OutputMOV",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the MOV format."
+            },
+            {
+                "name": "ObjectCGI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Create objects that were not originally present in an image."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "78b4e2a77b89ec320e5dbb13c04b251e",
+        "PAR-2629_primary_image",
+        "51.45",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "ObjectCGI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Create objects that were not originally present in an image."
+            },
+            {
+                "name": "SocialMedia",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Laundering"
+            }
+        ]
+    ],
+    [
+        "c928cff77a28a7e8f06ea10d5c279c73",
+        "PAR-2629_primary_image",
+        "56.3",
+        "Y",
+        [
+            {
+                "name": "OutputAVI",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the AVI format."
+            },
+            {
+                "name": "PasteSampled",
+                "purpose": "remove",
+                "operationArgument": "",
+                "description": "Use sampled imagery from a given area to fill an area on the canvas."
+            },
+            {
+                "name": "TransformCrop",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Removing edge content from an image. For video, remove data from certain areas of the frame."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "a5b83d39c2d72ff744cf4b31f8eb9271",
+        "PAR-1794_primary_image",
+        "203.32",
+        "Y",
+        [
+            {
+                "name": "PasteSampled",
+                "purpose": "remove",
+                "operationArgument": "",
+                "description": "Use sampled imagery from a given area to fill an area on the canvas."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "9a3d16495aa36e213d9ee05d1163b924",
+        "PAR-1794_primary_image",
+        "221.57",
+        "Y",
+        [
+            {
+                "name": "PasteSampled",
+                "purpose": "remove",
+                "operationArgument": "",
+                "description": "Use sampled imagery from a given area to fill an area on the canvas."
+            },
+            {
+                "name": "OutputCopy",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the in the same format. Used to branch off a final image  node"
+            }
+        ]
+    ],
+    [
+        "19fbd4b9b2275436ea2670717eb2c992",
+        "PAR-1794_primary_image",
+        "121.26",
+        "Y",
+        [
+            {
+                "name": "PasteSampled",
+                "purpose": "remove",
+                "operationArgument": "",
+                "description": "Use sampled imagery from a given area to fill an area on the canvas."
+            },
+            {
+                "name": "OutputCopy",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the in the same format. Used to branch off a final image  node"
+            }
+        ]
+    ],
+    [
+        "98ad522bd60c5c0e67dcb568e1562071",
+        "PAR-1794_primary_image",
+        "127.21",
+        "Y",
+        [
+            {
+                "name": "PasteSampled",
+                "purpose": "remove",
+                "operationArgument": "",
+                "description": "Use sampled imagery from a given area to fill an area on the canvas."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "271caf4b0e439eb05b4d515746eed9af",
+        "PAR-1794_primary_image",
+        "594.59",
+        "Y",
+        [
+            {
+                "name": "PasteSampled",
+                "purpose": "remove",
+                "operationArgument": "",
+                "description": "Use sampled imagery from a given area to fill an area on the canvas."
+            },
+            {
+                "name": "OutputCopy",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the in the same format. Used to branch off a final image  node"
+            }
+        ]
+    ],
+    [
+        "f8b1e604a1af8f6f4043d8ff68acc70c",
+        "PAR-1794_primary_image",
+        "575.88",
+        "Y",
+        [
+            {
+                "name": "PasteSampled",
+                "purpose": "remove",
+                "operationArgument": "",
+                "description": "Use sampled imagery from a given area to fill an area on the canvas."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "ecbdc702a5a846b2f30c03de9b592cec",
+        "PAR-1794_primary_image",
+        "365.99",
+        "Y",
+        [
+            {
+                "name": "PasteSampled",
+                "purpose": "remove",
+                "operationArgument": "",
+                "description": "Use sampled imagery from a given area to fill an area on the canvas."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "5ce077f78079a33ac764e1699aacf500",
+        "PAR-1794_primary_image",
+        "377.5",
+        "Y",
+        [
+            {
+                "name": "PasteSampled",
+                "purpose": "remove",
+                "operationArgument": "",
+                "description": "Use sampled imagery from a given area to fill an area on the canvas."
+            },
+            {
+                "name": "OutputCopy",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the in the same format. Used to branch off a final image  node"
+            }
+        ]
+    ],
+    [
+        "6266e40911ab52840e1c69666f6d2101",
+        "PAR-1794_primary_image",
+        "146.16",
+        "Y",
+        [
+            {
+                "name": "PasteSampled",
+                "purpose": "remove",
+                "operationArgument": "",
+                "description": "Use sampled imagery from a given area to fill an area on the canvas."
+            },
+            {
+                "name": "AntiForensicCopyExif",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Copy metadata information from a source."
+            }
+        ]
+    ],
+    [
+        "59aa06ddcad9a21e29cdd19468ffcfd4",
+        "PAR-1794_primary_image",
+        "141.32",
+        "Y",
+        [
+            {
+                "name": "PasteSampled",
+                "purpose": "remove",
+                "operationArgument": "",
+                "description": "Use sampled imagery from a given area to fill an area on the canvas."
+            },
+            {
+                "name": "OutputCopy",
+                "purpose": "",
+                "operationArgument": "",
+                "description": "Export the image in the in the same format. Used to branch off a final image  node"
+            }
+        ]
+    ]
+]

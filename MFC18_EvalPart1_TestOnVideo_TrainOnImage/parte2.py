@@ -3,7 +3,7 @@
 
 import csv
 import json
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 # import pandas as pd
 # import numpy as np
 # from collections import Counter
@@ -95,14 +95,10 @@ for i in range(len(A)):
 
 # Matrice globale contente: ProbeID,score
 global_score = scoreMatrix_one + scoreMatrix_no_one + noJSON
-# g_s = []
-# g_s.append(scoreMatrix_one)
-# g_s.append(scoreMatrix_no_one)
-# g_s.append(noJSON)
-
-
-print('Numero di ProbeID nel CSV score: ', len(global_score))
+print('Numero di ProbeID nel CSV score: ', len(A))
 print('Numero di ProbeID nel JSON: ',len(data['probesFileID']))
+print("")
+print('Numero di ProbeID che matchano nel JSON: ',len(scoreMatrix_one)+len(scoreMatrix_no_one))
 print('Numero di ProbeID non trovati nel JSON: ',count)
 print("")
 
@@ -117,6 +113,7 @@ for i in range(len(scoreMatrix_one)):
 			tmp.append(scoreMatrix_one[i][1])
 			tmp.append(scoreMatrix_one[i][2])
 			tmp.append(B[j][5])
+			tmp.append(B[j][2].split(".",1)[1])
 			if (B[j][5]) == 'Y':
 				X.append(tmp)
 			else:
@@ -134,6 +131,7 @@ for i in range(len(scoreMatrix_no_one)):
 			tmp.append(scoreMatrix_no_one[i][1])
 			tmp.append(scoreMatrix_no_one[i][2])
 			tmp.append(B[j][5])
+			tmp.append(B[j][2].split(".", 1)[1])
 			if (B[j][5]) == 'Y':
 				X.append(tmp)
 			else:
@@ -145,11 +143,10 @@ scoreMatrix_no_one = X+Y
 MATCHED = []
 NOMATCHED = []
 for i in range(len(scoreMatrix_no_one)):
-	if (float(scoreMatrix_no_one[i][2]) <= 50):
+	if (float(scoreMatrix_no_one[i][2]) >= 50):
 		MATCHED.append(scoreMatrix_no_one[i])
 	else:
 		NOMATCHED.append(scoreMatrix_no_one[i])
-
 
 
 # noJSON è una matrice contenente: ProbeID,score,isManipulated/notManipulated raggruppata per Y(yes is manipulated)
@@ -181,6 +178,7 @@ for i in range(len(noJSON)):
 			tmp.append(noJSON[i][1])
 			tmp.append(noJSON[i][2])
 			tmp.append(B[j][5])
+			tmp.append(B[j][2].split(".", 1)[1])
 			if (B[j][5]) == 'Y':
 				W.append(tmp)
 			else:
@@ -188,16 +186,6 @@ for i in range(len(noJSON)):
 			tmp = []
 #print(W)
 
-
-
-
-finalMatrix = []
-finalMatrix.append(scoreMatrix_one)
-finalMatrix.append(scoreMatrix_no_one)
-finalMatrix.append(noJSON)
-#print(finalMatrix[0])  # Stampa scoreMatrix_one
-#print(finalMatrix[1])  # Stampa scoreMatrix_no_one
-#print(finalMatrix[2])  # Stampa noJSON
 
 
 # Controllo se i probe noJSON sono presenti nel journal
@@ -211,6 +199,7 @@ finalMatrix.append(noJSON)
 # print(count)
 
 
+'''Conteggio ricorrenza operazioni in scoreMatrix_one, scoreMatrix_no_one_matched, scoreMatrix_no_one_no_matched'''
 tmp = []
 scoreOperations_one = []
 for i in range(len(scoreMatrix_one)):
@@ -256,22 +245,19 @@ tmp =  []
 repeatOp_matched = []
 with open('./Reference/operations.json') as f:
 	data2 = json.load(f)
-
-
-
-###numero di volte in cui le operazioni si ripetono nelle matrici
+#numero di volte in cui le operazioni si ripetono nelle matrici
 for k in range(len(data2['operations'])):
 	for i in range(len(scoreOperations_no_one_matched)):
 		for j in range(len( scoreOperations_no_one_matched[i][4])):
 			if data2['operations'][k]['name'] == scoreOperations_no_one_matched[i][4][j]['name']:
 				countOp =  countOp + 1
+				break
 	if countOp > 0:
 		tmp.append(data2['operations'][k]['name'])
 		tmp.append(countOp)
 		repeatOp_matched.append(tmp)
 	countOp = 0
 	tmp = []
-
 
 tmp = []
 countOp = 0
@@ -281,6 +267,7 @@ for k in range(len(data2['operations'])):
 		for j in range(len(scoreOperations_no_one_no_matched[i][4])):
 			if data2['operations'][k]['name'] == scoreOperations_no_one_no_matched[i][4][j]['name']:
 				countOp =  countOp + 1
+				break
 	if countOp > 0:
 		tmp.append(data2['operations'][k]['name'])
 		tmp.append(countOp)
@@ -291,12 +278,13 @@ for k in range(len(data2['operations'])):
 tmp = []
 countOp = 0
 repeatOp_one = []
-
+# numero di volte in cui le operazioni si ripetono nelle matrici
 for k in range(len(data2['operations'])):
 	for i in range(len(scoreOperations_one)):
 		for j in range(len(scoreOperations_one[i][4])):
 			if data2['operations'][k]['name'] == scoreOperations_one[i][4][j]['name']:
 				countOp =  countOp + 1
+				break
 	if countOp > 0:
 		tmp.append(data2['operations'][k]['name'])
 		tmp.append(countOp)
@@ -307,18 +295,57 @@ for k in range(len(data2['operations'])):
 repeatOp_oneSorted = sortScoreMatrix(repeatOp_one)
 repeatOp_no_MatchedSorted = sortScoreMatrix(repeatOp_noMatched)
 repeatOp_matchedSorted = sortScoreMatrix(repeatOp_matched)
-print(repeatOp_oneSorted)
-print("")
-print(repeatOp_no_MatchedSorted)
+# print(repeatOp_oneSorted)
+# print("")
+# print(repeatOp_no_MatchedSorted)
+# print("")
+# print(repeatOp_matchedSorted)
+
+'''PLOT
+x = []
+y = []
+for i in range(4):
+	x.append(repeatOp_oneSorted[i][0])
+	y.append(repeatOp_oneSorted[i][1])
+centers = range(len(x))
+plt.bar(centers,y,align='center', tick_label= x)
+plt.show()
+'''
+
+count = 0
+for i in range(len(scoreMatrix_one)):
+	if scoreMatrix_one[i][4] == "mts":
+		count = count +1
+#print(count)
+
+
+
+with open('./one.json', 'w') as fp:
+	json.dump(scoreOperations_one, fp, indent = 4, ensure_ascii = False)
+
+
+with open('./no_one_matched.json', 'w') as fp:
+	json.dump(scoreOperations_no_one_matched, fp, indent = 4, ensure_ascii = False)
+
+
+with open('./no_one_no_matched.json', 'w') as fp:
+	json.dump(scoreOperations_no_one_no_matched, fp, indent = 4, ensure_ascii = False)
+
+
+print(repeatOp_one)
 print("")
 print(repeatOp_matchedSorted)
 
-# PLOT
-# x = []
-# y = []
-# for i in  range(len(repeatOp_oneSorted)):
-# 	x.append(repeatOp_oneSorted[i][0])
-# 	y.append(repeatOp_oneSorted[i][1])
-# centers = range(len(x))
-# plt.bar(centers,y,align='center', tick_label= x)
-# plt.show()
+trovato = False
+for i in range(len(repeatOp_one)):
+	for j in range(len(repeatOp_matchedSorted)):
+		if(repeatOp_one[i][0]) ==(repeatOp_matchedSorted[j][0]):
+			trovato = True
+	if trovato == False:
+		print(repeatOp_one[i][0])
+	trovato = False
+
+
+
+
+
