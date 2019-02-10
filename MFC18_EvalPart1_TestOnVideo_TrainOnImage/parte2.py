@@ -361,3 +361,9 @@ for i in range(len(repeatOp_one)):
 # plt.bar(centers,y,align='center', tick_label= x)
 # plt.show()
 
+
+#print(scoreMatrix_one)
+
+print(repeatOp_no_MatchedSorted)
+print("")
+print(repeatOp_matchedSorted)

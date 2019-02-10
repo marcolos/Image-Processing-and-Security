@@ -17,7 +17,7 @@ def printInColumn(A):
 
 
 print("Enter the path of journaljoin :")
-path = input()
+path = input().strip()
 A = CSVreader(path)
 
 
@@ -52,7 +52,7 @@ for i in range(len(bigArray)):
 # confronto con l'altro csv per stampare l' Operation.  Inserisco tutto dentro C
 
 print("Enter the path of journalmask :")
-path = input()
+path = input().strip()
 B = CSVreader(path)
 # B = CSVreader('/Users/marco/PycharmProjects/LABIPS/MFC18_EvalPart1_TestOnVideo_TrainOnImage/Reference/journalmask.csv')
 # B = CSVreader('./Reference/journalmask.csv')
@@ -72,7 +72,7 @@ for i in range(len(bigArray)):
 
 # apro il JSON e inserisco la descrizione dentro l'array C.
 print("Enter the path of operations :")
-path = input()
+path = input().strip()
 with open(path) as f:
     data = json.load(f)
 # pprint(data)  #stampa tutto
