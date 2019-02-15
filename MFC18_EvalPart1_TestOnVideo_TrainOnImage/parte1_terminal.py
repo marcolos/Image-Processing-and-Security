@@ -1,6 +1,7 @@
 import csv
 import json
-
+import argparse
+import sys
 
 def CSVreader(path):
     with open(path) as f:
@@ -15,12 +16,33 @@ def printInColumn(A):
     for i in range(len(A)):
         print(A[i])
 
+#Da linea di comando
+if sys.argv[1:] != []:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("-p", "--probejournaljoin", required=True,help="insert probejournalname path")
+    ap.add_argument("-j", "--journalmask", required=True, help="insert journalmask path")
+    ap.add_argument("-o", "--operations", required=True, help="insert json file contains all operations")
 
-print("Enter the path of journaljoin :")
-path = input().strip()
-A = CSVreader(path)
+    args = vars(ap.parse_args())
+
+    probePath = args["probejournaljoin"]
+    journalPath = args["journalmask"]
+    operationsPath = args["operations"]
 
 
+#In modalità interattiva
+else:
+    print("Enter the path of probejournaljoin :")
+    probePath = input().strip()
+
+    print("Enter the path of journalmask :")
+    journalPath = input().strip()
+
+    print("Enter the path of operations :")
+    operationsPath = input().strip()
+
+
+A = CSVreader(probePath)
 # creo il bigArray
 pastValue = A[1]
 Operations = []
@@ -50,12 +72,7 @@ for i in range(len(bigArray)):
                 tmpRows = []
 
 # confronto con l'altro csv per stampare l' Operation.  Inserisco tutto dentro C
-
-print("Enter the path of journalmask :")
-path = input().strip()
-B = CSVreader(path)
-# B = CSVreader('/Users/marco/PycharmProjects/LABIPS/MFC18_EvalPart1_TestOnVideo_TrainOnImage/Reference/journalmask.csv')
-# B = CSVreader('./Reference/journalmask.csv')
+B = CSVreader(journalPath)
 C = []
 C2 = []
 tmpOP = []
@@ -71,9 +88,7 @@ for i in range(len(bigArray)):
     tmpOP = []
 
 # apro il JSON e inserisco la descrizione dentro l'array C.
-print("Enter the path of operations :")
-path = input().strip()
-with open(path) as f:
+with open(operationsPath) as f:
     data = json.load(f)
 # pprint(data)  #stampa tutto
 # print(data.keys()) # stampa tutte le keys principali
@@ -114,5 +129,7 @@ probesFile = {
 
     "probesFileID": totalProbes
 }
-with open('./myoperations.json', 'w') as fp:
+with open('./probeHistory.json', 'w') as fp:
     json.dump(probesFile, fp, indent=4, ensure_ascii=False)
+
+print('JSON file has been created')
