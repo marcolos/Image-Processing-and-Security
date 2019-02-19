@@ -3,14 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="898c6126-d648-4414-92a4-cddc121dae08" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/myoperations.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/no_one_matched.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/no_one_no_matched.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/one.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/parte1_terminal.py" beforeDir="false" afterPath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/parte1_terminal.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo/filters.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo/filters_edit.py" beforeDir="false" afterPath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo/filters_edit.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo/myoperations.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/filters_arg.py" beforeDir="false" afterPath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/filters_arg.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/filters_arg copia.py" beforeDir="false" afterPath="$PROJECT_DIR$/filters_arg copia.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,7 +24,7 @@
     <SUITE FILE_PATH="coverage/LABIPS$ImageProcessingSecurity.coverage" NAME="ImageProcessingSecurity Coverage Results" MODIFIED="1544543190314" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/LABIPS$parte2__1_.coverage" NAME="parte2 (1) Coverage Results" MODIFIED="1549018421604" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage" />
     <SUITE FILE_PATH="coverage/LABIPS$filters_edit.coverage" NAME="filters_edit Coverage Results" MODIFIED="1550074988380" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo" />
-    <SUITE FILE_PATH="coverage/LABIPS$filters_arg.coverage" NAME="filters_arg Coverage Results" MODIFIED="1550244598160" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage" />
+    <SUITE FILE_PATH="coverage/LABIPS$filters_arg.coverage" NAME="filters_arg Coverage Results" MODIFIED="1550501269430" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage" />
     <SUITE FILE_PATH="coverage/LABIPS$parte2.coverage" NAME="parte2 Coverage Results" MODIFIED="1549541152674" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage" />
     <SUITE FILE_PATH="coverage/LABIPS$parte1__2_.coverage" NAME="parte1 (2) Coverage Results" MODIFIED="1549019072302" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MFC18_EvalPart1_TestOnImage_TrainOnImage" />
     <SUITE FILE_PATH="coverage/LABIPS$parte1__1_.coverage" NAME="parte1 (1) Coverage Results" MODIFIED="1549816426693" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage" />
@@ -38,25 +32,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/filters_arg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="263" column="29" lean-forward="true" selection-start-line="261" selection-start-column="4" selection-end-line="263" selection-end-column="29" />
+            <state relative-caret-position="338">
+              <caret line="422" column="35" selection-start-line="422" selection-start-column="35" selection-end-line="422" selection-end-column="35" />
               <folding>
                 <element signature="e#122#132#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/parte1_terminal.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="27" column="40" lean-forward="true" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -110,13 +92,15 @@
         <option value="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo/filters_edit.py" />
         <option value="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo/filters.py" />
         <option value="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/filters.py" />
-        <option value="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/filters_arg.py" />
         <option value="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/parte1_terminal.py" />
+        <option value="$PROJECT_DIR$/filters_arg copia.py" />
+        <option value="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/filters_arg2.py" />
+        <option value="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/filters_arg.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1440" />
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+    <option name="width" value="714" />
     <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -153,8 +137,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo" />
       <recent name="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage" />
+      <recent name="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -316,7 +300,7 @@
       <workItem from="1548160597956" duration="7295000" />
       <workItem from="1549014401683" duration="2497000" />
       <workItem from="1549362630282" duration="35716000" />
-      <workItem from="1550062731019" duration="23386000" />
+      <workItem from="1550062731019" duration="38353000" />
     </task>
     <servers />
   </component>
@@ -326,10 +310,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113999000" />
+    <option name="totallyTimeSpent" value="128966000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21316166" />
@@ -457,16 +441,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/parte1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo/filters.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4034">
@@ -487,32 +461,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/filters_arg2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="273" column="29" lean-forward="true" selection-start-line="273" selection-start-column="29" selection-end-line="273" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filters_arg copia.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2">
+          <caret line="144" selection-start-line="144" selection-end-line="169" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/out.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/filters.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="288" lean-forward="true" selection-start-line="246" selection-end-line="288" />
+        <state relative-caret-position="176">
+          <caret line="286" column="36" selection-start-line="286" selection-start-column="36" selection-end-line="286" selection-end-column="36" />
           <folding>
             <element signature="e#122#132#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/filters_arg.py">
+    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/parte1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="263" column="29" lean-forward="true" selection-start-line="261" selection-start-column="4" selection-end-line="263" selection-end-column="29" />
+        <state relative-caret-position="221">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
           <folding>
-            <element signature="e#122#132#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/parte1_terminal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="27" column="40" lean-forward="true" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
+        <state relative-caret-position="-7">
+          <caret line="27" column="40" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/filters_arg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="422" column="35" selection-start-line="422" selection-start-column="35" selection-end-line="422" selection-end-column="35" />
+          <folding>
+            <element signature="e#122#132#0" expanded="true" />
           </folding>
         </state>
       </provider>
