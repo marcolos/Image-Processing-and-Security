@@ -3,7 +3,6 @@
 
 import csv
 import json
-import re
 from parse import *
 import sys
 import argparse
@@ -11,7 +10,6 @@ import argparse
 # import matplotlib.pyplot as plt
 # import pandas as pd
 # import numpy as np
-# from collections import Counter
 
 def CSVreader(path):
     with open(path) as f:
@@ -30,8 +28,111 @@ def printInColumn(A):
         print('None')
 
 
-def scoreFilter1(scoreMatrix, opHistory, score, opFilter, operator='equal', score2 = None):
+def createJsonProbeHistory(probePath, journalPath, operationsPath):
+    A = CSVreader(probePath)
+    # creo il bigArray
+    pastValue = A[1]
+    Operations = []
+    k = 0
+    B = []
+    bigArray = []
+
+    for i in range(1, len(A)):
+        currentValue = A[i]
+        if currentValue[0] == pastValue[0]:
+            B.append(currentValue)
+        else:
+            bigArray.append(B)
+            B = []
+            B.append(currentValue)  # risolve il problema che non printa la 1°
+        pastValue = currentValue
+
+    # ordino secondo Sequence che è la quarta posizione della tabella
+    tmpRows = []
+    for i in range(len(bigArray)):
+        for j in range(len(bigArray[i])):
+            for k in range(j, len(bigArray[i])):
+                if bigArray[i][j][4] < bigArray[i][k][4]:
+                    tmpRows = bigArray[i][j]
+                    bigArray[i][j] = bigArray[i][k]
+                    bigArray[i][k] = tmpRows
+                    tmpRows = []
+
+    # confronto con l'altro csv per stampare l' Operation.  Inserisco tutto dentro C
+    B = CSVreader(journalPath)
+    C = []
+    C2 = []
+    tmpOP = []
+    for i in range(len(bigArray)):
+        for j in range(len(bigArray[i])):
+            for k in range(len(B)):
+                if (bigArray[i][j][1] == B[k][0]) and (bigArray[i][j][2] == B[k][1]) and (
+                (bigArray[i][j][3] == B[k][2])):
+                    # print(B[k][0],B[k][3],B[k][5],B[k][6])
+                    tmp = [bigArray[i][j][0], B[k][3], B[k][5], B[k][6], ""]
+                    tmpOP.append([bigArray[i][j][0], B[k][3], B[k][5], B[k][6], ""])
+                    C.append(tmp)
+        C2.append(tmpOP)
+        tmpOP = []
+
+    # apro il JSON e inserisco la descrizione dentro l'array C.
+    with open(operationsPath) as f:
+        data = json.load(f)
+    # pprint(data)  #stampa tutto
+    # print(data.keys()) # stampa tutte le keys principali
+    # print(data['operations'][0].keys()) # stampa tutte le keys di operations[0]
+    # print(data['operations'][0]['name'])  #stampa il valore della key name dentro operations[0]
+    # print(len(data['operations'])) #stampa il numero di operation presenti in operations
+
+    for i in range(len(C2)):
+        for k in range(len(C2[i])):
+            for j in range(len(data['operations'])):
+                if C2[i][k][1] == data['operations'][j]['name']:
+                    C2[i][k][4] = data['operations'][j]['description']
+                # print(i, B[k][3], B[k][5], B[k][6], B[k][7])
+
+    # Creo un file JSON
+    totalProbes = []
+    probes = {}
+    tmpOperations = {}
+    for i in range(len(C2)):
+        probeOperations = []
+        for j in range(len(C2[i])):
+            tmpOperations = {
+                "name": C2[i][j][1],
+                "purpose": C2[i][j][2],
+                "operationArgument": C2[i][j][3],
+                "description": C2[i][j][4]
+            }
+            probeOperations.append(tmpOperations)
+
+        probes = {
+
+            "probeID": C2[i][0][0],
+            "operations": probeOperations
+        }
+        totalProbes.append(probes)
+
+    probesFile = {
+
+        "probesFileID": totalProbes
+    }
+    with open('./probeHistory.json', 'w') as fp:
+        json.dump(probesFile, fp, indent=4, ensure_ascii=False)
+
+    print('JSON file has been created')
+
+
+def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='equal', score2 = None):
     # init >> Faccio i join tra le probe nello score del csv e le probe presenti nell'history
+
+    # finalScore.csv
+    scoreMatrix = CSVreader(finalScorePath)
+    scoreMatrix.remove(scoreMatrix[0])  # Rimuovo l'intestazione
+    # probeHistory.json
+    with open(opHistoryPath) as f:
+        opHistory = json.load(f)
+
     tmp = []
     result = []
     tmpMatrix = []
@@ -173,7 +274,14 @@ def scoreFilter1(scoreMatrix, opHistory, score, opFilter, operator='equal', scor
         return 0
 
 
-def scoreFilter2(scoreMatrix, opHistory, score, opFilter, operator='equal', maxPreviousOp=0, score2 = None):
+def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='equal', maxPreviousOp=0, score2 = None):
+    # finalScore.csv
+    scoreMatrix = CSVreader(finalScorePath)
+    scoreMatrix.remove(scoreMatrix[0])  # Rimuovo l'intestazione
+    # probeHistory.json
+    with open(opHistoryPath) as f:
+        opHistory = json.load(f)
+
     tmp = []
     result = []
     tmpMatrix = []
@@ -301,30 +409,34 @@ def get_parser():
 
     subparser = parser.add_subparsers(dest='subcommand')
 
+    # subcommand create-json-probe-history
+    history_parser = subparser.add_parser('create-json-probe-history', help='Create a json file containing the probe history')
+    history_parser.add_argument("-p", "--probejournaljoin", required=True, help="insert probejournalname path")
+    history_parser.add_argument("-j", "--journalmask", required=True, help="insert journalmask path")
+    history_parser.add_argument("-o", "--operations", required=True, help="insert json file contains all operations")
+
     # subcommand manipulation-name
     manipulation_parser = subparser.add_parser('manipulation-list', help='List all possible manipulations')
     manipulation_parser.add_argument("-hp", "--probehistory", required=True, help="path of probe history")
 
     # subcommand filter1
-    eval_parser = subparser.add_parser('filter1', help='Evaluate scores ...')
-    eval_parser.add_argument("-sp", "--scorepath", required=True, help="path of score csv")
-    eval_parser.add_argument("-hp", "--probehistory", required=True, help="path of probe history")
-    eval_parser.add_argument("-s", "--score", required=True, type=int, help="insert score")
-    eval_parser.add_argument("-op", "--operator", required=True, help="insert operator like over,under,equal,range")
-    eval_parser.add_argument("-s2", "--score2", required=False, type=int, help="insert score2")
-    eval_parser.add_argument("-o", "--operation", required=True, help="insert operation filter")
-    #eval_parser.add_argument("-po", "--prevop", type=int, required=False, help="insert preview operations")
+    filter1_parser = subparser.add_parser('filter1', help='Evaluate scores ...')
+    filter1_parser.add_argument("-sp", "--scorepath", required=True, help="path of score csv")
+    filter1_parser.add_argument("-hp", "--probehistory", required=True, help="path of probe history")
+    filter1_parser.add_argument("-s", "--score", required=True, type=int, help="insert score")
+    filter1_parser.add_argument("-op", "--operator", required=True, help="insert operator like over,under,equal,range")
+    filter1_parser.add_argument("-s2", "--score2", required=False, type=int, help="insert score2")
+    filter1_parser.add_argument("-o", "--operation", required=True, help="insert operation filter")
 
     # subcommand filter2
-    eval_parser = subparser.add_parser('filter2', help='Evaluate scores ...')
-    eval_parser.add_argument("-sp", "--scorepath", required=True, help="path of score csv")
-    eval_parser.add_argument("-hp", "--probehistory", required=True, help="path of probe history")
-    eval_parser.add_argument("-s", "--score", required=True, type=int, help="insert score")
-    eval_parser.add_argument("-op", "--operator", required=True, help="insert operator like over,under,equal,range")
-    eval_parser.add_argument("-s2", "--score2", required=False , type=int, help="insert score2")
-    eval_parser.add_argument("-o", "--operation", required=True, help="insert operation filter")
-    eval_parser.add_argument("-po", "--prevop", type=int, required=True, help="insert preview operations")
-
+    filter2_parser = subparser.add_parser('filter2', help='Evaluate scores ...')
+    filter2_parser.add_argument("-sp", "--scorepath", required=True, help="path of score csv")
+    filter2_parser.add_argument("-hp", "--probehistory", required=True, help="path of probe history")
+    filter2_parser.add_argument("-s", "--score", required=True, type=int, help="insert score")
+    filter2_parser.add_argument("-op", "--operator", required=True, help="insert operator like over,under,equal,range")
+    filter2_parser.add_argument("-s2", "--score2", required=False , type=int, help="insert score2")
+    filter2_parser.add_argument("-o", "--operation", required=True, help="insert operation filter")
+    filter2_parser.add_argument("-po", "--prevop", type=int, required=True, help="insert preview operations")
 
     return parser
 
@@ -333,111 +445,112 @@ def main():
     parser = get_parser()
     args = parser.parse_args()
 
-    if args.subcommand == 'manipulation-list':
+    if args.subcommand == 'create-json-probe-history':
+        createJsonProbeHistory(probePath=args.probejournaljoin, journalPath=args.journalmask, operationsPath=args.operations)
+
+    elif args.subcommand == 'manipulation-list':
         # DA FARE
         print("Call function to print")
     elif args.subcommand == 'filter1':
-        # finalScore.csv
-        finalScore = CSVreader(args.scorepath)
-        finalScore.remove(finalScore[0])  # Rimuovo l'intestazione
-        # probeHistory.json
-        with open(args.probehistory) as f:
-            opHistory = json.load(f)
-        result = scoreFilter1(finalScore, opHistory, args.score, opFilter=args.operation, operator=args.operator, score2 = args.score2)
+        result = scoreFilter1(finalScorePath=args.scorepath, opHistoryPath=args.probehistory, score=args.score, opFilter=args.operation, operator=args.operator, score2 = args.score2)
         printInColumn(result)
     elif args.subcommand == 'filter2':
-        # finalScore.csv
-        finalScore = CSVreader(args.scorepath)
-        finalScore.remove(finalScore[0])  # Rimuovo l'intestazione
-        # probeHistory.json
-        with open(args.probehistory) as f:
-            opHistory = json.load(f)
-        result = scoreFilter2(finalScore, opHistory, args.score, opFilter=args.operation, operator=args.operator, maxPreviousOp=args.prevop, score2 = args.score2)
+        result = scoreFilter2(finalScorePath=args.scorepath, opHistoryPath=args.probehistory, score=args.score, opFilter=args.operation, operator=args.operator, maxPreviousOp=args.prevop, score2 = args.score2)
         printInColumn(result)
 
 
 def mainInterattivo():
-    print('Which filter do you want use?')
-    print('1) Filter1')
-    print('2) Filter2')
-    sceltaFiltro = int(input())
+    print('Which operation do you want use?')
+    print('1) Create json file containing probe history')
+    print('2) Manipulation list')
+    print('3) Filter1')
+    print('4) Filter2')
+    print('5) Exit')
 
-    if (sceltaFiltro < 1) or (sceltaFiltro > 2):
+    mainScelta = int(input())
+
+    if (mainScelta < 1) or (mainScelta > 4):
         sys.exit()
 
-    # score.csv
-    print('Insert score path: ')
-    sp = input().strip()
+    elif (mainScelta == 1):
+        print("Enter the path of probejournaljoin :")
+        probePath = input().strip()
 
-    # probeHistory.json
-    print('Insert probe history path: ')
-    hp = input().strip()
+        print("Enter the path of journalmask :")
+        journalPath = input().strip()
 
-    while (True):
-        # opzione di score
-        print('Choose score options:')
-        print('1) score = [valore]')
-        print('2) score >= [valore]')
-        print('3) score < [valore]')
-        print('4) range[val1,val2]')
-        print('5) Exit')
-        sceltaOpzione = input()
+        print("Enter the path of operations :")
+        operationsPath = input().strip()
 
-        operator = int(sceltaOpzione[0])  # operator=1 equal , #operator=2 >=, #operator=3  <
-        if operator == 1:
-            operator = 'equal'
-            score = parse(sceltaOpzione[0] + '[' + '{}' + ']', sceltaOpzione)[0]
-            score = int(score)
-        elif operator == 2:
-            operator = 'over'
-            score = parse(sceltaOpzione[0] + '[' + '{}' + ']', sceltaOpzione)[0]
-            score = int(score)
-        elif operator == 3:
-            operator = 'under'
-            score = parse(sceltaOpzione[0] + '[' + '{}' + ']', sceltaOpzione)[0]
-            score = int(score)
-        elif operator == 4:
-            operator = 'range'
-            score = parse(sceltaOpzione[0] + '[' + '{}' + ',' + '{}' + ']', sceltaOpzione)[0]
-            score2 = parse(sceltaOpzione[0] + '[' + '{}' + ',' + '{}' + ']', sceltaOpzione)[1]
-            score = int(score)
-            score2 = int(score2)
-        else:
-            sys.exit()
+        createJsonProbeHistory(probePath=probePath, journalPath=journalPath, operationsPath=operationsPath)
 
-        # inserimento operazione
-        print('Insert operation name: ')
-        opFilter = input()
+    elif (mainScelta == 2):
+        print('boa fallo!!')
 
+    elif (mainScelta == 3) or (mainScelta == 4):
 
-        print('')
-        # finalScore.csv
-        finalScore = CSVreader(sp)
-        finalScore.remove(finalScore[0])  # Rimuovo l'intestazione
+        # score.csv
+        print('Insert score path: ')
+        finalScorePath = input().strip()
 
         # probeHistory.json
-        with open(hp) as f:
-            opHistory = json.load(f)
+        print('Insert probe history path: ')
+        opHistoryPath = input().strip()
 
-        if (sceltaFiltro == 1):
-            if operator == 'range':
-                result = scoreFilter1(finalScore, opHistory, score = score, opFilter=opFilter, operator=operator, score2 = score2)
-                printInColumn(result)
-            else:
-                result = scoreFilter1(finalScore, opHistory, score=score, opFilter=opFilter, operator=operator)
-                printInColumn(result)
+        while (True):
+            # opzione di score
+            print('Choose score options:')
+            print('1) score = [valore]')
+            print('2) score >= [valore]')
+            print('3) score < [valore]')
+            print('4) range[val1,val2]')
+            print('5) Exit')
+            sceltaOpzione = input()
 
-        if (sceltaFiltro == 2):
-            # inserimento numero di operazioni precedenti
-            print('Insert number of previews operations to view: ')
-            prevOp = int(input())
-            if operator == 'range':
-                result = scoreFilter2(finalScore, opHistory, score=score, opFilter=opFilter, operator=operator, maxPreviousOp=prevOp, score2=score2)
-                printInColumn(result)
+            operator = int(sceltaOpzione[0])  # operator=1 equal , operator=2 >=, operator=3  <, operator=4 range
+            if operator == 1:
+                operator = 'equal'
+                score = parse(sceltaOpzione[0] + '[' + '{}' + ']', sceltaOpzione)[0]
+                score = int(score)
+            elif operator == 2:
+                operator = 'over'
+                score = parse(sceltaOpzione[0] + '[' + '{}' + ']', sceltaOpzione)[0]
+                score = int(score)
+            elif operator == 3:
+                operator = 'under'
+                score = parse(sceltaOpzione[0] + '[' + '{}' + ']', sceltaOpzione)[0]
+                score = int(score)
+            elif operator == 4:
+                operator = 'range'
+                score = parse(sceltaOpzione[0] + '[' + '{}' + ',' + '{}' + ']', sceltaOpzione)[0]
+                score2 = parse(sceltaOpzione[0] + '[' + '{}' + ',' + '{}' + ']', sceltaOpzione)[1]
+                score = int(score)
+                score2 = int(score2)
             else:
-                result = scoreFilter2(finalScore, opHistory, score=score, opFilter=opFilter, operator=operator, maxPreviousOp=prevOp)
-                printInColumn(result)
-        print('')
+                sys.exit()
+
+            # inserimento operazione
+            print('Insert operation name: ')
+            opFilter = input()
+    
+            if (mainScelta == 3):
+                if operator == 'range':
+                    result = scoreFilter1(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, score = score, opFilter=opFilter, operator=operator, score2 = score2)
+                    printInColumn(result)
+                else:
+                    result = scoreFilter1(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, score=score, opFilter=opFilter, operator=operator)
+                    printInColumn(result)
+
+            if (mainScelta == 4):
+                # inserimento numero di operazioni precedenti
+                print('Insert number of previews operations to view: ')
+                prevOp = int(input())
+                if operator == 'range':
+                    result = scoreFilter2(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, score=score, opFilter=opFilter, operator=operator, maxPreviousOp=prevOp, score2=score2)
+                    printInColumn(result)
+                else:
+                    result = scoreFilter2(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, score=score, opFilter=opFilter, operator=operator, maxPreviousOp=prevOp)
+                    printInColumn(result)
 
     # # MAIN
     # if sys.argv[1:] != []:
