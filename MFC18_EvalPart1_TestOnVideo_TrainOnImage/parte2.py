@@ -349,8 +349,6 @@ for i in range(len(repeatOp_one)):
 
 
 
-
-
 # PLOT
 # x = []
 # y = []
@@ -367,3 +365,35 @@ for i in range(len(repeatOp_one)):
 print(repeatOp_no_MatchedSorted)
 print("")
 print(repeatOp_matchedSorted)
+
+
+
+# # MAIN
+# if sys.argv[1:] != []:
+#     # construct the argument parse and parse the arguments
+#     ap = argparse.ArgumentParser(
+#         description='Filtro1: Ci da le Probe che hanno l operazione in input con la loro posizione e il numero tot di operazioni fatti nella probe \n\n Filtro2: ... ')
+#     ap.add_argument("-f", "--filter", type=int, required=True,
+#                     help="type of filter that you want use: insert 1 to use filter1 or 2 to use filter2")
+#     ap.add_argument("-sp", "--scorepath", required=True, help="path of score csv")
+#     ap.add_argument("-hp", "--probehistory", required=True, help="path of probe history")
+#     ap.add_argument("-s", "--score", required=True, type=int, help="insert score")
+#     ap.add_argument("-op", "--operator", required=True, help="insert operator like over,under,equal")
+#     ap.add_argument("-o", "--operation", required=True, help="insert operation filter")
+#     ap.add_argument("-po", "--prevop", type=int, required=False, help="insert preview operations")
+#     args = vars(ap.parse_args())
+#
+#     # save value from command line
+#     sceltaFiltro = args["filter"]
+#     sp = args["scorepath"]
+#     hp = args["probehistory"]
+#     score = args["score"]
+#     operator = args["operator"]
+#     opFilter = args["operation"]
+#     if sceltaFiltro == 2:
+#         prevOp = args['prevop']
+#         if prevOp == None:
+#             print('To use filter2 you must insert the preview operations numbers also')
+#             sys.exit()
+#     go()
+#
