@@ -27,6 +27,17 @@ def printInColumn(A):
     else:
         print('None')
 
+def sortScoreMatrix(matrix):
+	tmpRows = []
+	for i in range(len(matrix)):
+		for k in range(i,len(matrix)):
+			if matrix[i][1] < matrix[k][1]:
+				tmpRows = matrix[i]
+				matrix[i] = matrix[k]
+				matrix[k] = tmpRows
+				tmpRows = []
+	return matrix
+
 
 def createJsonProbeHistory(probePath, journalPath, operationsPath):
     A = CSVreader(probePath)
@@ -122,6 +133,216 @@ def createJsonProbeHistory(probePath, journalPath, operationsPath):
 
     print('JSON file has been created')
 
+
+def manipulation_list(finalScorePath, opHistoryPath, cameraPath, allOperationsPath, valore_soglia, valore_optout):
+    # finalScore.csv
+    scoreMatrix = CSVreader(finalScorePath)
+    scoreMatrix.remove(scoreMatrix[0])  # Rimuovo l'intestazione
+    # probeHistory.json
+
+    # Leggo csv ManipReference
+    camera = CSVreader(cameraPath)
+    camera.remove(camera[0])  # Rimuovo l'intestazione
+
+    # Leggo le probe history
+    with open(opHistoryPath) as f:
+        opHistory = json.load(f)
+
+    # Matrice contenente: ProbeID,score=valore_optout
+    scoreMatrix_opt = []
+    # Matrice contenente ProbeID,score!= valore_opyout
+    scoreMatrix_no_opt = []
+    # Matrice contenente i ProbeID che non si trovano nel json
+    noJSON = []
+    tmp = []
+    count = 0
+    match = False
+    for i in range(len(scoreMatrix)):
+        for j in range(len(opHistory['probesFileID'])):
+            if scoreMatrix[i][0] == opHistory['probesFileID'][j]['probeID']:
+                match = True
+                if scoreMatrix[i][3] == str(valore_optout):
+                    tmp.append(scoreMatrix[i][0])  #Probe
+                    tmp.append(scoreMatrix[i][1])  #Camera
+                    tmp.append(scoreMatrix[i][3])  #Score
+                    scoreMatrix_opt.append(tmp)  # Probe|Camera|Score
+                    tmp = []
+                else:
+                    tmp.append(scoreMatrix[i][0])  #Probe
+                    tmp.append(scoreMatrix[i][1])  #Camera
+                    tmp.append(scoreMatrix[i][3])  #Score
+                    scoreMatrix_no_opt.append(tmp)  # Probe|Camera|Score
+                    tmp = []
+
+        if match == False:
+            count = count + 1
+            tmp.append(scoreMatrix[i][0])  #Probe
+            tmp.append(scoreMatrix[i][1])  #Camera
+            tmp.append(scoreMatrix[i][3])  #Score
+            noJSON.append(tmp)  # Probe|Camera|Score
+            tmp = []
+        match = False
+
+    # Matrice globale contente: ProbeID,score
+    global_score = scoreMatrix_opt + scoreMatrix_no_opt + noJSON
+    print('Numero di ProbeID nel CSV score: ', len(scoreMatrix))
+    print('Numero di ProbeID nel JSON: ', len(opHistory['probesFileID']))
+    print("")
+    print('Numero di ProbeID che matchano nel JSON: ', len(scoreMatrix_opt) + len(scoreMatrix_no_opt))
+    print('Numero di ProbeID non trovati nel JSON: ', len(noJSON))
+    print("")
+
+    # scoreMatrix_one è una matrice contenente: ProbeID,Camera,score=-1,isManipulated/notManipulated raggruppata per Y(yes is manipulated)
+    X = []
+    Y = []
+    for i in range(len(scoreMatrix_opt)):
+        for j in range(len(camera)):
+            if ((scoreMatrix_opt[i][0] == camera[j][1]) and (scoreMatrix_opt[i][1]) == camera[j][3]):
+                tmp.append(scoreMatrix_opt[i][0])
+                tmp.append(scoreMatrix_opt[i][1])
+                tmp.append(scoreMatrix_opt[i][2])
+                tmp.append(camera[j][5])
+                tmp.append(camera[j][2].split(".", 1)[1])
+                if (camera[j][5]) == 'Y':
+                    X.append(tmp)
+                else:
+                    Y.append(tmp)
+                tmp = []
+    scoreMatrix_opt = X + Y
+
+    # scoreMatrix_no_opt è una matrice contenente: ProbeID,Camera,score!=-1,isManipulated/notManipulated raggruppata per Y(yes is manipulated)
+    X = []
+    Y = []
+    for i in range(len(scoreMatrix_no_opt)):
+        for j in range(len(camera)):
+            if ((scoreMatrix_no_opt[i][0] == camera[j][1]) and (scoreMatrix_no_opt[i][1]) == camera[j][3]):
+                tmp.append(scoreMatrix_no_opt[i][0])
+                tmp.append(scoreMatrix_no_opt[i][1])
+                tmp.append(scoreMatrix_no_opt[i][2])
+                tmp.append(camera[j][5])
+                tmp.append(camera[j][2].split(".", 1)[1])
+                if (camera[j][5]) == 'Y':
+                    X.append(tmp)
+                else:
+                    Y.append(tmp)
+                tmp = []
+    scoreMatrix_no_opt = X + Y
+
+    # ANALISI di scoreMatrix_no_opt
+    MATCHED = []
+    NOMATCHED = []
+    for i in range(len(scoreMatrix_no_opt)):
+        if (float(scoreMatrix_no_opt[i][2]) >= valore_soglia):
+            MATCHED.append(scoreMatrix_no_opt[i])
+        else:
+            NOMATCHED.append(scoreMatrix_no_opt[i])
+
+
+    '''Conteggio ricorrenza operazioni in scoreMatrix_one, scoreMatrix_no_one_matched, scoreMatrix_no_one_no_matched'''
+    tmp = []
+    scoreOperations_one = []
+    for i in range(len(scoreMatrix_opt)):
+        for j in range(len(opHistory['probesFileID'])):
+            if scoreMatrix_opt[i][0] == opHistory['probesFileID'][j]['probeID']:
+                tmp.append(scoreMatrix_opt[i][0])
+                tmp.append(scoreMatrix_opt[i][1])
+                tmp.append(scoreMatrix_opt[i][2])
+                tmp.append(scoreMatrix_opt[i][3])
+                tmp.append(opHistory['probesFileID'][j]['operations'])
+                scoreOperations_one.append(tmp)
+                tmp = []
+
+    tmp = []
+    scoreOperations_no_one_matched = []
+    for i in range(len(MATCHED)):
+        for j in range(len(opHistory['probesFileID'])):
+            if MATCHED[i][0] == opHistory['probesFileID'][j]['probeID']:
+                tmp.append(MATCHED[i][0])
+                tmp.append(MATCHED[i][1])
+                tmp.append(MATCHED[i][2])
+                tmp.append(MATCHED[i][3])
+                tmp.append(opHistory['probesFileID'][j]['operations'])
+                scoreOperations_no_one_matched.append(tmp)
+                tmp = []
+
+    tmp = []
+    scoreOperations_no_one_no_matched = []
+    for i in range(len(NOMATCHED)):
+        for j in range(len(opHistory['probesFileID'])):
+            if NOMATCHED[i][0] == opHistory['probesFileID'][j]['probeID']:
+                tmp.append(NOMATCHED[i][0])
+                tmp.append(NOMATCHED[i][1])
+                tmp.append(NOMATCHED[i][2])
+                tmp.append(NOMATCHED[i][3])
+                tmp.append(opHistory['probesFileID'][j]['operations'])
+                scoreOperations_no_one_no_matched.append(tmp)
+                tmp = []
+
+    countOp = 0
+    tmp = []
+    repeatOp_matched = []
+    with open(allOperationsPath) as f:
+        data2 = json.load(f)
+    # numero di volte in cui le operazioni si ripetono nelle matrici
+    for k in range(len(data2['operations'])):
+        for i in range(len(scoreOperations_no_one_matched)):
+            for j in range(len(scoreOperations_no_one_matched[i][4])):
+                if data2['operations'][k]['name'] == scoreOperations_no_one_matched[i][4][j]['name']:
+                    countOp = countOp + 1
+                    break
+        if countOp > 0:
+            tmp.append(data2['operations'][k]['name'])
+            tmp.append(countOp)
+            repeatOp_matched.append(tmp)
+        countOp = 0
+        tmp = []
+
+    tmp = []
+    countOp = 0
+    repeatOp_noMatched = []
+    for k in range(len(data2['operations'])):
+        for i in range(len(scoreOperations_no_one_no_matched)):
+            for j in range(len(scoreOperations_no_one_no_matched[i][4])):
+                if data2['operations'][k]['name'] == scoreOperations_no_one_no_matched[i][4][j]['name']:
+                    countOp = countOp + 1
+                    break
+        if countOp > 0:
+            tmp.append(data2['operations'][k]['name'])
+            tmp.append(countOp)
+            repeatOp_noMatched.append(tmp)
+        countOp = 0
+        tmp = []
+
+    tmp = []
+    countOp = 0
+    repeatOp_one = []
+    # numero di volte in cui le operazioni si ripetono nelle matrici
+    for k in range(len(data2['operations'])):
+        for i in range(len(scoreOperations_one)):
+            for j in range(len(scoreOperations_one[i][4])):
+                if data2['operations'][k]['name'] == scoreOperations_one[i][4][j]['name']:
+                    countOp = countOp + 1
+                    break
+        if countOp > 0:
+            tmp.append(data2['operations'][k]['name'])
+            tmp.append(countOp)
+            repeatOp_one.append(tmp)
+        countOp = 0
+        tmp = []
+
+    print('')
+    repeatOp_oneSorted = sortScoreMatrix(repeatOp_one)
+    repeatOp_no_MatchedSorted = sortScoreMatrix(repeatOp_noMatched)
+    repeatOp_matchedSorted = sortScoreMatrix(repeatOp_matched)
+    print('')
+    print('score =',valore_optout)
+    printInColumn(repeatOp_oneSorted)
+    print("")
+    print('score <', valore_soglia)
+    printInColumn(repeatOp_no_MatchedSorted)
+    print("")
+    print('score >=', valore_soglia)
+    printInColumn(repeatOp_matchedSorted)
 
 def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='equal', score2 = None):
     # init >> Faccio i join tra le probe nello score del csv e le probe presenti nell'history
@@ -417,7 +638,12 @@ def get_parser():
 
     # subcommand manipulation-name
     manipulation_parser = subparser.add_parser('manipulation-list', help='List all possible manipulations')
+    manipulation_parser.add_argument("-sp", "--scorepath", required=True, help="path of score csv")
     manipulation_parser.add_argument("-hp", "--probehistory", required=True, help="path of probe history")
+    manipulation_parser.add_argument("-cp", "--camerapath", required=True, help="path of camera reference")
+    manipulation_parser.add_argument("-o", "--operations", required=True, help="insert json file contains all operations")
+    manipulation_parser.add_argument("-vs", "--valoresoglia",type=int, required=True, help="valore di soglia")
+    manipulation_parser.add_argument("-vo", "--valoreoptout", type=int, required=True, help="valore di optout")
 
     # subcommand filter1
     filter1_parser = subparser.add_parser('filter1', help='Evaluate scores ...')
@@ -447,10 +673,8 @@ def main():
 
     if args.subcommand == 'create-json-probe-history':
         createJsonProbeHistory(probePath=args.probejournaljoin, journalPath=args.journalmask, operationsPath=args.operations)
-
     elif args.subcommand == 'manipulation-list':
-        # DA FARE
-        print("Call function to print")
+        manipulation_list(finalScorePath=args.scorepath, opHistoryPath=args.probehistory, cameraPath=args.camerapath, allOperationsPath=args.operations, valore_soglia=args.valoresoglia, valore_optout=args.valoreoptout)
     elif args.subcommand == 'filter1':
         result = scoreFilter1(finalScorePath=args.scorepath, opHistoryPath=args.probehistory, score=args.score, opFilter=args.operation, operator=args.operator, score2 = args.score2)
         printInColumn(result)
@@ -488,7 +712,6 @@ def mainInterattivo():
         print('boa fallo!!')
 
     elif (mainScelta == 3) or (mainScelta == 4):
-
         # score.csv
         print('Insert score path: ')
         finalScorePath = input().strip()

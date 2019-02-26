@@ -34,7 +34,7 @@ def sortScoreMatrix(matrix):
 
 
 # Leggo json
-with open('./myoperations.json') as f:
+with open('./probeHistory.json') as f:
 	data = json.load(f)
 
 # Leggo csv FinalScores
@@ -95,11 +95,12 @@ for i in range(len(A)):
 
 # Matrice globale contente: ProbeID,score
 global_score = scoreMatrix_one + scoreMatrix_no_one + noJSON
+print(scoreMatrix_one)
 print('Numero di ProbeID nel CSV score: ', len(A))
 print('Numero di ProbeID nel JSON: ',len(data['probesFileID']))
 print("")
 print('Numero di ProbeID che matchano nel JSON: ',len(scoreMatrix_one)+len(scoreMatrix_no_one))
-print('Numero di ProbeID non trovati nel JSON: ',count)
+print('Numero di ProbeID non trovati nel JSON: ',len(noJSON))
 print("")
 
 
@@ -295,11 +296,11 @@ for k in range(len(data2['operations'])):
 repeatOp_oneSorted = sortScoreMatrix(repeatOp_one)
 repeatOp_no_MatchedSorted = sortScoreMatrix(repeatOp_noMatched)
 repeatOp_matchedSorted = sortScoreMatrix(repeatOp_matched)
-# print(repeatOp_oneSorted)
-# print("")
-# print(repeatOp_no_MatchedSorted)
-# print("")
-# print(repeatOp_matchedSorted)
+print(repeatOp_oneSorted)
+print("")
+print(repeatOp_no_MatchedSorted)
+print("")
+print(repeatOp_matchedSorted)
 
 '''PLOT
 x = []
@@ -320,16 +321,16 @@ for i in range(len(scoreMatrix_one)):
 
 
 
-with open('./one.json', 'w') as fp:
-	json.dump(scoreOperations_one, fp, indent = 4, ensure_ascii = False)
-
-
-with open('./no_one_matched.json', 'w') as fp:
-	json.dump(scoreOperations_no_one_matched, fp, indent = 4, ensure_ascii = False)
-
-
-with open('./no_one_no_matched.json', 'w') as fp:
-	json.dump(scoreOperations_no_one_no_matched, fp, indent = 4, ensure_ascii = False)
+# with open('./one.json', 'w') as fp:
+# 	json.dump(scoreOperations_one, fp, indent = 4, ensure_ascii = False)
+#
+#
+# with open('./no_one_matched.json', 'w') as fp:
+# 	json.dump(scoreOperations_no_one_matched, fp, indent = 4, ensure_ascii = False)
+#
+#
+# with open('./no_one_no_matched.json', 'w') as fp:
+# 	json.dump(scoreOperations_no_one_no_matched, fp, indent = 4, ensure_ascii = False)
 
 
 print(repeatOp_one)
@@ -361,10 +362,6 @@ for i in range(len(repeatOp_one)):
 
 
 #print(scoreMatrix_one)
-
-print(repeatOp_no_MatchedSorted)
-print("")
-print(repeatOp_matchedSorted)
 
 
 
