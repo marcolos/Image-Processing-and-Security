@@ -1,6 +1,3 @@
-# abbiamo il json , lo score, e le manipolazioni
-# dobbiamo raggruppare per -1 e per i probe che non si trovano nel json
-
 import csv
 import json
 from parse import *
@@ -189,6 +186,22 @@ def division(finalScorePath, opHistoryPath, cameraPath, valore_soglia, valore_op
             noJSON.append(tmp)  # Probe|Camera|Score
             tmp = []
         match = False
+
+        # for i in range(len(scoreMatrix)):
+        #     for j in range(len(opHistory['probesFileID'])):
+        #         if scoreMatrix[i][0] == opHistory['probesFileID'][j]['probeID']:
+        #             match = True
+        #             tmp = [scoreMatrix[i][0], scoreMatrix[i][1], scoreMatrix[i][3]]
+        #             if scoreMatrix[i][3] == str(valore_optout):
+        #                 scoreMatrix_opt.append(tmp)  # Probe|Camera|Score
+        #             else:
+        #                 scoreMatrix_no_opt.append(tmp)  # Probe|Camera|Score
+        #             tmp = []
+        #     if match == False:
+        #         count = count + 1
+        #         noJSON.append(tmp)  # Probe|Camera|Score
+        #         tmp = []
+        #     match = False
 
         # scoreMatrix_one è una matrice contenente: ProbeID,Camera,score=-1,isManipulated/notManipulated raggruppata per Y(yes is manipulated)
         X = []
