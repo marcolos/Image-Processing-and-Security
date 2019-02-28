@@ -19,11 +19,29 @@ def CSVreader(path):
 
 
 def printInColumn(A):
-    if A != None:
+    if (A is None) or (A == '[]') or (A == []) or (A == ''):
+        print('None')
+    else:
         for i in range(len(A)):
             print(A[i])
-    else:
-        print('None')
+
+def sortScoreMatrix(matrix):
+    for i in range(len(matrix)):
+        for k in range(i,len(matrix)):
+            if matrix[i][1] < matrix[k][1]:
+                tmpRows = matrix[i]
+                matrix[i] = matrix[k]
+                matrix[k] = tmpRows
+    return matrix
+
+def check(A):
+    check = False
+    if A != None:
+        for i in range(len(A)):
+            for j in range(len(A)):
+                if A[i] == A[j] and i != j:
+                    check = True
+    return check
 
 
 def createJsonProbeHistory(probePath, journalPath, operationsPath):
@@ -121,6 +139,353 @@ def createJsonProbeHistory(probePath, journalPath, operationsPath):
     print('JSON file has been created')
 
 
+def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null', score2 = None):
+    # finalScore.csv
+    scoreMatrix = CSVreader(finalScorePath)
+    scoreMatrix.remove(scoreMatrix[0])  # Rimuovo l'intestazione
+    # probeHistory.json
+    with open(opHistoryPath) as f:
+        opHistory = json.load(f)
+
+    opFilter= [x.lower() for x in opFilter]
+
+    duplicateOP = check(opFilter)
+    if duplicateOP == False:
+        atLeastOneOp = False
+        tmp = []
+        result = []
+        tmpMatrix = []
+        atLeastOneOp = False
+        for i in range(len(scoreMatrix)):
+            for j in range(len(opHistory['probesFileID'])):
+                if scoreMatrix[i][0] == opHistory['probesFileID'][j]['probeID']:
+                    tmp.append(scoreMatrix[i][0])
+                    tmp.append(scoreMatrix[i][1])
+                    tmp.append(opHistory['probesFileID'][j]['operations'])
+                    tmpMatrix.append(tmp)
+                    tmp = []
+        tmp = []
+        tmpMatrix2 = []
+        countOperations = 0
+        objPosition = -1
+        firstMatched = False
+
+        if operator == 'null':
+            print('errore,inserire operazioni')
+
+        elif (score != -1) and (score < 0):
+            print('errore,valore inserito non corretto')
+            return 0
+
+
+        elif (operator == 'equal'):
+            for i in range(len(tmpMatrix)):
+                if float(tmpMatrix[i][1]) == score:
+                    tmp.append(tmpMatrix[i][0])
+                    for z in range(len(opFilter)):
+                        currentOperation = opFilter[z]
+                        for j in range(len(tmpMatrix[i][2])):
+                            countOperations = countOperations + 1
+                            if (currentOperation == tmpMatrix[i][2][j]['name'].lower()):
+                                objPosition = countOperations
+                                break
+                        if objPosition != -1:
+                            tmp.append(tmpMatrix[i][2][j]['name'])
+                            tmp.append(objPosition)
+                            atLeastOneOp = True
+                        objPosition = -1
+                        countOperations = 0
+                    tmp.append('lenght:' + " " +str(len(tmpMatrix[i][2])))
+                    if atLeastOneOp == True:
+                        tmpMatrix2.append(tmp)
+                    tmp = []
+                    atLeastOneOp = False
+            for i in range(len(tmpMatrix2)):
+                result.append(tmpMatrix2[i])
+            return result
+
+
+        elif (operator) == 'over' and (score == -1):
+            print('errore,valore inserito non corretto')
+            return 0
+
+
+        elif (operator == 'over') and (score >= 0):
+            for i in range(len(tmpMatrix)):
+                if float(tmpMatrix[i][1]) >= score:
+                    tmp.append(tmpMatrix[i][0])
+                    for z in range(len(opFilter)):
+                        currentOperation = opFilter[z]
+                        for j in range(len(tmpMatrix[i][2])):
+                            countOperations = countOperations + 1
+                            if (currentOperation == tmpMatrix[i][2][j]['name'].lower()):
+                                objPosition = countOperations
+                                break
+                        if objPosition != -1:
+                            tmp.append(tmpMatrix[i][2][j]['name'])
+                            tmp.append(objPosition)
+                            atLeastOneOp = True
+                        objPosition = -1
+                        countOperations = 0
+                    tmp.append('lenght:' + " " +str(len(tmpMatrix[i][2])))
+                    tmp.append('score:' + " "+ str((tmpMatrix[i][1])))
+                    if atLeastOneOp == True:
+                        tmpMatrix2.append(tmp)
+                    tmp = []
+                    atLeastOneOp = False
+            for i in range(len(tmpMatrix2)):
+                result.append(tmpMatrix2[i])
+            return result
+
+        elif (operator == 'under') and (score >= 0):
+            for i in range(len(tmpMatrix)):
+                if (float(tmpMatrix[i][1]) < score) and (float(tmpMatrix[i][1]) != -1):
+                    tmp.append(tmpMatrix[i][0])
+                    for z in range(len(opFilter)):
+                        currentOperation = opFilter[z]
+                        for j in range(len(tmpMatrix[i][2])):
+                            countOperations = countOperations + 1
+                            if (currentOperation == tmpMatrix[i][2][j]['name'].lower()):
+                                objPosition = countOperations
+                                break
+                        if objPosition != -1:
+                            tmp.append(tmpMatrix[i][2][j]['name'])
+                            tmp.append(objPosition)
+                            atLeastOneOp = True
+                        objPosition = -1
+                        countOperations = 0
+                    tmp.append('lenght:' + " " +str(len(tmpMatrix[i][2])))
+                    tmp.append('score:' + " "+ str((tmpMatrix[i][1])))
+                    if atLeastOneOp == True:
+                        tmpMatrix2.append(tmp)
+                    tmp = []
+                    atLeastOneOp = False
+            for i in range(len(tmpMatrix2)):
+                result.append(tmpMatrix2[i])
+            return result
+
+        elif (operator == 'range') and (score2 != None) and (score2 >= 0):
+            for i in range(len(tmpMatrix)):
+                if (float(tmpMatrix[i][1]) >= score) and (float(tmpMatrix[i][1]) <= score2):
+                    tmp.append(tmpMatrix[i][0])
+                    for z in range(len(opFilter)):
+                        currentOperation = opFilter[z]
+                        for j in range(len(tmpMatrix[i][2])):
+                            countOperations = countOperations + 1
+                            if (currentOperation == tmpMatrix[i][2][j]['name'].lower()):
+                                objPosition = countOperations
+                                break
+                        if objPosition != -1:
+                            tmp.append(tmpMatrix[i][2][j]['name'])
+                            tmp.append(objPosition)
+                            atLeastOneOp = True
+                        objPosition = -1
+                        countOperations = 0
+                    tmp.append('lenght:' + " " +str(len(tmpMatrix[i][2])))
+                    tmp.append('score:' + " "+ str((tmpMatrix[i][1])))
+                    if atLeastOneOp == True:
+                        tmpMatrix2.append(tmp)
+                    tmp = []
+                    atLeastOneOp = False
+            for i in range(len(tmpMatrix2)):
+                result.append(tmpMatrix2[i])
+            return result
+
+        elif (operator == 'range') and (score2 == None or score2 < 0):
+            print('operazione non consentita')
+            return 0
+
+        elif (operator == 'under') and (score == -1):
+            print('Error')
+            return 0
+    else:
+        print('errore,operazioni duplicate inserite')
+        return 0
+
+def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator ='null', maxPreviousOp = 0, score2 = None):
+    # finalScore.csv
+    scoreMatrix = CSVreader(finalScorePath)
+    scoreMatrix.remove(scoreMatrix[0])  # Rimuovo l'intestazione
+    # probeHistory.json
+    with open(opHistoryPath) as f:
+        opHistory = json.load(f)
+
+    opFilter = [x.lower() for x in opFilter]
+
+    duplicateOP = check(opFilter)
+
+    if duplicateOP == False:
+        atLeastOneOp = False
+        tmp = []
+        tmpResult = []
+        result = []
+        tmpMatrix = []
+        match = False
+        found = False
+        for i in range(len(scoreMatrix)):
+            for j in range(len(opHistory['probesFileID'])):
+                if scoreMatrix[i][0] == opHistory['probesFileID'][j]['probeID']:
+                    tmp.append(scoreMatrix[i][0])
+                    tmp.append(scoreMatrix[i][1])
+                    tmp.append(opHistory['probesFileID'][j]['operations'])
+                    tmpMatrix.append(tmp)
+                    tmp = []
+
+        tmp = []
+        tmpOp = []
+        countOperations = 0
+
+        if operator == 'null':
+            print('errore,inserire operazioni')
+
+        elif (score != -1) and (score < 0):
+            print('errore,inserire parametri corretti')
+            return 0
+
+        elif (operator == 'equal'):
+            for i in range(len(tmpMatrix)):
+                if float(tmpMatrix[i][1]) == score:
+                    tmpResult.append(tmpMatrix[i][0])
+                    for z in range(len(opFilter)):
+                        currentOperation = opFilter[z]
+                        for j in range(len(tmpMatrix[i][2])):
+                            if tmpMatrix[i][2][j]['name'].lower() != currentOperation:
+                                countOperations = countOperations + 1
+                                if countOperations <= maxPreviousOp:
+                                    tmpOp.append(tmpMatrix[i][2][j]['name'])
+                            else:
+                                found = True
+                                break
+                        if found == True:
+                            tmp.append(tmpMatrix[i][2][j]['name'])
+                            tmp.append(tmpOp)
+                            tmp.append(countOperations)
+                            tmpResult.append(tmp)
+                            atLeastOneOp = True
+                        tmp = []
+                        tmpOp = []
+                        countOperations = 0
+                        found =  False
+                    if atLeastOneOp == True:
+                        result.append(tmpResult)
+                    tmpResult = []
+                    atLeastOneOp = False
+
+
+        elif (operator == 'over') and (score == -1):
+            print('errore,inserire parametri corretti')
+            return 0
+
+        elif (operator == 'over') and (score >= 0):
+            for i in range(len(tmpMatrix)):
+                if float(tmpMatrix[i][1]) >= score:
+                    tmpResult.append(tmpMatrix[i][0])
+                    for z in range(len(opFilter)):
+                        currentOperation = opFilter[z]
+                        for j in range(len(tmpMatrix[i][2])):
+                            if tmpMatrix[i][2][j]['name'].lower() != currentOperation:
+                                countOperations = countOperations + 1
+                                if countOperations <= maxPreviousOp:
+                                    tmpOp.append(tmpMatrix[i][2][j]['name'])
+                            else:
+                                found = True
+                                break
+                        if found == True:
+                            tmp.append(tmpMatrix[i][2][j]['name'])
+                            tmp.append(tmpOp)
+                            tmp.append(countOperations)
+                            tmpResult.append(tmp)
+                            atLeastOneOp = True
+                        tmp = []
+                        tmpOp = []
+                        countOperations = 0
+                        found =  False
+                    tmpResult.append('score:'+''+ tmpMatrix[i][1])
+                    if atLeastOneOp == True:
+                        result.append(tmpResult)
+                    tmpResult = []
+                    atLeastOneOp = False
+
+        elif (operator == 'under') and (score >= 0):
+            for i in range(len(tmpMatrix)):
+                if float(tmpMatrix[i][1]) < score and (float(tmpMatrix[i][1]) != -1):
+                    tmpResult.append(tmpMatrix[i][0])
+                    for z in range(len(opFilter)):
+                        currentOperation = opFilter[z]
+                        for j in range(len(tmpMatrix[i][2])):
+                            if tmpMatrix[i][2][j]['name'].lower() != currentOperation:
+                                countOperations = countOperations + 1
+                                if countOperations <= maxPreviousOp:
+                                    tmpOp.append(tmpMatrix[i][2][j]['name'])
+                            else:
+                                found = True
+                                break
+                        if found == True:
+                            tmp.append(tmpMatrix[i][2][j]['name'])
+                            tmp.append(tmpOp)
+                            tmp.append(countOperations)
+                            tmpResult.append(tmp)
+                            atLeastOneOp = True
+                        tmp = []
+                        tmpOp = []
+                        countOperations = 0
+                        found =  False
+                    tmpResult.append('score:'+''+ tmpMatrix[i][1])
+                    if atLeastOneOp == True:
+                        result.append(tmpResult)
+                    tmpResult = []
+                    atLeastOneOp = False
+
+        elif (operator == 'range') and (score2 != None) and (score2 >= 0):
+            for i in range(len(tmpMatrix)):
+                if float(tmpMatrix[i][1]) >= score and (float(tmpMatrix[i][1]) <= score2):
+                    tmpResult.append(tmpMatrix[i][0])
+                    for z in range(len(opFilter)):
+                        currentOperation = opFilter[z]
+                        for j in range(len(tmpMatrix[i][2])):
+                            if tmpMatrix[i][2][j]['name'].lower() != currentOperation:
+                                countOperations = countOperations + 1
+                                if countOperations <= maxPreviousOp:
+                                    tmpOp.append(tmpMatrix[i][2][j]['name'])
+                            else:
+                                found = True
+                                break
+                        if found == True:
+                            tmp.append(tmpMatrix[i][2][j]['name'])
+                            tmp.append(tmpOp)
+                            tmp.append(countOperations)
+                            tmpResult.append(tmp)
+                            atLeastOneOp = True
+                        tmp = []
+                        tmpOp = []
+                        countOperations = 0
+                        found =  False
+                    tmpResult.append('score:'+''+ tmpMatrix[i][1])
+                    if atLeastOneOp == True:
+                        result.append(tmpResult)
+                    tmpResult = []
+                    atLeastOneOp = False
+
+        elif (operator == 'range') and (score2 == None or score2 < 0):
+            print('errore,inserire parametri corretti')
+            return 0
+
+        elif (operator == 'under') and (score == -1):
+            print('errore,inserire parametri corretti')
+            return 0
+
+        if result != []:
+            for i in range(len(result)):
+                for j in range(1,len(result[i])):
+                    if result[i][j][2] == 0:
+                        result[i][j][2] = 'first Operation'
+        return result
+    else:
+        print('errore,operazioni duplicate inserite')
+        return 0
+
+
+
 def allOperations(finalScorePath, opHistoryPath):
     # finalScore.csv
     scoreMatrix = CSVreader(finalScorePath)
@@ -140,6 +505,129 @@ def allOperations(finalScorePath, opHistoryPath):
     printInColumn(all_operations)
 
 
+def division(finalScorePath, opHistoryPath, valore_soglia, valore_optout):
+    # finalScore.csv
+    scoreMatrix = CSVreader(finalScorePath)
+    scoreMatrix.remove(scoreMatrix[0])  # Rimuovo l'intestazione
+    # probeHistory.json
+
+    # # Leggo csv ManipReference
+    # camera = CSVreader(cameraPath)
+    # camera.remove(camera[0])  # Rimuovo l'intestazione
+
+    # Leggo le probe history
+    with open(opHistoryPath) as f:
+        opHistory = json.load(f)
+
+    # Matrice contenente: ProbeID,score=valore_optout
+    scoreMatrix_opt = []
+    # Matrice contenente ProbeID,score!= valore_opyout
+    scoreMatrix_no_opt = []
+    # Matrice contenente i ProbeID che non si trovano nel json
+    noJSON = []
+    tmp = []
+    count = 0
+    match = False
+    for i in range(len(scoreMatrix)):
+        for j in range(len(opHistory['probesFileID'])):
+            if scoreMatrix[i][0] == opHistory['probesFileID'][j]['probeID']:
+                match = True
+                if (float(scoreMatrix[i][1]) == valore_optout):
+                    tmp.append(scoreMatrix[i][0])  # Probe
+                    tmp.append(scoreMatrix[i][1])  # Score
+                    #tmp.append(scoreMatrix[i][3])
+                    scoreMatrix_opt.append(tmp)  # Probe|Score
+                    tmp = []
+                else:
+                    tmp.append(scoreMatrix[i][0])  # Probe
+                    tmp.append(scoreMatrix[i][1])  # Score
+                    #tmp.append(scoreMatrix[i][3])
+                    scoreMatrix_no_opt.append(tmp)  # Probe|Camera|Score
+                    tmp = []
+
+        if match == False:
+            count = count + 1
+            tmp.append(scoreMatrix[i][0])  # Probe
+            tmp.append(scoreMatrix[i][1])  # Score
+            #tmp.append(scoreMatrix[i][3])
+            noJSON.append(tmp)  # Probe|Score
+            tmp = []
+        match = False
+
+        # for i in range(len(scoreMatrix)):
+        #     for j in range(len(opHistory['probesFileID'])):
+        #         if scoreMatrix[i][0] == opHistory['probesFileID'][j]['probeID']:
+        #             match = True
+        #             tmp = [scoreMatrix[i][0], scoreMatrix[i][1], scoreMatrix[i][3]]
+        #             if scoreMatrix[i][3] == str(valore_optout):
+        #                 scoreMatrix_opt.append(tmp)  # Probe|Camera|Score
+        #             else:
+        #                 scoreMatrix_no_opt.append(tmp)  # Probe|Camera|Score
+        #             tmp = []
+        #     if match == False:
+        #         count = count + 1
+        #         noJSON.append(tmp)  # Probe|Camera|Score
+        #         tmp = []
+        #     match = False
+
+        # # scoreMatrix_one è una matrice contenente: ProbeID,Camera,score=-1,isManipulated/notManipulated raggruppata per Y(yes is manipulated)
+        # X = []
+        # Y = []
+        # for i in range(len(scoreMatrix_opt)):
+        #     for j in range(len(camera)):
+        #         if ((scoreMatrix_opt[i][0] == camera[j][1]) and (scoreMatrix_opt[i][1]) == camera[j][3]):
+        #             tmp.append(scoreMatrix_opt[i][0])
+        #             tmp.append(scoreMatrix_opt[i][1])
+        #             tmp.append(scoreMatrix_opt[i][2])
+        #             tmp.append(camera[j][5])
+        #             tmp.append(camera[j][2].split(".", 1)[1])
+        #             if (camera[j][5]) == 'Y':
+        #                 X.append(tmp)
+        #             else:
+        #                 Y.append(tmp)
+        #             tmp = []
+        # scoreMatrix_opt = X + Y
+
+        # scoreMatrix_no_opt è una matrice contenente: ProbeID,Camera,score!=-1,isManipulated/notManipulated raggruppata per Y(yes is manipulated)
+        # X = []
+        # Y = []
+        # for i in range(len(scoreMatrix_no_opt)):
+        #     for j in range(len(camera)):
+        #         if ((scoreMatrix_no_opt[i][0] == camera[j][1]) and (scoreMatrix_no_opt[i][1]) == camera[j][3]):
+        #             tmp.append(scoreMatrix_no_opt[i][0])
+        #             tmp.append(scoreMatrix_no_opt[i][1])
+        #             tmp.append(scoreMatrix_no_opt[i][2])
+        #             tmp.append(camera[j][5])
+        #             tmp.append(camera[j][2].split(".", 1)[1])
+        #             if (camera[j][5]) == 'Y':
+        #                 X.append(tmp)
+        #             else:
+        #                 Y.append(tmp)
+        #             tmp = []
+        # scoreMatrix_no_opt = X + Y
+
+        # ANALISI di scoreMatrix_no_opt
+        MATCHED = []
+        NOMATCHED = []
+        for i in range(len(scoreMatrix_no_opt)):
+            if (float(scoreMatrix_no_opt[i][1]) >= valore_soglia):
+                MATCHED.append(scoreMatrix_no_opt[i])
+            else:
+                NOMATCHED.append(scoreMatrix_no_opt[i])
+
+    print('')
+    print('probe with score = ',valore_optout)
+    printInColumn(scoreMatrix_opt)
+
+    print('')
+    print('probe with score >= ', valore_soglia)
+    printInColumn(MATCHED)
+
+    print('')
+    print('probe with score < ', valore_soglia)
+    printInColumn(NOMATCHED)
+
+
 def get_parser():
     parser = argparse.ArgumentParser(description="", formatter_class=RawTextHelpFormatter)
 
@@ -153,15 +641,17 @@ def get_parser():
     history_parser.add_argument("-o", "--operations", required=True, help="insert json file contains all operations")
 
     # subcommand division for optout, matched and no_matched
-    division_parse = subparser.add_parser('division', help='Division for optout, matched and no_matched')
+    division_parse = subparser.add_parser('division', help='Mostra la seguente tabella:'
+                                                           '\n|ID_probe|Camera|Score|Manip/NonManip|Formato|'
+                                                           '\n   aaa      xx   46.15      Y          .avi\n')
     division_parse.add_argument("-sp", "--scorepath", required=True, help="path of score csv")
     division_parse.add_argument("-hp", "--probehistory", required=True, help="path of probe history")
-    division_parse.add_argument("-cp", "--camerapath", required=True, help="path of camera reference")
-    division_parse.add_argument("-vs", "--valoresoglia", type=int, required=True, help="valore di soglia")
-    division_parse.add_argument("-vo", "--valoreoptout", type=int, required=True, help="valore di optout")
+    #division_parse.add_argument("-cp", "--camerapath", required=True, help="path of camera reference")
+    division_parse.add_argument("-vs", "--valoresoglia", type=float, required=True, help="valore di soglia")
+    division_parse.add_argument("-vo", "--valoreoptout", type=float, required=True, help="valore di optout")
 
     # subcommand manipulation-name
-    manipulation_parser = subparser.add_parser('manipulation-list', help='List all possible manipulations')
+    manipulation_parser = subparser.add_parser('manipulation-analysis', help='List all possible manipulations')
     manipulation_parser.add_argument("-sp", "--scorepath", required=True, help="path of score csv")
     manipulation_parser.add_argument("-hp", "--probehistory", required=True, help="path of probe history")
     manipulation_parser.add_argument("-cp", "--camerapath", required=True, help="path of camera reference")
@@ -176,9 +666,9 @@ def get_parser():
                                                           ' \n    aaa    xxx    Blur                2                           5 ')
     filter1_parser.add_argument("-sp", "--scorepath", required=True, help="path of score csv")
     filter1_parser.add_argument("-hp", "--probehistory", required=True, help="path of probe history")
-    filter1_parser.add_argument("-s", "--score", required=True, type=int, help="insert score")
+    filter1_parser.add_argument("-s", "--score", required=True, type=float, help="insert score")
     filter1_parser.add_argument("-op", "--operator", required=True, help="insert operator like over,under,equal,range")
-    filter1_parser.add_argument("-s2", "--score2", required=False, type=int, help="insert score2")
+    filter1_parser.add_argument("-s2", "--score2", required=False, type=float, help="insert score2")
     filter1_parser.add_argument("-o", "--operation", required=True, nargs='+', help="insert operation filter")
 
     # subcommand filter2
@@ -209,28 +699,24 @@ def main():
     if args.subcommand == 'create-json-probe-history':
         createJsonProbeHistory(probePath=args.probejournaljoin, journalPath=args.journalmask,operationsPath=args.operations)
     elif args.subcommand == 'division':
-        print('division')
-        #division(finalScorePath=args.scorepath, opHistoryPath=args.probehistory, cameraPath=args.camerapath,valore_soglia=args.valoresoglia, valore_optout=args.valoreoptout)
-    elif args.subcommand == 'manipulation-list':
+        division(finalScorePath=args.scorepath, opHistoryPath=args.probehistory,valore_soglia=args.valoresoglia, valore_optout=args.valoreoptout)
+    elif args.subcommand == 'manipulation-analysis':
         print('manipulation_list')
-        #manipulation_list(finalScorePath=args.scorepath, opHistoryPath=args.probehistory, cameraPath=args.camerapath,allOperationsPath=args.operations, valore_soglia=args.valoresoglia,valore_optout=args.valoreoptout)
+        #manipulation_analysis(finalScorePath=args.scorepath, opHistoryPath=args.probehistory, cameraPath=args.camerapath,allOperationsPath=args.operations, valore_soglia=args.valoresoglia,valore_optout=args.valoreoptout)
     elif args.subcommand == 'filter1':
-        print('filter1')
-        #result = scoreFilter1(finalScorePath=args.scorepath, opHistoryPath=args.probehistory, score=args.score,opFilter=args.operation, operator=args.operator, score2=args.score2)
-        #printInColumn(result)
+        result = scoreFilter1(finalScorePath=args.scorepath, opHistoryPath=args.probehistory, score=args.score,opFilter=args.operation, operator=args.operator, score2=args.score2)
+        printInColumn(result)
     elif args.subcommand == 'filter2':
-        print('filter2')
-        #result = scoreFilter2(finalScorePath=args.scorepath, opHistoryPath=args.probehistory, score=args.score,opFilter=args.operation, operator=args.operator, maxPreviousOp=args.prevop,score2=args.score2)
-        #printInColumn(result)
+        result = scoreFilter2(finalScorePath=args.scorepath, opHistoryPath=args.probehistory, score=args.score,opFilter=args.operation, operator=args.operator, maxPreviousOp=args.prevop,score2=args.score2)
+        printInColumn(result)
     elif args.subcommand == 'alloperations':
-        print('allOperations')
-        #allOperations(finalScorePath=args.scorepath, opHistoryPath=args.probehistory)
+        allOperations(finalScorePath=args.scorepath, opHistoryPath=args.probehistory)
 
 
 def mainInterattivo():
     print('Which operation do you want use?')
     print('1) Create json file containing probe history')
-    print('2) Manipulation list')
+    print('2) Manipulation analysis and operations recurrence')
     print('3) Filter1')
     print('4) Filter2')
     print('5) Divison score in optout,matched and no matched')
@@ -268,7 +754,7 @@ def mainInterattivo():
         print('insert valore di optout: ')
         valore_optout = int(input())
 
-        #manipulation_list(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, cameraPath=cameraPath,allOperationsPath=operationsPath, valore_soglia=valore_soglia, valore_optout=valore_optout)
+        #manipulation_analysis(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, cameraPath=cameraPath,allOperationsPath=operationsPath, valore_soglia=valore_soglia, valore_optout=valore_optout)
 
     elif (mainScelta == 3) or (mainScelta == 4):
         # score.csv
@@ -297,17 +783,17 @@ def mainInterattivo():
             elif operator == 2:
                 operator = 'over'
                 score = parse(sceltaOpzione[0] + '[' + '{}' + ']', sceltaOpzione)[0]
-                score = int(score)
+                score = float(score)
             elif operator == 3:
                 operator = 'under'
                 score = parse(sceltaOpzione[0] + '[' + '{}' + ']', sceltaOpzione)[0]
-                score = int(score)
+                score = float(score)
             elif operator == 4:
                 operator = 'range'
                 score = parse(sceltaOpzione[0] + '[' + '{}' + ',' + '{}' + ']', sceltaOpzione)[0]
                 score2 = parse(sceltaOpzione[0] + '[' + '{}' + ',' + '{}' + ']', sceltaOpzione)[1]
-                score = int(score)
-                score2 = int(score2)
+                score = float(score)
+                score2 = float(score2)
             else:
                 sys.exit()
 
@@ -319,12 +805,12 @@ def mainInterattivo():
             if (mainScelta == 3):
                 if operator == 'range':
                     print('')
-                    # result = scoreFilter1(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, score=score, opFilter=[opFilter], operator=operator, score2=score2)
-                    # printInColumn(result)
+                    result = scoreFilter1(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, score=score, opFilter=[opFilter], operator=operator, score2=score2)
+                    printInColumn(result)
                 else:
                     print('')
-                    # result = scoreFilter1(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, score=score,opFilter=[opFilter], operator=operator)
-                    # printInColumn(result)
+                    result = scoreFilter1(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, score=score,opFilter=[opFilter], operator=operator)
+                    printInColumn(result)
 
             if (mainScelta == 4):
                 # inserimento numero di operazioni precedenti
@@ -332,12 +818,12 @@ def mainInterattivo():
                 prevOp = int(input())
                 if operator == 'range':
                     print('')
-                    # result = scoreFilter2(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, score=score,opFilter=[opFilter], operator=operator, maxPreviousOp=prevOp, score2=score2)
-                    # printInColumn(result)
+                    result = scoreFilter2(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, score=score,opFilter=[opFilter], operator=operator, maxPreviousOp=prevOp, score2=score2)
+                    printInColumn(result)
                 else:
                     print('')
-                    # result = scoreFilter2(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, score=score, opFilter=[opFilter], operator=operator, maxPreviousOp=prevOp)
-                    # printInColumn(result)
+                    result = scoreFilter2(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, score=score, opFilter=[opFilter], operator=operator, maxPreviousOp=prevOp)
+                    printInColumn(result)
 
     elif (mainScelta == 5):
         print('Insert score path: ')
@@ -350,14 +836,14 @@ def mainInterattivo():
         valore_soglia = int(input())
         print('insert valore di optout: ')
         valore_optout = int(input())
-        #division(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, cameraPath=cameraPath,valore_soglia=valore_soglia, valore_optout=valore_optout)
+        division(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath,valore_soglia=valore_soglia, valore_optout=valore_optout)
 
     elif (mainScelta == 6):
         print('Insert score path: ')
         finalScorePath = input().strip()
         print('Insert probe history path: ')
         opHistoryPath = input().strip()
-        #allOperations(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath)
+        allOperations(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath)
 
 
 if __name__ == '__main__':

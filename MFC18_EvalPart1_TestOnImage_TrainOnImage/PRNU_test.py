@@ -916,8 +916,6 @@ def main():
     elif args.subcommand == 'manipulation-analysis':
         operations_recurrence(finalScorePath=args.scorepath, opHistoryPath=args.probehistory, cameraPath=args.camerapath, allOperationsPath=args.operations, valore_soglia=args.valoresoglia, valore_optout=args.valoreoptout)
     elif args.subcommand == 'filter1':
-        #op = args.operation
-        #[x.lower() for x in op]
         result = scoreFilter1(finalScorePath=args.scorepath, opHistoryPath=args.probehistory, score=args.score, opFilter=args.operation, operator=args.operator, score2 = args.score2)
         printInColumn(result)
     elif args.subcommand == 'filter2':
