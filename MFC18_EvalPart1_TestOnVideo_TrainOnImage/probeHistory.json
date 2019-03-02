@@ -5655,6 +5655,41 @@
                     "description": "Laundering"
                 }
             ]
+        },
+        {
+            "probeID": "ffab545957c6f9d66a4eeeafdc218928",
+            "operations": [
+                {
+                    "name": "OutputAVI",
+                    "purpose": "",
+                    "operationArgument": "",
+                    "description": "Export the image in the AVI format."
+                },
+                {
+                    "name": "SelectCutFrames",
+                    "purpose": "",
+                    "operationArgument": "",
+                    "description": "Remove a series of frames from a video clip."
+                },
+                {
+                    "name": "TimeAlterationWarp",
+                    "purpose": "",
+                    "operationArgument": "",
+                    "description": "Alter frame rate and frame blending to change playback rate. Vector Detail is a integer that determines how many motion vectors are used during interpolation. Methods include 'Whole Frames', 'Frame Mix' and 'Pixel Motion'. Adjust Time By controls is a percentage of reduction."
+                },
+                {
+                    "name": "AddCamFingerprintPRNU",
+                    "purpose": "",
+                    "operationArgument": "",
+                    "description": "Add PRNU fingerprint trace from an image."
+                },
+                {
+                    "name": "AntiForensicCopyExif",
+                    "purpose": "",
+                    "operationArgument": "",
+                    "description": "Copy metadata information from a source."
+                }
+            ]
         }
     ]
 }

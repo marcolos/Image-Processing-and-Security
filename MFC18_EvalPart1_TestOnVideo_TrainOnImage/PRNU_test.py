@@ -46,14 +46,15 @@ def check(A):
 
 def createJsonProbeHistory(probePath, journalPath, operationsPath):
     A = CSVreader(probePath)
+    A.remove(A[0])
     # creo il bigArray
-    pastValue = A[1]
+    pastValue = A[0]
     Operations = []
     k = 0
     B = []
     bigArray = []
 
-    for i in range(1, len(A)):
+    for i in range(len(A)):
         currentValue = A[i]
         if currentValue[0] == pastValue[0]:
             B.append(currentValue)
@@ -62,6 +63,8 @@ def createJsonProbeHistory(probePath, journalPath, operationsPath):
             B = []
             B.append(currentValue)  # risolve il problema che non printa la 1°
         pastValue = currentValue
+        if i == len(A) - 1:
+            bigArray.append(B)
 
     # ordino secondo Sequence che è la quarta posizione della tabella
     tmpRows = []
@@ -248,6 +251,24 @@ def division(finalScorePath, opHistoryPath, cameraPath, valore_soglia, valore_op
             else:
                 NOMATCHED.append(scoreMatrix_no_opt[i])
 
+        # noJSON è una matrice contenente: ProbeID,score,isManipulated/notManipulated raggruppata per Y(yes is manipulated)
+        X = []
+        Y = []
+        for i in range(len(noJSON)):
+            for j in range(len(camera)):
+                if ((noJSON[i][0] == camera[j][1]) and (noJSON[i][1]) == camera[j][3]):
+                    tmp.append(noJSON[i][0])
+                    tmp.append(noJSON[i][1])
+                    tmp.append(noJSON[i][2])
+                    tmp.append(camera[j][5])
+                    tmp.append(camera[j][2].split(".", 1)[1])
+                    if (camera[j][5]) == 'Y':
+                        X.append(tmp)
+                    else:
+                        Y.append(tmp)
+                    tmp = []
+        noJSON = X + Y
+
     print('')
     print('probe with score = ',valore_optout)
     printInColumn(scoreMatrix_opt)
@@ -260,8 +281,13 @@ def division(finalScorePath, opHistoryPath, cameraPath, valore_soglia, valore_op
     print('probe with score < ', valore_soglia)
     printInColumn(NOMATCHED)
 
+    print('')
+    print('------------- probe not found in json history -------------------- ')
+    printInColumn(noJSON)
 
-def operations_recurrence(finalScorePath, opHistoryPath, cameraPath, allOperationsPath, valore_soglia, valore_optout):
+
+
+def manipulation_analysis(finalScorePath, opHistoryPath, cameraPath, allOperationsPath, valore_soglia, valore_optout):
     # finalScore.csv
     scoreMatrix = CSVreader(finalScorePath)
     scoreMatrix.remove(scoreMatrix[0])  # Rimuovo l'intestazione
@@ -355,6 +381,24 @@ def operations_recurrence(finalScorePath, opHistoryPath, cameraPath, allOperatio
             MATCHED.append(scoreMatrix_no_opt[i])
         else:
             NOMATCHED.append(scoreMatrix_no_opt[i])
+
+            # noJSON è una matrice contenente: ProbeID,score,isManipulated/notManipulated raggruppata per Y(yes is manipulated)
+            X = []
+            Y = []
+            for i in range(len(noJSON)):
+                for j in range(len(camera)):
+                    if ((noJSON[i][0] == camera[j][1]) and (noJSON[i][1]) == camera[j][3]):
+                        tmp.append(noJSON[i][0])
+                        tmp.append(noJSON[i][1])
+                        tmp.append(noJSON[i][2])
+                        tmp.append(camera[j][5])
+                        tmp.append(camera[j][2].split(".", 1)[1])
+                        if (camera[j][5]) == 'Y':
+                            X.append(tmp)
+                        else:
+                            Y.append(tmp)
+                        tmp = []
+            noJSON = X + Y
 
 
     '''Conteggio ricorrenza operazioni in scoreMatrix_one, scoreMatrix_no_one_matched, scoreMatrix_no_one_no_matched'''
@@ -451,18 +495,18 @@ def operations_recurrence(finalScorePath, opHistoryPath, cameraPath, allOperatio
 
     # Matrice globale contente: ProbeID,score
     global_score = scoreMatrix_opt + scoreMatrix_no_opt + noJSON
-    print('Numero di ProbeID nel CSV score: ', len(scoreMatrix))
-    print('Numero di ProbeID nel JSON: ', len(opHistory['probesFileID']))
+    print('\nNumero di ProbeID nel CSV score: ', len(scoreMatrix))
+    print('Numero di ProbeID nel JSON contente le storie: ', len(opHistory['probesFileID']))
     print("")
-    print('Numero di ProbeID che matchano nel JSON: ', len(scoreMatrix_opt) + len(scoreMatrix_no_opt))
-    print('Numero di ProbeID non trovati nel JSON: ', len(noJSON))
+    print('Numero di ProbeID che matchano nel JSON contenente le storie, e quindi analizzabili: ', len(scoreMatrix_opt) + len(scoreMatrix_no_opt))
+    print('Numero di ProbeID non trovate nel JSON contenente storie: ', len(noJSON))
     print("")
 
-    print('')
+    print('--------------- Probe trovate nel Json contente le storie --------------------')
+    print('                     Occorrenze delle operazioni')
     repeatOp_oneSorted = sortScoreMatrix(repeatOp_one)
     repeatOp_no_MatchedSorted = sortScoreMatrix(repeatOp_noMatched)
     repeatOp_matchedSorted = sortScoreMatrix(repeatOp_matched)
-    print('')
     print('score =',valore_optout)
     printInColumn(repeatOp_oneSorted)
     print("")
@@ -471,6 +515,15 @@ def operations_recurrence(finalScorePath, opHistoryPath, cameraPath, allOperatio
     print("")
     print('score >=', valore_soglia)
     printInColumn(repeatOp_matchedSorted)
+    print("")
+
+    print('--------------- Probe NON trovate nel Json contente le storie--------------------')
+    for i in range(len(noJSON)):
+        print(noJSON[i])
+        if i == int(len(noJSON)/2):
+            print('')
+        #if i == int(len(noJSON)/(3/2)):
+         #   print('')
 
 def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null', score2 = None):
     # finalScore.csv
@@ -914,7 +967,7 @@ def main():
     elif args.subcommand == 'division':
         division(finalScorePath=args.scorepath, opHistoryPath=args.probehistory, cameraPath=args.camerapath, valore_soglia=args.valoresoglia, valore_optout=args.valoreoptout)
     elif args.subcommand == 'manipulation-analysis':
-        operations_recurrence(finalScorePath=args.scorepath, opHistoryPath=args.probehistory, cameraPath=args.camerapath, allOperationsPath=args.operations, valore_soglia=args.valoresoglia, valore_optout=args.valoreoptout)
+        manipulation_analysis(finalScorePath=args.scorepath, opHistoryPath=args.probehistory, cameraPath=args.camerapath, allOperationsPath=args.operations, valore_soglia=args.valoresoglia, valore_optout=args.valoreoptout)
     elif args.subcommand == 'filter1':
         #op = args.operation
         #[x.lower() for x in op]
@@ -969,7 +1022,7 @@ def mainInterattivo():
         print('insert valore di optout: ')
         valore_optout = int(input())
 
-        operations_recurrence(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, cameraPath=cameraPath, allOperationsPath=operationsPath, valore_soglia=valore_soglia, valore_optout=valore_optout)
+        manipulation_analysis(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, cameraPath=cameraPath, allOperationsPath=operationsPath, valore_soglia=valore_soglia, valore_optout=valore_optout)
 
     elif (mainScelta == 3) or (mainScelta == 4):
         # score.csv
