@@ -898,8 +898,8 @@ def get_parser():
     #manipulation_parser.add_argument("-cp", "--camerapath", required=True, help="path of camera reference")
     manipulation_parser.add_argument("-o", "--operations", required=True,
                                      help="insert json file path contains all operations")
-    manipulation_parser.add_argument("-vs", "--valoresoglia", type=int, required=True, help="valore di soglia")
-    manipulation_parser.add_argument("-vo", "--valoreoptout", type=int, required=True, help="valore di optout")
+    manipulation_parser.add_argument("-vs", "--valoresoglia", type=float, required=True, help="valore di soglia")
+    manipulation_parser.add_argument("-vo", "--valoreoptout", type=float, required=True, help="valore di optout")
 
     # subcommand filter1
     filter1_parser = subparser.add_parser('filter1', help='Mostra la seguente tabella'
