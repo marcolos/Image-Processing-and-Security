@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="898c6126-d648-4414-92a4-cddc121dae08" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/PRNU_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/PRNU_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo/PRNU_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo/PRNU_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFC18_Eval_GAN_Image_Crop/GAN_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/MFC18_Eval_GAN_Image_Crop/GAN_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFC18_Eval_GAN_Image_Crop/Reference/.~lock.journalmask.csv#" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFC18_Eval_GAN_Image_Crop/Reference/.~lock.probejournaljoin.csv#" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/presentation.key" beforeDir="false" afterPath="$PROJECT_DIR$/presentation.key" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,11 +32,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/PRNU_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="508" column="69" selection-start-line="508" selection-start-column="33" selection-end-line="508" selection-end-column="69" />
+            <state relative-caret-position="183">
+              <caret line="289" column="4" selection-start-line="289" selection-start-column="4" selection-end-line="289" selection-end-column="4" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -50,7 +44,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MFC18_Eval_GAN_Image_Crop/GAN_test.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="512">
@@ -339,7 +333,7 @@
       <workItem from="1549362630282" duration="35716000" />
       <workItem from="1550062731019" duration="41612000" />
       <workItem from="1550756244699" duration="4000" />
-      <workItem from="1550759837394" duration="43319000" />
+      <workItem from="1550759837394" duration="43351000" />
     </task>
     <servers />
   </component>
@@ -349,11 +343,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="175548000" />
+    <option name="totallyTimeSpent" value="175580000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.62289155" visible="true" weight="0.1795422" />
       <window_info active="true" id="Structure" order="1" sideWeight="0.37710842" side_tool="true" visible="true" weight="0.1795422" />
@@ -614,20 +607,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/PRNU_test.py">
+    <entry file="file://$PROJECT_DIR$/MFC18_Eval_GAN_Image_Crop/GAN_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="508" column="69" selection-start-line="508" selection-start-column="33" selection-end-line="508" selection-end-column="69" />
+        <state relative-caret-position="512">
+          <caret line="298" column="13" selection-start-line="298" selection-start-column="13" selection-end-line="298" selection-end-column="13" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MFC18_Eval_GAN_Image_Crop/GAN_test.py">
+    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/PRNU_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="298" column="13" selection-start-line="298" selection-start-column="13" selection-end-line="298" selection-end-column="13" />
+        <state relative-caret-position="183">
+          <caret line="289" column="4" selection-start-line="289" selection-start-column="4" selection-end-line="289" selection-end-column="4" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
