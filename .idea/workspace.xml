@@ -2,6 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="898c6126-d648-4414-92a4-cddc121dae08" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnImage_TrainOnImage/FinalScores/.~lock.UnifiPRNUTime_1_CameraImgImg.csv#" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnImage_TrainOnImage/PRNU_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnImage_TrainOnImage/PRNU_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/PRNU_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/PRNU_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo/FinalScores/UnifiPRNUTime_1_CameraVideoVideo.csv" beforeDir="false" afterPath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo/FinalScores/UnifiPRNUTime_1_CameraVideoVideo.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo/PRNU_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo/PRNU_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MFC18_Eval_GAN_Image_Crop/GAN_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/MFC18_Eval_GAN_Image_Crop/GAN_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MFC18_Eval_GAN_Video_Ver3/GAN_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/MFC18_Eval_GAN_Video_Ver3/GAN_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/presentation.key" beforeDir="false" afterPath="$PROJECT_DIR$/presentation.key" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,10 +41,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/PRNU_test.py">
+        <entry file="file://$PROJECT_DIR$/MFC18_Eval_GAN_Image_Crop/GAN_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="289" column="4" selection-start-line="289" selection-start-column="4" selection-end-line="289" selection-end-column="4" />
+            <state relative-caret-position="465">
+              <caret line="648" column="15" selection-start-line="648" selection-start-column="15" selection-end-line="648" selection-end-column="15" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -45,10 +53,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MFC18_Eval_GAN_Image_Crop/GAN_test.py">
+        <entry file="file://$PROJECT_DIR$/MFC18_Eval_GAN_Video_Ver3/GAN_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="512">
-              <caret line="298" column="13" selection-start-line="298" selection-start-column="13" selection-end-line="298" selection-end-column="13" />
+            <state relative-caret-position="-4536">
+              <caret line="482" column="5" selection-start-line="482" selection-start-column="5" selection-end-line="482" selection-end-column="5" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -117,12 +125,14 @@
         <option value="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/prnu_test.py" />
         <option value="$PROJECT_DIR$/MFC18_EvalPart1_TestOnImage_TrainOnImage/PRNU_test.py" />
         <option value="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/prova.py" />
+        <option value="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo/PRNU_test.py" />
         <option value="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/PRNU_test.py" />
         <option value="$PROJECT_DIR$/MFC18_Eval_GAN_Image_Crop/GAN_test.py" />
+        <option value="$PROJECT_DIR$/MFC18_Eval_GAN_Video_Ver3/GAN_test.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="714" />
     <option name="height" value="900" />
   </component>
@@ -147,7 +157,7 @@
             <path>
               <item name="LABIPS" type="b2602c69:ProjectViewProjectNode" />
               <item name="LABIPS" type="462c0819:PsiDirectoryNode" />
-              <item name="MFC18_EvalPart1_TestOnVideo_TrainOnImage" type="462c0819:PsiDirectoryNode" />
+              <item name="MFC18_Eval_GAN_Video_Ver3" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -333,7 +343,8 @@
       <workItem from="1549362630282" duration="35716000" />
       <workItem from="1550062731019" duration="41612000" />
       <workItem from="1550756244699" duration="4000" />
-      <workItem from="1550759837394" duration="43351000" />
+      <workItem from="1550759837394" duration="45770000" />
+      <workItem from="1552295073789" duration="1394000" />
     </task>
     <servers />
   </component>
@@ -343,13 +354,14 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="175580000" />
+    <option name="totallyTimeSpent" value="179393000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.62289155" visible="true" weight="0.1795422" />
-      <window_info active="true" id="Structure" order="1" sideWeight="0.37710842" side_tool="true" visible="true" weight="0.1795422" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.62168676" visible="true" weight="0.17668097" />
+      <window_info active="true" id="Structure" order="1" sideWeight="0.37831324" side_tool="true" visible="true" weight="0.17668097" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
@@ -411,77 +423,20 @@
     <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/Reference/probejournaljoin.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/MFC18_Eval_GAN_Image_Crop/myoperations.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MFC18_Eval_GAN_Image_Crop/parte1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MFC18_Eval_GAN_Video_Ver3/parte1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnImage_TrainOnImage/parte1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/MFC18_Eval_GAN_Image_Crop/myoperations.json" />
+    <entry file="file://$PROJECT_DIR$/MFC18_Eval_GAN_Image_Crop/parte1.py" />
+    <entry file="file://$PROJECT_DIR$/MFC18_Eval_GAN_Video_Ver3/parte1.py" />
+    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnImage_TrainOnImage/parte1.py" />
     <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo/myoperations.json" />
-    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo/parte1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo/parte1.py" />
     <entry file="file://$PROJECT_DIR$/parte2[with operation].py" />
-    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnImage_TrainOnImage/parte2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="175" column="34" selection-start-line="175" selection-start-column="34" selection-end-line="175" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnImage_TrainOnImage/parte2.py" />
     <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo/filters.py" />
-    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo/filters_edit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="267" column="18" lean-forward="true" selection-start-line="267" selection-start-column="18" selection-end-line="267" selection-end-column="18" />
-          <folding>
-            <element signature="e#122#132#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo/filters_edit.py" />
     <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/filters_arg2.py" />
     <entry file="file://$PROJECT_DIR$/filters_arg copia.py" />
     <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/out.txt" />
-    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/parte1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/parte1.py" />
     <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/filters_arg.py" />
     <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/filters.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -493,52 +448,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/filters[with operation array]_2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="227" column="43" lean-forward="true" selection-start-line="227" selection-start-column="43" selection-end-line="227" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/alloperations.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="27" selection-start-line="27" selection-end-line="27" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/all2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8551">
-          <caret line="507" column="18" lean-forward="true" selection-start-line="507" selection-start-column="18" selection-end-line="507" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/filters[with operation array]_2.py" />
+    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/alloperations.py" />
+    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/all2.py" />
     <entry file="file://$PROJECT_DIR$/MFC18_Eval_GAN_Image_Crop/Reference/MFC18_Eval-manipulation-image-ref.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/parte1_terminal.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-975">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PRNU_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/parte1_terminal.py" />
+    <entry file="file://$PROJECT_DIR$/PRNU_test.py" />
     <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnImage_TrainOnImage/PRNU_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-12149">
@@ -549,26 +466,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/filters[crop]_2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="35" selection-start-line="35" selection-end-line="202" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/filters[crop].py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="406" column="31" selection-start-line="406" selection-start-column="31" selection-end-line="406" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/filters[crop]_2.py" />
+    <entry file="file://$PROJECT_DIR$/filters[crop].py" />
     <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/parte2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="387">
@@ -579,38 +478,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/prova.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="48" column="30" lean-forward="true" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/filters[crop] (con score filter 2 corretto).py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-414">
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/prova.py" />
+    <entry file="file://$PROJECT_DIR$/filters[crop] (con score filter 2 corretto).py" />
     <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo/PRNU_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-10191">
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MFC18_Eval_GAN_Image_Crop/GAN_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="298" column="13" selection-start-line="298" selection-start-column="13" selection-end-line="298" selection-end-column="13" />
+        <state relative-caret-position="503">
+          <caret line="325" column="57" selection-start-line="325" selection-start-column="57" selection-end-line="325" selection-end-column="57" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -619,8 +492,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/PRNU_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="289" column="4" selection-start-line="289" selection-start-column="4" selection-end-line="289" selection-end-column="4" />
+        <state relative-caret-position="651">
+          <caret line="1269" column="63" selection-start-line="1269" selection-start-column="63" selection-end-line="1269" selection-end-column="63" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MFC18_Eval_GAN_Video_Ver3/GAN_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4536">
+          <caret line="482" column="5" selection-start-line="482" selection-start-column="5" selection-end-line="482" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MFC18_Eval_GAN_Image_Crop/GAN_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="648" column="15" selection-start-line="648" selection-start-column="15" selection-end-line="648" selection-end-column="15" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
