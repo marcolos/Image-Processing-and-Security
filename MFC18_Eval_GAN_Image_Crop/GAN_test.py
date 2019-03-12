@@ -511,6 +511,7 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator ='null
         duplicate = False
         finalResult = []
         tmpOcc = []
+        countFirstOperation = 0 
         if operator == 'null':
             print('errore,inserire operazioni')
 
@@ -778,7 +779,9 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator ='null
         elif (operator == 'over') and (score == -1):
             print('errore,inserire parametri corretti')
             return None,None
-
+    else:
+        print('errore,operazioni duplicate inserite!')
+        return None,None
 def allOperations(finalScorePath, opHistoryPath):
     # finalScore.csv
     scoreMatrix = CSVreader(finalScorePath)
