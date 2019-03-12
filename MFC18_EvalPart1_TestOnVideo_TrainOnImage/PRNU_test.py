@@ -910,6 +910,7 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null'
         duplicate = False
         finalResult = []
         tmpOcc = []
+        countFirstOperation = 0
         if operator == 'null':
             print('errore,inserire operazioni')
 
@@ -935,6 +936,7 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                                 tmp.append(countOperations)
                             else:
                                 tmp.append('First operation')
+                                countFirstOperation = countFirstOperation + 1      
                             tmpResult.append(tmp)
                             atLeastOneOp = True
                         tmp = []
@@ -964,6 +966,9 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                 finalResult.append(occurrence)
                 previousOperations = []
                 occurrence = []
+        		print('Operation: '+ str(currentOperation)+', N times first operation: '+ str(countFirstOperation))
+        		print("")
+        		countFirstOperation = 0
 
 
         elif (operator == 'over') and (score >= 0):
@@ -988,6 +993,7 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                                 tmp.append(countOperations)
                             else:
                                 tmp.append('First operation')
+                                countFirstOperation = countFirstOperation + 1  
                             tmp.append('score:' + '' + tmpMatrix[i][1])
                             tmpResult.append(tmp)
                             atLeastOneOp = True
@@ -1018,7 +1024,9 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                 finalResult.append(occurrence)
                 previousOperations = []
                 occurrence = []
-
+        		print('Operation: '+ str(currentOperation)+', N times first operation: '+ str(countFirstOperation))
+        		print("")
+        		countFirstOperation = 0
 
 
         elif (operator == 'under') and (score >= 0):
@@ -1043,6 +1051,7 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                                 tmp.append(countOperations)
                             else:
                                 tmp.append('First operation')
+                                countFirstOperation = countFirstOperation + 1
                             tmp.append('score:' + '' + tmpMatrix[i][1])
                             tmpResult.append(tmp)
                             atLeastOneOp = True
@@ -1073,7 +1082,9 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                 finalResult.append(occurrence)
                 previousOperations = []
                 occurrence = []
-
+        		print('Operation: '+ str(currentOperation)+', N times first operation: '+ str(countFirstOperation))
+        		print("")
+        		countFirstOperation = 0
 
         elif (operator == 'range') and (score >= 0) and (score2 != None) and (score2 >= 0):
             for z in range(len(opFilter)):
@@ -1097,6 +1108,7 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                                 tmp.append(countOperations)
                             else:
                                 tmp.append('First operation')
+                                countFirstOperation = countFirstOperation + 1
                             tmp.append('score:' + '' + tmpMatrix[i][1])
                             tmpResult.append(tmp)
                             atLeastOneOp = True
@@ -1127,6 +1139,10 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                 finalResult.append(occurrence)
                 previousOperations = []
                 occurrence = []
+        		print('Operation: '+ str(currentOperation)+', N times first operation: '+ str(countFirstOperation))
+        		print("")
+        		countFirstOperation = 0              
+               
 
         elif (score != -1) and (score < 0):
             print('errore,inserire parametri corretti')
