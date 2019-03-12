@@ -966,9 +966,9 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                 finalResult.append(occurrence)
                 previousOperations = []
                 occurrence = []
-        		print('Operation: '+ str(currentOperation)+', N times first operation: '+ str(countFirstOperation))
-        		print("")
-        		countFirstOperation = 0
+                print('Operation: '+ str(currentOperation)+', N times first operation: '+ str(countFirstOperation))
+                print("")
+                countFirstOperation = 0
 
 
         elif (operator == 'over') and (score >= 0):
@@ -1024,9 +1024,9 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                 finalResult.append(occurrence)
                 previousOperations = []
                 occurrence = []
-        		print('Operation: '+ str(currentOperation)+', N times first operation: '+ str(countFirstOperation))
-        		print("")
-        		countFirstOperation = 0
+                print('Operation: '+ str(currentOperation)+', N times first operation: '+ str(countFirstOperation))
+                print("")
+                countFirstOperation = 0
 
 
         elif (operator == 'under') and (score >= 0):
@@ -1082,9 +1082,9 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                 finalResult.append(occurrence)
                 previousOperations = []
                 occurrence = []
-        		print('Operation: '+ str(currentOperation)+', N times first operation: '+ str(countFirstOperation))
-        		print("")
-        		countFirstOperation = 0
+                print('Operation: '+ str(currentOperation)+', N times first operation: '+ str(countFirstOperation))
+                print("")
+                countFirstOperation = 0
 
         elif (operator == 'range') and (score >= 0) and (score2 != None) and (score2 >= 0):
             for z in range(len(opFilter)):
@@ -1139,9 +1139,9 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                 finalResult.append(occurrence)
                 previousOperations = []
                 occurrence = []
-        		print('Operation: '+ str(currentOperation)+', N times first operation: '+ str(countFirstOperation))
-        		print("")
-        		countFirstOperation = 0              
+                print('Operation: '+ str(currentOperation)+', N times first operation: '+ str(countFirstOperation))
+                print("")
+                countFirstOperation = 0              
                
 
         elif (score != -1) and (score < 0):
