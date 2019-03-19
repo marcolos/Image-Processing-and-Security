@@ -371,7 +371,7 @@ def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                             tmp.append(tmpMatrix[i][2][j]['name'])
                             tmp.append(objPosition)
                             atLeastOneOp = True
-                            currentMatrix[objPosition -1][len(tmpMatrix[i][3]) - 1] = currentMatrix[objPosition -1][len(tmpMatrix[i][3]) -1] + 1
+                            currentMatrix[objPosition -1][len(tmpMatrix[i][2]) - 1] = currentMatrix[objPosition -1][len(tmpMatrix[i][2]) -1] + 1
                         occurenceMatrix[z] = currentMatrix
                         objPosition = -1
                         countOperations = 0
@@ -409,7 +409,7 @@ def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                             tmp.append(tmpMatrix[i][2][j]['name'])
                             tmp.append(objPosition)
                             atLeastOneOp = True
-                            currentMatrix[objPosition -1][len(tmpMatrix[i][3]) - 1] = currentMatrix[objPosition -1][len(tmpMatrix[i][3]) -1] + 1
+                            currentMatrix[objPosition -1][len(tmpMatrix[i][2]) - 1] = currentMatrix[objPosition -1][len(tmpMatrix[i][2]) -1] + 1
                         occurenceMatrix[z] = currentMatrix
                         objPosition = -1
                         countOperations = 0
@@ -442,7 +442,7 @@ def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                             tmp.append(tmpMatrix[i][2][j]['name'])
                             tmp.append(objPosition)
                             atLeastOneOp = True
-                            currentMatrix[objPosition -1][len(tmpMatrix[i][3]) - 1] = currentMatrix[objPosition -1][len(tmpMatrix[i][3]) -1] + 1
+                            currentMatrix[objPosition -1][len(tmpMatrix[i][2]) - 1] = currentMatrix[objPosition -1][len(tmpMatrix[i][2]) -1] + 1
                         occurenceMatrix[z] = currentMatrix
                         objPosition = -1
                         countOperations = 0
@@ -475,7 +475,7 @@ def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                             tmp.append(tmpMatrix[i][2][j]['name'])
                             tmp.append(objPosition)
                             atLeastOneOp = True
-                            currentMatrix[objPosition -1][len(tmpMatrix[i][3]) - 1] = currentMatrix[objPosition -1][len(tmpMatrix[i][3]) -1] + 1
+                            currentMatrix[objPosition -1][len(tmpMatrix[i][2]) - 1] = currentMatrix[objPosition -1][len(tmpMatrix[i][2]) -1] + 1
                         occurenceMatrix[z] = currentMatrix
                         objPosition = -1
                         countOperations = 0
