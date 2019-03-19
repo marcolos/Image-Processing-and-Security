@@ -1,5 +1,6 @@
 import csv
 import json
+import numpy as np
 from parse import *
 import sys
 import argparse
@@ -533,6 +534,7 @@ def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null'
     if duplicateOP == False:
         atLeastOneOp = False
         tmp = []
+        maxlenght = 0
         result = []
         tmpMatrix = []
         atLeastOneOp = False
@@ -543,6 +545,8 @@ def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                     tmp.append(scoreMatrix[i][1])
                     tmp.append(scoreMatrix[i][3])
                     tmp.append(opHistory['probesFileID'][j]['operations'])
+                    if len(opHistory['probesFileID'][j]['operations'])> maxlenght:
+                        maxlenght = len(opHistory['probesFileID'][j]['operations'])
                     tmpMatrix.append(tmp)
                     tmp = []
         tmp = []
@@ -550,6 +554,9 @@ def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null'
         countOperations = 0
         objPosition = -1
         firstMatched = False
+        occurenceMatrix = []
+        for i in range(len(opFilter)):
+            occurenceMatrix.append(np.zeros((int(maxlenght),int(maxlenght))))
 
         if operator == 'null':
             print('errore,inserire operazioni')
@@ -566,6 +573,7 @@ def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                     tmp.append(tmpMatrix[i][1])
                     for z in range(len(opFilter)):
                         currentOperation = opFilter[z]
+                        currentMatrix = occurenceMatrix[z]
                         for j in range(len(tmpMatrix[i][3])):
                             countOperations = countOperations + 1
                             if (currentOperation == tmpMatrix[i][3][j]['name'].lower()):
@@ -575,6 +583,8 @@ def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                             tmp.append(tmpMatrix[i][3][j]['name'])
                             tmp.append(objPosition)
                             atLeastOneOp = True
+                            currentMatrix[objPosition -1][len(tmpMatrix[i][3]) - 1] = currentMatrix[objPosition -1][len(tmpMatrix[i][3]) -1] + 1
+                        occurenceMatrix[z] = currentMatrix
                         objPosition = -1
                         countOperations = 0
                     tmp.append('lenght:' + " " +str(len(tmpMatrix[i][3])))
@@ -584,6 +594,9 @@ def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                     atLeastOneOp = False
             for i in range(len(tmpMatrix2)):
                 result.append(tmpMatrix2[i])
+            for i in range(len(occurenceMatrix)):
+                print(occurenceMatrix[i])
+                print("")
             return result
 
 
@@ -599,6 +612,7 @@ def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                     tmp.append(tmpMatrix[i][1])
                     for z in range(len(opFilter)):
                         currentOperation = opFilter[z]
+                        currentMatrix = occurenceMatrix[z]
                         for j in range(len(tmpMatrix[i][3])):
                             countOperations = countOperations + 1
                             if (currentOperation == tmpMatrix[i][3][j]['name'].lower()):
@@ -608,6 +622,8 @@ def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                             tmp.append(tmpMatrix[i][3][j]['name'])
                             tmp.append(objPosition)
                             atLeastOneOp = True
+                            currentMatrix[objPosition -1][len(tmpMatrix[i][3]) - 1] = currentMatrix[objPosition -1][len(tmpMatrix[i][3]) -1] + 1
+                        occurenceMatrix[z] = currentMatrix
                         objPosition = -1
                         countOperations = 0
                     tmp.append('lenght:' + " " +str(len(tmpMatrix[i][3])))
@@ -618,6 +634,9 @@ def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                     atLeastOneOp = False
             for i in range(len(tmpMatrix2)):
                 result.append(tmpMatrix2[i])
+            for i in range(len(occurenceMatrix)):
+                print(occurenceMatrix[i])
+                print("")
             return result
 
         elif (operator == 'under') and (score >= 0):
@@ -627,6 +646,7 @@ def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                     tmp.append(tmpMatrix[i][1])
                     for z in range(len(opFilter)):
                         currentOperation = opFilter[z]
+                        currentMatrix = occurenceMatrix[z]
                         for j in range(len(tmpMatrix[i][3])):
                             countOperations = countOperations + 1
                             if (currentOperation == tmpMatrix[i][3][j]['name'].lower()):
@@ -636,6 +656,8 @@ def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                             tmp.append(tmpMatrix[i][3][j]['name'])
                             tmp.append(objPosition)
                             atLeastOneOp = True
+                            currentMatrix[objPosition -1][len(tmpMatrix[i][3]) - 1] = currentMatrix[objPosition -1][len(tmpMatrix[i][3]) -1] + 1
+                        occurenceMatrix[z] = currentMatrix
                         objPosition = -1
                         countOperations = 0
                     tmp.append('lenght:' + " " +str(len(tmpMatrix[i][3])))
@@ -646,6 +668,9 @@ def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                     atLeastOneOp = False
             for i in range(len(tmpMatrix2)):
                 result.append(tmpMatrix2[i])
+            for i in range(len(occurenceMatrix)):
+                print(occurenceMatrix[i])
+                print("")
             return result
 
         elif (operator == 'range') and (score2 != None) and (score2 >= 0):
@@ -655,6 +680,7 @@ def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                     tmp.append(tmpMatrix[i][1])
                     for z in range(len(opFilter)):
                         currentOperation = opFilter[z]
+                        currentMatrix = occurenceMatrix[z]
                         for j in range(len(tmpMatrix[i][3])):
                             countOperations = countOperations + 1
                             if (currentOperation == tmpMatrix[i][3][j]['name'].lower()):
@@ -664,6 +690,8 @@ def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                             tmp.append(tmpMatrix[i][3][j]['name'])
                             tmp.append(objPosition)
                             atLeastOneOp = True
+                            currentMatrix[objPosition -1][len(tmpMatrix[i][3]) - 1] = currentMatrix[objPosition -1][len(tmpMatrix[i][3]) -1] + 1
+                        occurenceMatrix[z] = currentMatrix
                         objPosition = -1
                         countOperations = 0
                     tmp.append('lenght:' + " " +str(len(tmpMatrix[i][3])))
@@ -674,6 +702,9 @@ def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                     atLeastOneOp = False
             for i in range(len(tmpMatrix2)):
                 result.append(tmpMatrix2[i])
+            for i in range(len(occurenceMatrix)):
+                print(occurenceMatrix[i])
+                print("")
             return result
 
         elif (operator == 'range') and (score2 == None or score2 < 0):
@@ -687,188 +718,7 @@ def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null'
         print('errore,operazioni duplicate inserite')
         return 0
 
-def scoreFilterOLD(finalScorePath, opHistoryPath, score, opFilter, operator ='null', maxPreviousOp = 0, score2 = None):
-    # finalScore.csv
-    scoreMatrix = CSVreader(finalScorePath)
-    scoreMatrix.remove(scoreMatrix[0])  # Rimuovo l'intestazione
-    # probeHistory.json
-    with open(opHistoryPath) as f:
-        opHistory = json.load(f)
 
-    opFilter = [x.lower() for x in opFilter]
-
-    duplicateOP = check(opFilter)
-
-    if duplicateOP == False:
-        atLeastOneOp = False
-        tmp = []
-        tmpResult = []
-        result = []
-        tmpMatrix = []
-        match = False
-        found = False
-        for i in range(len(scoreMatrix)):
-            for j in range(len(opHistory['probesFileID'])):
-                if scoreMatrix[i][0] == opHistory['probesFileID'][j]['probeID']:
-                    tmp.append(scoreMatrix[i][0])
-                    tmp.append(scoreMatrix[i][1])
-                    tmp.append(scoreMatrix[i][3])
-                    tmp.append(opHistory['probesFileID'][j]['operations'])
-                    tmpMatrix.append(tmp)
-                    tmp = []
-
-        tmp = []
-        tmpOp = []
-        countOperations = 0
-
-        if operator == 'null':
-            print('errore,inserire operazioni')
-
-        elif (score != -1) and (score < 0):
-            print('errore,inserire parametri corretti')
-            return 0
-
-        elif (operator == 'equal'):
-            for i in range(len(tmpMatrix)):
-                if float(tmpMatrix[i][2]) == score:
-                    tmpResult.append(tmpMatrix[i][0])
-                    for z in range(len(opFilter)):
-                        currentOperation = opFilter[z]
-                        for j in range(len(tmpMatrix[i][3])):
-                            if tmpMatrix[i][3][j]['name'].lower() != currentOperation:
-                                countOperations = countOperations + 1
-                                if countOperations <= maxPreviousOp:
-                                    tmpOp.append(tmpMatrix[i][3][j]['name'])
-                            else:
-                                found = True
-                                break
-                        if found == True:
-                            tmp.append(tmpMatrix[i][3][j]['name'])
-                            tmp.append(tmpOp)
-                            tmp.append(countOperations)
-                            tmpResult.append(tmp)
-                            atLeastOneOp = True
-                        tmp = []
-                        tmpOp = []
-                        countOperations = 0
-                        found =  False
-                    if atLeastOneOp == True:
-                        result.append(tmpResult)
-                    tmpResult = []
-                    atLeastOneOp = False
-
-
-        elif (operator == 'over') and (score == -1):
-            print('errore,inserire parametri corretti')
-            return 0
-
-        elif (operator == 'over') and (score >= 0):
-            for i in range(len(tmpMatrix)):
-                if float(tmpMatrix[i][2]) >= score:
-                    tmpResult.append(tmpMatrix[i][0])
-                    for z in range(len(opFilter)):
-                        currentOperation = opFilter[z]
-                        for j in range(len(tmpMatrix[i][3])):
-                            if tmpMatrix[i][3][j]['name'].lower() != currentOperation:
-                                countOperations = countOperations + 1
-                                if countOperations <= maxPreviousOp:
-                                    tmpOp.append(tmpMatrix[i][3][j]['name'])
-                            else:
-                                found = True
-                                break
-                        if found == True:
-                            tmp.append(tmpMatrix[i][3][j]['name'])
-                            tmp.append(tmpOp)
-                            tmp.append(countOperations)
-                            tmpResult.append(tmp)
-                            atLeastOneOp = True
-                        tmp = []
-                        tmpOp = []
-                        countOperations = 0
-                        found =  False
-                    tmpResult.append('score:'+''+ tmpMatrix[i][2])
-                    if atLeastOneOp == True:
-                        result.append(tmpResult)
-                    tmpResult = []
-                    atLeastOneOp = False
-
-        elif (operator == 'under') and (score >= 0):
-            for i in range(len(tmpMatrix)):
-                if float(tmpMatrix[i][2]) < score and (float(tmpMatrix[i][2]) != -1):
-                    tmpResult.append(tmpMatrix[i][0])
-                    for z in range(len(opFilter)):
-                        currentOperation = opFilter[z]
-                        for j in range(len(tmpMatrix[i][3])):
-                            if tmpMatrix[i][3][j]['name'].lower() != currentOperation:
-                                countOperations = countOperations + 1
-                                if countOperations <= maxPreviousOp:
-                                    tmpOp.append(tmpMatrix[i][3][j]['name'])
-                            else:
-                                found = True
-                                break
-                        if found == True:
-                            tmp.append(tmpMatrix[i][3][j]['name'])
-                            tmp.append(tmpOp)
-                            tmp.append(countOperations)
-                            tmpResult.append(tmp)
-                            atLeastOneOp = True
-                        tmp = []
-                        tmpOp = []
-                        countOperations = 0
-                        found =  False
-                    tmpResult.append('score:'+''+ tmpMatrix[i][2])
-                    if atLeastOneOp == True:
-                        result.append(tmpResult)
-                    tmpResult = []
-                    atLeastOneOp = False
-
-        elif (operator == 'range') and (score2 != None) and (score2 >= 0):
-            for i in range(len(tmpMatrix)):
-                if float(tmpMatrix[i][2]) >= score and (float(tmpMatrix[i][2]) <= score2):
-                    tmpResult.append(tmpMatrix[i][0])
-                    for z in range(len(opFilter)):
-                        currentOperation = opFilter[z]
-                        for j in range(len(tmpMatrix[i][3])):
-                            if tmpMatrix[i][3][j]['name'].lower() != currentOperation:
-                                countOperations = countOperations + 1
-                                if countOperations <= maxPreviousOp:
-                                    tmpOp.append(tmpMatrix[i][3][j]['name'])
-                            else:
-                                found = True
-                                break
-                        if found == True:
-                            tmp.append(tmpMatrix[i][3][j]['name'])
-                            tmp.append(tmpOp)
-                            tmp.append(countOperations)
-                            tmpResult.append(tmp)
-                            atLeastOneOp = True
-                        tmp = []
-                        tmpOp = []
-                        countOperations = 0
-                        found =  False
-                    tmpResult.append('score:'+''+ tmpMatrix[i][2])
-                    if atLeastOneOp == True:
-                        result.append(tmpResult)
-                    tmpResult = []
-                    atLeastOneOp = False
-
-        elif (operator == 'range') and (score2 == None or score2 < 0):
-            print('errore,inserire parametri corretti')
-            return 0
-
-        elif (operator == 'under') and (score == -1):
-            print('errore,inserire parametri corretti')
-            return 0
-
-        if result != []:
-            for i in range(len(result)):
-                for j in range(1,len(result[i])):
-                    if result[i][j][2] == 0:
-                        result[i][j][2] = 'first Operation'
-        return result
-    else:
-        print('errore,operazioni duplicate inserite')
-        return 0
 
 
 def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null', score2=None):
@@ -878,7 +728,7 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null'
     with open(opHistoryPath) as f:
         opHistory = json.load(f)
 
-    #opFilter = [x.lower() for x in opFilter]
+    opFilter = [x.lower() for x in opFilter]
 
     duplicateOP = check(opFilter)
 
@@ -920,7 +770,7 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                 for i in range(len(tmpMatrix)):
                     if float(tmpMatrix[i][1]) == score:
                         for j in range(len(tmpMatrix[i][2])):
-                            if tmpMatrix[i][2][j]['name'] != currentOperation:
+                            if tmpMatrix[i][2][j]['name'].lower() != currentOperation:
                                 countOperations = countOperations + 1
                                 lastOp = tmpMatrix[i][2][j]['name']
                             else:
@@ -929,7 +779,7 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                                     previousOperations.append(lastOp)
                                 break
                         if found == True:
-                            tmp.append(currentOperation)
+                            tmp.append(tmpMatrix[i][2][j]['name'])
                             tmp.append(tmpMatrix[i][0])
                             tmp.append(tmpMatrix[i][3])
                             if countOperations > 0:
@@ -977,7 +827,7 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                 for i in range(len(tmpMatrix)):
                     if float(tmpMatrix[i][1]) >= score:
                         for j in range(len(tmpMatrix[i][2])):
-                            if tmpMatrix[i][2][j]['name'] != currentOperation:
+                            if tmpMatrix[i][2][j]['name'].lower() != currentOperation:
                                 countOperations = countOperations + 1
                                 lastOp = tmpMatrix[i][2][j]['name']
                             else:
@@ -986,7 +836,7 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                                     previousOperations.append(lastOp)
                                 break
                         if found == True:
-                            tmp.append(currentOperation)
+                            tmp.append(tmpMatrix[i][2][j]['name'])
                             tmp.append(tmpMatrix[i][0])
                             tmp.append(tmpMatrix[i][3])
                             if countOperations > 0:
@@ -1035,7 +885,7 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                 for i in range(len(tmpMatrix)):
                     if float(tmpMatrix[i][1]) < score and float(tmpMatrix[i][1]) != -1:
                         for j in range(len(tmpMatrix[i][2])):
-                            if tmpMatrix[i][2][j]['name'] != currentOperation:
+                            if tmpMatrix[i][2][j]['name'].lower() != currentOperation:
                                 countOperations = countOperations + 1
                                 lastOp = tmpMatrix[i][2][j]['name']
                             else:
@@ -1044,7 +894,7 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                                     previousOperations.append(lastOp)
                                 break
                         if found == True:
-                            tmp.append(currentOperation)
+                            tmp.append(tmpMatrix[i][2][j]['name'])
                             tmp.append(tmpMatrix[i][0])
                             tmp.append(tmpMatrix[i][3])
                             if countOperations > 0:
@@ -1092,7 +942,7 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                 for i in range(len(tmpMatrix)):
                     if float(tmpMatrix[i][1]) >= score and float(tmpMatrix[i][1]) < score2:
                         for j in range(len(tmpMatrix[i][2])):
-                            if tmpMatrix[i][2][j]['name'] != currentOperation:
+                            if tmpMatrix[i][2][j]['name'].lower() != currentOperation:
                                 countOperations = countOperations + 1
                                 lastOp = tmpMatrix[i][2][j]['name']
                             else:
@@ -1101,7 +951,7 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                                     previousOperations.append(lastOp)
                                 break
                         if found == True:
-                            tmp.append(currentOperation)
+                            tmp.append(tmpMatrix[i][2][j]['name'])
                             tmp.append(tmpMatrix[i][0])
                             tmp.append(tmpMatrix[i][3])
                             if countOperations > 0:
