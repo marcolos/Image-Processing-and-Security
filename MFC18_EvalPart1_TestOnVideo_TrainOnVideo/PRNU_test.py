@@ -517,7 +517,7 @@ def manipulation_analysis(finalScorePath, opHistoryPath, cameraPath, allOperatio
     printInColumn(repeatOp_matchedSorted)
     print("")
 
-    print('--------------- Probe NON trovate nel Json contente le storie--------------------')
+    print('--------------- Probe NON trovate nel Json contente le storie-------------------- n° probe = ',len(noJSON))
     printInColumn(noJSON)
 
 def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null', score2 = None):

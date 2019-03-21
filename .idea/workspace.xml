@@ -3,14 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="898c6126-d648-4414-92a4-cddc121dae08" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnImage_TrainOnImage/PRNU_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnImage_TrainOnImage/PRNU_test_2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnImage/PRNU_test_2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo/PRNU_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFC18_EvalPart1_TestOnVideo_TrainOnVideo/PRNU_test_2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFC18_Eval_GAN_Image_Crop/GAN_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFC18_Eval_GAN_Image_Crop/GAN_test_2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MFC18_Eval_GAN_Video_Ver3/GAN_test.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/presentation.key" beforeDir="false" afterPath="$PROJECT_DIR$/presentation.key" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,7 +36,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MFC18_Eval_GAN_Image_Crop/GAN_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-595">
+            <state relative-caret-position="5202">
               <caret line="312" column="4" selection-start-line="312" selection-start-column="4" selection-end-line="312" selection-end-column="4" />
             </state>
           </provider>
@@ -326,7 +318,7 @@
       <workItem from="1550062731019" duration="41612000" />
       <workItem from="1550756244699" duration="4000" />
       <workItem from="1550759837394" duration="45770000" />
-      <workItem from="1552295073789" duration="7059000" />
+      <workItem from="1552295073789" duration="7212000" />
     </task>
     <servers />
   </component>
@@ -336,13 +328,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="185058000" />
+    <option name="totallyTimeSpent" value="185211000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.62168676" visible="true" weight="0.17668097" />
-      <window_info active="true" id="Structure" order="1" sideWeight="0.37831324" side_tool="true" visible="true" weight="0.17668097" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.62168676" visible="true" weight="0.17668097" />
+      <window_info id="Structure" order="1" sideWeight="0.37831324" side_tool="true" visible="true" weight="0.17668097" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
@@ -521,7 +513,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MFC18_Eval_GAN_Image_Crop/GAN_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-595">
+        <state relative-caret-position="5202">
           <caret line="312" column="4" selection-start-line="312" selection-start-column="4" selection-end-line="312" selection-end-column="4" />
         </state>
       </provider>
