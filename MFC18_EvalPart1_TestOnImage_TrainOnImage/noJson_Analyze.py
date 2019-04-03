@@ -109,7 +109,7 @@ def NoJsonAnalyze(noJSON,optout,threshold,target):
 	print("")
 
 noJSON = findNOJSON('./FinalScores/UnifiPRNUTime_1_CameraImgImg.csv','./Reference/MFC18_EvalPart1-camera-ref.csv','./probeHistory.json')
-NoJsonAnalyze(noJSON,-1,50,'mts')
+NoJsonAnalyze(noJSON,-1,50,'jpg')
 printInColumn(noJSON)
 
 #

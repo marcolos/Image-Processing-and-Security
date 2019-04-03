@@ -142,7 +142,28 @@ def createJsonProbeHistory(probePath, journalPath, operationsPath):
 
     print('JSON file has been created')
 
-def division(finalScorePath, opHistoryPath, cameraPath, valore_soglia, valore_optout):
+
+def addCameraReference(matrix,camera):
+    X = []
+    Y = []
+    tmp = []
+    for i in range(len(matrix)):
+        for j in range(len(camera)):
+            if ((matrix[i][0] == camera[j][1]) and (matrix[i][1]) == camera[j][3]):
+                tmp.append(matrix[i][0])
+                tmp.append(matrix[i][1])
+                tmp.append(matrix[i][2])
+                tmp.append(camera[j][5])
+                tmp.append(camera[j][2].split(".", 1)[1])
+                if (camera[j][5]) == 'Y':
+                    X.append(tmp)
+                else:
+                    Y.append(tmp)
+                tmp = []
+    matrix = X + Y
+    return matrix
+
+def division(finalScorePath, opHistoryPath, cameraPath, valore_soglia, valore_optout,returnFlag = 0):
     # finalScore.csv
     scoreMatrix = CSVreader(finalScorePath)
     scoreMatrix.remove(scoreMatrix[0])  # Rimuovo l'intestazione
@@ -191,58 +212,9 @@ def division(finalScorePath, opHistoryPath, cameraPath, valore_soglia, valore_op
             tmp = []
         match = False
 
-        # for i in range(len(scoreMatrix)):
-        #     for j in range(len(opHistory['probesFileID'])):
-        #         if scoreMatrix[i][0] == opHistory['probesFileID'][j]['probeID']:
-        #             match = True
-        #             tmp = [scoreMatrix[i][0], scoreMatrix[i][1], scoreMatrix[i][3]]
-        #             if scoreMatrix[i][3] == str(valore_optout):
-        #                 scoreMatrix_opt.append(tmp)  # Probe|Camera|Score
-        #             else:
-        #                 scoreMatrix_no_opt.append(tmp)  # Probe|Camera|Score
-        #             tmp = []
-        #     if match == False:
-        #         count = count + 1
-        #         noJSON.append(tmp)  # Probe|Camera|Score
-        #         tmp = []
-        #     match = False
-
-        # scoreMatrix_one è una matrice contenente: ProbeID,Camera,score=-1,isManipulated/notManipulated raggruppata per Y(yes is manipulated)
-        X = []
-        Y = []
-        for i in range(len(scoreMatrix_opt)):
-            for j in range(len(camera)):
-                if ((scoreMatrix_opt[i][0] == camera[j][1]) and (scoreMatrix_opt[i][1]) == camera[j][3]):
-                    tmp.append(scoreMatrix_opt[i][0])
-                    tmp.append(scoreMatrix_opt[i][1])
-                    tmp.append(scoreMatrix_opt[i][2])
-                    tmp.append(camera[j][5])
-                    tmp.append(camera[j][2].split(".", 1)[1])
-                    if (camera[j][5]) == 'Y':
-                        X.append(tmp)
-                    else:
-                        Y.append(tmp)
-                    tmp = []
-        scoreMatrix_opt = X + Y
-
-        # scoreMatrix_no_opt è una matrice contenente: ProbeID,Camera,score!=-1,isManipulated/notManipulated raggruppata per Y(yes is manipulated)
-        X = []
-        Y = []
-        for i in range(len(scoreMatrix_no_opt)):
-            for j in range(len(camera)):
-                if ((scoreMatrix_no_opt[i][0] == camera[j][1]) and (scoreMatrix_no_opt[i][1]) == camera[j][3]):
-                    tmp.append(scoreMatrix_no_opt[i][0])
-                    tmp.append(scoreMatrix_no_opt[i][1])
-                    tmp.append(scoreMatrix_no_opt[i][2])
-                    tmp.append(camera[j][5])
-                    tmp.append(camera[j][2].split(".", 1)[1])
-                    if (camera[j][5]) == 'Y':
-                        X.append(tmp)
-                    else:
-                        Y.append(tmp)
-                    tmp = []
-        scoreMatrix_no_opt = X + Y
-
+        scoreMatrix_opt = addCameraReference(scoreMatrix_opt,camera)
+        scoreMatrix_no_opt = addCameraReference(scoreMatrix_no_opt,camera)
+        noJSON = addCameraReference(noJSON,camera)
         # ANALISI di scoreMatrix_no_opt
         MATCHED = []
         NOMATCHED = []
@@ -253,252 +225,106 @@ def division(finalScorePath, opHistoryPath, cameraPath, valore_soglia, valore_op
                 NOMATCHED.append(scoreMatrix_no_opt[i])
 
         # noJSON è una matrice contenente: ProbeID,score,isManipulated/notManipulated raggruppata per Y(yes is manipulated)
-        X = []
-        Y = []
-        for i in range(len(noJSON)):
-            for j in range(len(camera)):
-                if ((noJSON[i][0] == camera[j][1]) and (noJSON[i][1]) == camera[j][3]):
-                    tmp.append(noJSON[i][0])
-                    tmp.append(noJSON[i][1])
-                    tmp.append(noJSON[i][2])
-                    tmp.append(camera[j][5])
-                    tmp.append(camera[j][2].split(".", 1)[1])
-                    if (camera[j][5]) == 'Y':
-                        X.append(tmp)
-                    else:
-                        Y.append(tmp)
-                    tmp = []
-        noJSON = X + Y
+    if returnFlag == 0:
+        print('')
+        print('probe with score = ',valore_optout)
+        printInColumn(scoreMatrix_opt)
 
-    print('')
-    print('probe with score = ',valore_optout)
-    printInColumn(scoreMatrix_opt)
+        print('')
+        print('probe with score >= ', valore_soglia)
+        printInColumn(MATCHED)
 
-    print('')
-    print('probe with score >= ', valore_soglia)
-    printInColumn(MATCHED)
+        print('')
+        print('probe with score < ', valore_soglia)
+        printInColumn(NOMATCHED)
 
-    print('')
-    print('probe with score < ', valore_soglia)
-    printInColumn(NOMATCHED)
+        print('')
+        print('------------- probe not found in json history -------------------- ')
+        printInColumn(noJSON)
+    
+    if returnFlag == 1:
+        return scoreMatrix_opt,MATCHED,NOMATCHED,noJSON
 
-    print('')
-    print('------------- probe not found in json history -------------------- ')
-    printInColumn(noJSON)
-
-
-
-def manipulation_analysis(finalScorePath, opHistoryPath, cameraPath, allOperationsPath, valore_soglia, valore_optout):
-    # finalScore.csv
-    scoreMatrix = CSVreader(finalScorePath)
-    scoreMatrix.remove(scoreMatrix[0])  # Rimuovo l'intestazione
-    # probeHistory.json
-
-    # Leggo csv ManipReference
-    camera = CSVreader(cameraPath)
-    camera.remove(camera[0])  # Rimuovo l'intestazione
-
-    # Leggo le probe history
-    with open(opHistoryPath) as f:
-        opHistory = json.load(f)
-
-    # Matrice contenente: ProbeID,score=valore_optout
-    scoreMatrix_opt = []
-    # Matrice contenente ProbeID,score!= valore_opyout
-    scoreMatrix_no_opt = []
-    # Matrice contenente i ProbeID che non si trovano nel json
-    noJSON = []
+def AddHistoryManip(scoreMatrix,opHistory):
+    tmpMatrix = []
     tmp = []
-    count = 0
-    match = False
     for i in range(len(scoreMatrix)):
         for j in range(len(opHistory['probesFileID'])):
             if scoreMatrix[i][0] == opHistory['probesFileID'][j]['probeID']:
-                match = True
-                if float(scoreMatrix[i][3]) == valore_optout:
-                    tmp.append(scoreMatrix[i][0])  #Probe
-                    tmp.append(scoreMatrix[i][1])  #Camera
-                    tmp.append(scoreMatrix[i][3])  #Score
-                    scoreMatrix_opt.append(tmp)  # Probe|Camera|Score
-                    tmp = []
-                else:
-                    tmp.append(scoreMatrix[i][0])  #Probe
-                    tmp.append(scoreMatrix[i][1])  #Camera
-                    tmp.append(scoreMatrix[i][3])  #Score
-                    scoreMatrix_no_opt.append(tmp)  # Probe|Camera|Score
-                    tmp = []
+                tmp.append(scoreMatrix[i][0])
+                tmp.append(scoreMatrix[i][1])
+                tmp.append(scoreMatrix[i][2])
+                tmp.append(scoreMatrix[i][3])
+                tmp.append(scoreMatrix[i][4])
+                tmp.append(opHistory['probesFileID'][j]['operations'])
+                tmpMatrix.append(tmp)
+                tmp = []
+    return tmpMatrix  
 
-        if match == False:
-            count = count + 1
-            tmp.append(scoreMatrix[i][0])  #Probe
-            tmp.append(scoreMatrix[i][1])  #Camera
-            tmp.append(scoreMatrix[i][3])  #Score
-            noJSON.append(tmp)  # Probe|Camera|Score
+def AddHistory(scoreMatrix,opHistory):
+
+    tmpMatrix = []
+    tmp = []
+    maxlenght = 0
+    for i in range(len(scoreMatrix)):
+        for j in range(len(opHistory['probesFileID'])):
+            if scoreMatrix[i][0] == opHistory['probesFileID'][j]['probeID']:
+                tmp.append(scoreMatrix[i][0])
+                tmp.append(scoreMatrix[i][1])
+                tmp.append(scoreMatrix[i][3])
+                tmp.append(opHistory['probesFileID'][j]['operations'])
+                if len(opHistory['probesFileID'][j]['operations'])> maxlenght:
+                    maxlenght = len(opHistory['probesFileID'][j]['operations'])
+                tmpMatrix.append(tmp)
+                tmp = []
+    return tmpMatrix,maxlenght 
+
+def countOp(matrix):
+    countOp = 0
+    tmp = []
+    repeatOp = []
+    foundOp = False    
+    for i in range(len(matrix)):
+        for j in range(len(matrix[i][5])):
+            for k in range(len(repeatOp)):
+                if matrix[i][5][j]['name'] == repeatOp[k][0]:
+                    foundOp = True
+                    break
+            if foundOp == False:
+                for t in range(len(matrix)):
+                    for s in range(len(matrix[t][5])):
+                        if matrix[i][5][j]['name'] == matrix[t][5][s]['name']:
+                            countOp = countOp + 1
+                            break
+            if countOp > 0:
+                tmp.append(matrix[i][5][j]['name'])
+                tmp.append(countOp)
+                repeatOp.append(tmp)
+            countOp = 0
             tmp = []
-        match = False
+            foundOp = False
+    return repeatOp
 
 
-    # scoreMatrix_one è una matrice contenente: ProbeID,Camera,score=-1,isManipulated/notManipulated raggruppata per Y(yes is manipulated)
-    X = []
-    Y = []
-    for i in range(len(scoreMatrix_opt)):
-        for j in range(len(camera)):
-            if ((scoreMatrix_opt[i][0] == camera[j][1]) and (scoreMatrix_opt[i][1]) == camera[j][3]):
-                tmp.append(scoreMatrix_opt[i][0])
-                tmp.append(scoreMatrix_opt[i][1])
-                tmp.append(scoreMatrix_opt[i][2])
-                tmp.append(camera[j][5])
-                tmp.append(camera[j][2].split(".", 1)[1])
-                if (camera[j][5]) == 'Y':
-                    X.append(tmp)
-                else:
-                    Y.append(tmp)
-                tmp = []
-    scoreMatrix_opt = X + Y
+def manipulation_analysis(finalScorePath, opHistoryPath, cameraPath, valore_soglia, valore_optout):
 
-    # scoreMatrix_no_opt è una matrice contenente: ProbeID,Camera,score!=-1,isManipulated/notManipulated raggruppata per Y(yes is manipulated)
-    X = []
-    Y = []
-    for i in range(len(scoreMatrix_no_opt)):
-        for j in range(len(camera)):
-            if ((scoreMatrix_no_opt[i][0] == camera[j][1]) and (scoreMatrix_no_opt[i][1]) == camera[j][3]):
-                tmp.append(scoreMatrix_no_opt[i][0])
-                tmp.append(scoreMatrix_no_opt[i][1])
-                tmp.append(scoreMatrix_no_opt[i][2])
-                tmp.append(camera[j][5])
-                tmp.append(camera[j][2].split(".", 1)[1])
-                if (camera[j][5]) == 'Y':
-                    X.append(tmp)
-                else:
-                    Y.append(tmp)
-                tmp = []
-    scoreMatrix_no_opt = X + Y
-
-    # ANALISI di scoreMatrix_no_opt
-    MATCHED = []
-    NOMATCHED = []
-    for i in range(len(scoreMatrix_no_opt)):
-        if (float(scoreMatrix_no_opt[i][2]) >= valore_soglia):
-            MATCHED.append(scoreMatrix_no_opt[i])
-        else:
-            NOMATCHED.append(scoreMatrix_no_opt[i])
-
-    # noJSON è una matrice contenente: ProbeID,score,isManipulated/notManipulated raggruppata per Y(yes is manipulated)
-    X = []
-    Y = []
-    for i in range(len(noJSON)):
-        for j in range(len(camera)):
-            if ((noJSON[i][0] == camera[j][1]) and (noJSON[i][1]) == camera[j][3]):
-                tmp.append(noJSON[i][0])
-                tmp.append(noJSON[i][1])
-                tmp.append(noJSON[i][2])
-                tmp.append(camera[j][5])
-                tmp.append(camera[j][2].split(".", 1)[1])
-                if (camera[j][5]) == 'Y':
-                    X.append(tmp)
-                else:
-                    Y.append(tmp)
-                tmp = []
-    noJSON = X + Y
-
+    scoreMatrix_opt,MATCHED,NOMATCHED,noJSON = division(finalScorePath, opHistoryPath, cameraPath, valore_soglia, valore_optout,returnFlag = 1)
+    # Leggo le probe history
+    with open(opHistoryPath) as f:
+        opHistory = json.load(f)
+    scoreOperations_one = AddHistoryManip(scoreMatrix_opt,opHistory)
+    scoreOperations_no_one_matched = AddHistoryManip(MATCHED,opHistory)
+    scoreOperations_no_one_no_matched = AddHistoryManip(NOMATCHED,opHistory)
     '''Conteggio ricorrenza operazioni in scoreMatrix_one, scoreMatrix_no_one_matched, scoreMatrix_no_one_no_matched'''
-    tmp = []
-    scoreOperations_one = []
-    for i in range(len(scoreMatrix_opt)):
-        for j in range(len(opHistory['probesFileID'])):
-            if scoreMatrix_opt[i][0] == opHistory['probesFileID'][j]['probeID']:
-                tmp.append(scoreMatrix_opt[i][0])
-                tmp.append(scoreMatrix_opt[i][1])
-                tmp.append(scoreMatrix_opt[i][2])
-                tmp.append(scoreMatrix_opt[i][3])
-                tmp.append(opHistory['probesFileID'][j]['operations'])
-                scoreOperations_one.append(tmp)
-                tmp = []
-
-    tmp = []
-    scoreOperations_no_one_matched = []
-    for i in range(len(MATCHED)):
-        for j in range(len(opHistory['probesFileID'])):
-            if MATCHED[i][0] == opHistory['probesFileID'][j]['probeID']:
-                tmp.append(MATCHED[i][0])
-                tmp.append(MATCHED[i][1])
-                tmp.append(MATCHED[i][2])
-                tmp.append(MATCHED[i][3])
-                tmp.append(opHistory['probesFileID'][j]['operations'])
-                scoreOperations_no_one_matched.append(tmp)
-                tmp = []
-
-    tmp = []
-    scoreOperations_no_one_no_matched = []
-    for i in range(len(NOMATCHED)):
-        for j in range(len(opHistory['probesFileID'])):
-            if NOMATCHED[i][0] == opHistory['probesFileID'][j]['probeID']:
-                tmp.append(NOMATCHED[i][0])
-                tmp.append(NOMATCHED[i][1])
-                tmp.append(NOMATCHED[i][2])
-                tmp.append(NOMATCHED[i][3])
-                tmp.append(opHistory['probesFileID'][j]['operations'])
-                scoreOperations_no_one_no_matched.append(tmp)
-                tmp = []
-
-    countOp = 0
-    tmp = []
-    repeatOp_matched = []
-    with open(allOperationsPath) as f:
-        data2 = json.load(f)
-    # numero di volte in cui le operazioni si ripetono nelle matrici
-    for k in range(len(data2['operations'])):
-        for i in range(len(scoreOperations_no_one_matched)):
-            for j in range(len(scoreOperations_no_one_matched[i][4])):
-                if data2['operations'][k]['name'] == scoreOperations_no_one_matched[i][4][j]['name']:
-                    countOp = countOp + 1
-                    break
-        if countOp > 0:
-            tmp.append(data2['operations'][k]['name'])
-            tmp.append(countOp)
-            repeatOp_matched.append(tmp)
-        countOp = 0
-        tmp = []
-
-    tmp = []
-    countOp = 0
-    repeatOp_noMatched = []
-    for k in range(len(data2['operations'])):
-        for i in range(len(scoreOperations_no_one_no_matched)):
-            for j in range(len(scoreOperations_no_one_no_matched[i][4])):
-                if data2['operations'][k]['name'] == scoreOperations_no_one_no_matched[i][4][j]['name']:
-                    countOp = countOp + 1
-                    break
-        if countOp > 0:
-            tmp.append(data2['operations'][k]['name'])
-            tmp.append(countOp)
-            repeatOp_noMatched.append(tmp)
-        countOp = 0
-        tmp = []
-
-    tmp = []
-    countOp = 0
-    repeatOp_one = []
-    # numero di volte in cui le operazioni si ripetono nelle matrici
-    for k in range(len(data2['operations'])):
-        for i in range(len(scoreOperations_one)):
-            for j in range(len(scoreOperations_one[i][4])):
-                if data2['operations'][k]['name'] == scoreOperations_one[i][4][j]['name']:
-                    countOp = countOp + 1
-                    break
-        if countOp > 0:
-            tmp.append(data2['operations'][k]['name'])
-            tmp.append(countOp)
-            repeatOp_one.append(tmp)
-        countOp = 0
-        tmp = []
+    repeatOp_matched = countOp(scoreOperations_no_one_matched)
+    repeatOp_noMatched = countOp(scoreOperations_no_one_no_matched)
+    repeatOp_one = countOp(scoreOperations_one)
 
     # Matrice globale contente: ProbeID,score
-    global_score = scoreMatrix_opt + scoreMatrix_no_opt + noJSON
-    print('\nNumero di ProbeID nel CSV score: ', len(scoreMatrix))
+    print('\nNumero di ProbeID nel CSV score: ', len(scoreMatrix_opt)+ len(MATCHED)+ len(NOMATCHED) + len(noJSON))
     print('Numero di ProbeID nel JSON contente le storie: ', len(opHistory['probesFileID']))
     print("")
-    print('Numero di ProbeID che matchano nel JSON contenente le storie, e quindi analizzabili: ', len(scoreMatrix_opt) + len(scoreMatrix_no_opt))
+    print('Numero di ProbeID che matchano nel JSON contenente le storie, e quindi analizzabili: ', len(scoreMatrix_opt) + len(MATCHED)+ len(NOMATCHED))
     print('Numero di ProbeID non trovate nel JSON contenente storie: ', len(noJSON))
     print("")
 
@@ -520,78 +346,68 @@ def manipulation_analysis(finalScorePath, opHistoryPath, cameraPath, allOperatio
     print('--------------- Probe NON trovate nel Json contente le storie-------------------- n° probe = ',len(noJSON))
     printInColumn(noJSON)
 
+   
+def _scoreFilter1(i,tmpMatrix,opFilter,occurenceMatrix,tmpMatrix2):
+    tmp = []
+    countOperations = 0
+    objPosition = -1
+    atLeastOneOp = False
+    p = 0  #probeID index
+    c = 1  #camera index
+    s = 2  #score index
+    op = 3 #operations index
+    tmp.append(tmpMatrix[i][p])
+    tmp.append(tmpMatrix[i][c])
+    for z in range(len(opFilter)):
+        currentOperation = opFilter[z]
+        currentMatrix = occurenceMatrix[z]
+        for j in range(len(tmpMatrix[i][op])):
+            countOperations = countOperations + 1
+            if (currentOperation == tmpMatrix[i][op][j]['name'].lower()):
+                objPosition = countOperations
+                break
+        if objPosition != -1:
+            tmp.append(tmpMatrix[i][op][j]['name'])
+            tmp.append(objPosition)
+            atLeastOneOp = True
+            currentMatrix[objPosition -1][len(tmpMatrix[i][op]) - 1] = currentMatrix[objPosition -1][len(tmpMatrix[i][op]) -1] + 1
+        occurenceMatrix[z] = currentMatrix
+        objPosition = -1
+        countOperations = 0
+    tmp.append('lenght:' + " " +str(len(tmpMatrix[i][op])))
+    tmp.append('score:' + " "+ str((tmpMatrix[i][s])))
+    if atLeastOneOp == True:
+        tmpMatrix2.append(tmp)
+    tmp = []
+    atLeastOneOp = False
+
+
 def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null', score2 = None):
-    # finalScore.csv
+    s = 2 
     scoreMatrix = CSVreader(finalScorePath)
     scoreMatrix.remove(scoreMatrix[0])  # Rimuovo l'intestazione
     # probeHistory.json
     with open(opHistoryPath) as f:
         opHistory = json.load(f)
-
     opFilter= [x.lower() for x in opFilter]
-
     duplicateOP = check(opFilter)
+
     if duplicateOP == False:
-        atLeastOneOp = False
-        tmp = []
-        maxlenght = 0
+        tmpMatrix,maxlenght = AddHistory(scoreMatrix,opHistory)
         result = []
-        tmpMatrix = []
-        atLeastOneOp = False
-        for i in range(len(scoreMatrix)):
-            for j in range(len(opHistory['probesFileID'])):
-                if scoreMatrix[i][0] == opHistory['probesFileID'][j]['probeID']:
-                    tmp.append(scoreMatrix[i][0])
-                    tmp.append(scoreMatrix[i][1])
-                    tmp.append(scoreMatrix[i][3])
-                    tmp.append(opHistory['probesFileID'][j]['operations'])
-                    if len(opHistory['probesFileID'][j]['operations'])> maxlenght:
-                        maxlenght = len(opHistory['probesFileID'][j]['operations'])
-                    tmpMatrix.append(tmp)
-                    tmp = []
-        tmp = []
         tmpMatrix2 = []
-        countOperations = 0
-        objPosition = -1
-        firstMatched = False
         occurenceMatrix = []
+
         for i in range(len(opFilter)):
             occurenceMatrix.append(np.zeros((int(maxlenght),int(maxlenght))))
 
         if operator == 'null':
             print('errore,inserire operazioni')
 
-        elif (score != -1) and (score < 0):
-            print('errore,valore inserito non corretto')
-            return 0
-
-
         elif (operator == 'equal'):
             for i in range(len(tmpMatrix)):
-                if float(tmpMatrix[i][2]) == score:
-                    tmp.append(tmpMatrix[i][0])
-                    tmp.append(tmpMatrix[i][1])
-                    for z in range(len(opFilter)):
-                        currentOperation = opFilter[z]
-                        currentMatrix = occurenceMatrix[z]
-                        for j in range(len(tmpMatrix[i][3])):
-                            countOperations = countOperations + 1
-                            if (currentOperation == tmpMatrix[i][3][j]['name'].lower()):
-                                objPosition = countOperations
-                                break
-                        if objPosition != -1:
-                            tmp.append(tmpMatrix[i][3][j]['name'])
-                            tmp.append(objPosition)
-                            atLeastOneOp = True
-                            currentMatrix[objPosition -1][len(tmpMatrix[i][3]) - 1] = currentMatrix[objPosition -1][len(tmpMatrix[i][3]) -1] + 1
-                        occurenceMatrix[z] = currentMatrix
-                        objPosition = -1
-                        countOperations = 0
-                    tmp.append('lenght:' + " " +str(len(tmpMatrix[i][3])))
-                    if atLeastOneOp == True:
-                        tmpMatrix2.append(tmp)
-                    tmp = []
-                    atLeastOneOp = False
+                if float(tmpMatrix[i][s]) == score:
+                   _scoreFilter1(i,tmpMatrix,opFilter,occurenceMatrix,tmpMatrix2) 
             for i in range(len(tmpMatrix2)):
                 result.append(tmpMatrix2[i])
             for i in range(len(occurenceMatrix)):
@@ -600,38 +416,10 @@ def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null'
             return result
 
 
-        elif (operator) == 'over' and (score == -1):
-            print('errore,valore inserito non corretto')
-            return 0
-
-
         elif (operator == 'over') and (score >= 0):
             for i in range(len(tmpMatrix)):
-                if float(tmpMatrix[i][2]) >= score:
-                    tmp.append(tmpMatrix[i][0])
-                    tmp.append(tmpMatrix[i][1])
-                    for z in range(len(opFilter)):
-                        currentOperation = opFilter[z]
-                        currentMatrix = occurenceMatrix[z]
-                        for j in range(len(tmpMatrix[i][3])):
-                            countOperations = countOperations + 1
-                            if (currentOperation == tmpMatrix[i][3][j]['name'].lower()):
-                                objPosition = countOperations
-                                break
-                        if objPosition != -1:
-                            tmp.append(tmpMatrix[i][3][j]['name'])
-                            tmp.append(objPosition)
-                            atLeastOneOp = True
-                            currentMatrix[objPosition -1][len(tmpMatrix[i][3]) - 1] = currentMatrix[objPosition -1][len(tmpMatrix[i][3]) -1] + 1
-                        occurenceMatrix[z] = currentMatrix
-                        objPosition = -1
-                        countOperations = 0
-                    tmp.append('lenght:' + " " +str(len(tmpMatrix[i][3])))
-                    tmp.append('score:' + " "+ str((tmpMatrix[i][2])))
-                    if atLeastOneOp == True:
-                        tmpMatrix2.append(tmp)
-                    tmp = []
-                    atLeastOneOp = False
+                if float(tmpMatrix[i][s]) >= score:
+                   _scoreFilter1(i,tmpMatrix,opFilter,occurenceMatrix,tmpMatrix2) 
             for i in range(len(tmpMatrix2)):
                 result.append(tmpMatrix2[i])
             for i in range(len(occurenceMatrix)):
@@ -641,31 +429,8 @@ def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null'
 
         elif (operator == 'under') and (score >= 0):
             for i in range(len(tmpMatrix)):
-                if (float(tmpMatrix[i][2]) < score) and (float(tmpMatrix[i][2]) != -1):
-                    tmp.append(tmpMatrix[i][0])
-                    tmp.append(tmpMatrix[i][1])
-                    for z in range(len(opFilter)):
-                        currentOperation = opFilter[z]
-                        currentMatrix = occurenceMatrix[z]
-                        for j in range(len(tmpMatrix[i][3])):
-                            countOperations = countOperations + 1
-                            if (currentOperation == tmpMatrix[i][3][j]['name'].lower()):
-                                objPosition = countOperations
-                                break
-                        if objPosition != -1:
-                            tmp.append(tmpMatrix[i][3][j]['name'])
-                            tmp.append(objPosition)
-                            atLeastOneOp = True
-                            currentMatrix[objPosition -1][len(tmpMatrix[i][3]) - 1] = currentMatrix[objPosition -1][len(tmpMatrix[i][3]) -1] + 1
-                        occurenceMatrix[z] = currentMatrix
-                        objPosition = -1
-                        countOperations = 0
-                    tmp.append('lenght:' + " " +str(len(tmpMatrix[i][3])))
-                    tmp.append('score:' + " "+ str((tmpMatrix[i][2])))
-                    if atLeastOneOp == True:
-                        tmpMatrix2.append(tmp)
-                    tmp = []
-                    atLeastOneOp = False
+                if (float(tmpMatrix[i][s]) < score) and (float(tmpMatrix[i][s]) != -1):
+                   _scoreFilter1(i,tmpMatrix,opFilter,occurenceMatrix,tmpMatrix2) 
             for i in range(len(tmpMatrix2)):
                 result.append(tmpMatrix2[i])
             for i in range(len(occurenceMatrix)):
@@ -675,31 +440,8 @@ def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null'
 
         elif (operator == 'range') and (score2 != None) and (score2 >= 0):
             for i in range(len(tmpMatrix)):
-                if (float(tmpMatrix[i][2]) >= score) and (float(tmpMatrix[i][2]) <= score2):
-                    tmp.append(tmpMatrix[i][0])
-                    tmp.append(tmpMatrix[i][1])
-                    for z in range(len(opFilter)):
-                        currentOperation = opFilter[z]
-                        currentMatrix = occurenceMatrix[z]
-                        for j in range(len(tmpMatrix[i][3])):
-                            countOperations = countOperations + 1
-                            if (currentOperation == tmpMatrix[i][3][j]['name'].lower()):
-                                objPosition = countOperations
-                                break
-                        if objPosition != -1:
-                            tmp.append(tmpMatrix[i][3][j]['name'])
-                            tmp.append(objPosition)
-                            atLeastOneOp = True
-                            currentMatrix[objPosition -1][len(tmpMatrix[i][3]) - 1] = currentMatrix[objPosition -1][len(tmpMatrix[i][3]) -1] + 1
-                        occurenceMatrix[z] = currentMatrix
-                        objPosition = -1
-                        countOperations = 0
-                    tmp.append('lenght:' + " " +str(len(tmpMatrix[i][3])))
-                    tmp.append('score:' + " "+ str((tmpMatrix[i][2])))
-                    if atLeastOneOp == True:
-                        tmpMatrix2.append(tmp)
-                    tmp = []
-                    atLeastOneOp = False
+                if (float(tmpMatrix[i][s]) >= score) and (float(tmpMatrix[i][s]) <= score2):
+                   _scoreFilter1(i,tmpMatrix,opFilter,occurenceMatrix,tmpMatrix2) 
             for i in range(len(tmpMatrix2)):
                 result.append(tmpMatrix2[i])
             for i in range(len(occurenceMatrix)):
@@ -707,59 +449,100 @@ def scoreFilter1(finalScorePath, opHistoryPath, score, opFilter, operator='null'
                 print("")
             return result
 
+        elif (score != -1) and (score < 0):
+            print('errore,inserire parametri corretti')
+            return None
+
+        elif (operator) == 'over' and (score == -1):
+            print('errore,inserire parametri corretti')
+            return None
+
         elif (operator == 'range') and (score2 == None or score2 < 0):
-            print('operazione non consentita')
-            return 0
+            print('errore,inserire parametri corretti')
+            return None
 
         elif (operator == 'under') and (score == -1):
-            print('Error')
-            return 0
+            print('errore,inserire parametri corretti')
+            return None
     else:
         print('errore,operazioni duplicate inserite')
-        return 0
+        return None
 
+def _scoreFilter2(i,tmpMatrix,currentOperation,previousOperations,countFirstOperation):
+    p = 0  #probeID index
+    c = 1  #camera index
+    s = 2  #score index
+    op = 3 #operations index
+    atLeastOneOp = False
+    found = False
+    lastOp = None
+    atLeastOneOp = False
+    countOperations = 0
+    tmp = []
+    tmpOp = []
+    tmpResult = []           
+    for j in range(len(tmpMatrix[i][op])):
+        if tmpMatrix[i][op][j]['name'].lower() != currentOperation:
+            countOperations = countOperations + 1
+            lastOp = tmpMatrix[i][op][j]['name']
+        else:
+            found = True
+            if lastOp != None:
+                previousOperations.append(lastOp)
+            break
+    if found == True:
+        tmp.append(tmpMatrix[i][op][j]['name'])
+        tmp.append(tmpMatrix[i][p])
+        tmp.append(tmpMatrix[i][c])
+        if countOperations > 0:
+            tmp.append(countOperations)
+        else:
+            tmp.append('First operation')
+            countFirstOperation = countFirstOperation + 1
+        tmp.append('score:' + '' + tmpMatrix[i][s])      
+        tmpResult.append(tmp)
+        atLeastOneOp = True
+    return atLeastOneOp,tmpResult,countFirstOperation
 
-
+def countOccurrence(previousOperations):
+    occurrence = []
+    duplicate = False
+    count = 0
+    tmpOcc = []
+    for k in range(len(previousOperations)):
+        for s in range(len(occurrence)):
+            if previousOperations[k] == occurrence[s][0]:
+                duplicate = True
+        if duplicate == False:
+            for n in range(len(previousOperations)):
+                if previousOperations[k] == previousOperations[n]:
+                    count = count + 1
+            tmpOcc.append(previousOperations[k])
+            tmpOcc.append(count)
+            occurrence.append(tmpOcc)
+            tmpOcc = []
+        count = 0
+        duplicate = False
+    return occurrence
 
 def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null', score2=None):
+    s = 2
+    atLeastOneOp = False
     scoreMatrix = CSVreader(finalScorePath)
     scoreMatrix.remove(scoreMatrix[0])  # Rimuovo l'intestazione
     # probeHistory.json
     with open(opHistoryPath) as f:
         opHistory = json.load(f)
-
     opFilter = [x.lower() for x in opFilter]
-
     duplicateOP = check(opFilter)
 
     if duplicateOP == False:
-        atLeastOneOp = False
-        tmp = []
-        tmpResult = []
-        result = []
-        tmpMatrix = []
-        match = False
-        found = False
-        for i in range(len(scoreMatrix)):
-            for j in range(len(opHistory['probesFileID'])):
-                if scoreMatrix[i][0] == opHistory['probesFileID'][j]['probeID']:
-                    tmp.append(scoreMatrix[i][0])
-                    tmp.append(scoreMatrix[i][3])
-                    tmp.append(opHistory['probesFileID'][j]['operations'])
-                    tmp.append(scoreMatrix[i][1])
-                    tmpMatrix.append(tmp)
-                    tmp = []
-        lastOp = None
-        count = 0
-        tmp = []
-        tmpOp = []
+        tmpMatrix,maxlenght = AddHistory(scoreMatrix,opHistory)
         countOperations = 0
-        countOp = 0
         previousOperations = []
-        occurrence = []
-        duplicate = False
         finalResult = []
-        tmpOcc = []
+        result = []
+        occurrence = []
         countFirstOperation = 0
         if operator == 'null':
             print('errore,inserire operazioni')
@@ -768,114 +551,30 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null'
             for z in range(len(opFilter)):
                 currentOperation = opFilter[z]
                 for i in range(len(tmpMatrix)):
-                    if float(tmpMatrix[i][1]) == score:
-                        for j in range(len(tmpMatrix[i][2])):
-                            if tmpMatrix[i][2][j]['name'].lower() != currentOperation:
-                                countOperations = countOperations + 1
-                                lastOp = tmpMatrix[i][2][j]['name']
-                            else:
-                                found = True
-                                if lastOp != None:
-                                    previousOperations.append(lastOp)
-                                break
-                        if found == True:
-                            tmp.append(tmpMatrix[i][2][j]['name'])
-                            tmp.append(tmpMatrix[i][0])
-                            tmp.append(tmpMatrix[i][3])
-                            if countOperations > 0:
-                                tmp.append(countOperations)
-                            else:
-                                tmp.append('First operation')
-                                countFirstOperation = countFirstOperation + 1      
-                            tmpResult.append(tmp)
-                            atLeastOneOp = True
-                        tmp = []
-                        tmpOp = []
-                        countOperations = 0
-                        found = False
-                        lastOp = None
-                    if atLeastOneOp == True:
-                        result.append(tmpResult)
-                    tmpResult = []
-                    atLeastOneOp = False
-                for k in range(len(previousOperations)):
-                    for s in range(len(occurrence)):
-                        if previousOperations[k] == occurrence[s][0]:
-                            duplicate = True
-                    if duplicate == False:
-                        for n in range(len(previousOperations)):
-                            if previousOperations[k] == previousOperations[n]:
-                                count = count + 1
-                        tmpOcc.append(previousOperations[k])
-                        tmpOcc.append(count)
-                        occurrence.append(tmpOcc)
-                        tmpOcc = []
-                    count = 0
-                    duplicate = False
-                finalResult.append(currentOperation)
+                    if float(tmpMatrix[i][s]) == score:
+                        atLeastOneOp,tmpResult,countFirstOperation = _scoreFilter2(i,tmpMatrix,currentOperation,previousOperations,countFirstOperation)
+                        if atLeastOneOp == True:
+                            result.append(tmpResult)
+                occurrence = countOccurrence(previousOperations)
+                finalResult.append(currentOperation +'  '+ 'N Times First Operations: ' + str(countFirstOperation))
                 finalResult.append(occurrence)
                 previousOperations = []
                 occurrence = []
-                print('Operation: '+ str(currentOperation)+', N times first operation: '+ str(countFirstOperation))
-                print("")
                 countFirstOperation = 0
-
 
         elif (operator == 'over') and (score >= 0):
             for z in range(len(opFilter)):
                 currentOperation = opFilter[z]
                 for i in range(len(tmpMatrix)):
-                    if float(tmpMatrix[i][1]) >= score:
-                        for j in range(len(tmpMatrix[i][2])):
-                            if tmpMatrix[i][2][j]['name'].lower() != currentOperation:
-                                countOperations = countOperations + 1
-                                lastOp = tmpMatrix[i][2][j]['name']
-                            else:
-                                found = True
-                                if lastOp != None:
-                                    previousOperations.append(lastOp)
-                                break
-                        if found == True:
-                            tmp.append(tmpMatrix[i][2][j]['name'])
-                            tmp.append(tmpMatrix[i][0])
-                            tmp.append(tmpMatrix[i][3])
-                            if countOperations > 0:
-                                tmp.append(countOperations)
-                            else:
-                                tmp.append('First operation')
-                                countFirstOperation = countFirstOperation + 1  
-                            tmp.append('score:' + '' + tmpMatrix[i][1])
-                            tmpResult.append(tmp)
-                            atLeastOneOp = True
-                        tmp = []
-                        tmpOp = []
-                        countOperations = 0
-                        found = False
-                        lastOp = None
-                    if atLeastOneOp == True:
-                        result.append(tmpResult)
-                    tmpResult = []
-                    atLeastOneOp = False
-                for k in range(len(previousOperations)):
-                    for s in range(len(occurrence)):
-                        if previousOperations[k] == occurrence[s][0]:
-                            duplicate = True
-                    if duplicate == False:
-                        for n in range(len(previousOperations)):
-                            if previousOperations[k] == previousOperations[n]:
-                                count = count + 1
-                        tmpOcc.append(previousOperations[k])
-                        tmpOcc.append(count)
-                        occurrence.append(tmpOcc)
-                        tmpOcc = []
-                    count = 0
-                    duplicate = False
-                finalResult.append(currentOperation)
+                    if float(tmpMatrix[i][s]) >= score:
+                        atLeastOneOp,tmpResult,countFirstOperation = _scoreFilter2(i,tmpMatrix,currentOperation,previousOperations,countFirstOperation)
+                        if atLeastOneOp == True:
+                            result.append(tmpResult)
+                occurrence = countOccurrence(previousOperations)
+                finalResult.append(currentOperation +'  '+ 'N Times First Operations: ' + str(countFirstOperation))
                 finalResult.append(occurrence)
                 previousOperations = []
                 occurrence = []
-                print('Operation: '+ str(currentOperation)+', N times first operation: '+ str(countFirstOperation))
-                print("")
                 countFirstOperation = 0
 
 
@@ -883,117 +582,32 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null'
             for z in range(len(opFilter)):
                 currentOperation = opFilter[z]
                 for i in range(len(tmpMatrix)):
-                    if float(tmpMatrix[i][1]) < score and float(tmpMatrix[i][1]) != -1:
-                        for j in range(len(tmpMatrix[i][2])):
-                            if tmpMatrix[i][2][j]['name'].lower() != currentOperation:
-                                countOperations = countOperations + 1
-                                lastOp = tmpMatrix[i][2][j]['name']
-                            else:
-                                found = True
-                                if lastOp != None:
-                                    previousOperations.append(lastOp)
-                                break
-                        if found == True:
-                            tmp.append(tmpMatrix[i][2][j]['name'])
-                            tmp.append(tmpMatrix[i][0])
-                            tmp.append(tmpMatrix[i][3])
-                            if countOperations > 0:
-                                tmp.append(countOperations)
-                            else:
-                                tmp.append('First operation')
-                                countFirstOperation = countFirstOperation + 1
-                            tmp.append('score:' + '' + tmpMatrix[i][1])
-                            tmpResult.append(tmp)
-                            atLeastOneOp = True
-                        tmp = []
-                        tmpOp = []
-                        countOperations = 0
-                        found = False
-                        lastOp = None
-                    if atLeastOneOp == True:
-                        result.append(tmpResult)
-                    tmpResult = []
-                    atLeastOneOp = False
-                for k in range(len(previousOperations)):
-                    for s in range(len(occurrence)):
-                        if previousOperations[k] == occurrence[s][0]:
-                            duplicate = True
-                    if duplicate == False:
-                        for n in range(len(previousOperations)):
-                            if previousOperations[k] == previousOperations[n]:
-                                count = count + 1
-                        tmpOcc.append(previousOperations[k])
-                        tmpOcc.append(count)
-                        occurrence.append(tmpOcc)
-                        tmpOcc = []
-                    count = 0
-                    duplicate = False
-                finalResult.append(currentOperation)
+                    if float(tmpMatrix[i][s]) < score and float(tmpMatrix[i][s]) != -1:
+                        atLeastOneOp,tmpResult,countFirstOperation = _scoreFilter2(i,tmpMatrix,currentOperation,previousOperations,countFirstOperation)
+                        if atLeastOneOp == True:
+                            result.append(tmpResult)
+                occurrence = countOccurrence(previousOperations)
+                finalResult.append(currentOperation +'  '+ 'N Times First Operations: ' + str(countFirstOperation))
                 finalResult.append(occurrence)
                 previousOperations = []
                 occurrence = []
-                print('Operation: '+ str(currentOperation)+', N times first operation: '+ str(countFirstOperation))
-                print("")
                 countFirstOperation = 0
 
         elif (operator == 'range') and (score >= 0) and (score2 != None) and (score2 >= 0):
             for z in range(len(opFilter)):
                 currentOperation = opFilter[z]
                 for i in range(len(tmpMatrix)):
-                    if float(tmpMatrix[i][1]) >= score and float(tmpMatrix[i][1]) < score2:
-                        for j in range(len(tmpMatrix[i][2])):
-                            if tmpMatrix[i][2][j]['name'].lower() != currentOperation:
-                                countOperations = countOperations + 1
-                                lastOp = tmpMatrix[i][2][j]['name']
-                            else:
-                                found = True
-                                if lastOp != None:
-                                    previousOperations.append(lastOp)
-                                break
-                        if found == True:
-                            tmp.append(tmpMatrix[i][2][j]['name'])
-                            tmp.append(tmpMatrix[i][0])
-                            tmp.append(tmpMatrix[i][3])
-                            if countOperations > 0:
-                                tmp.append(countOperations)
-                            else:
-                                tmp.append('First operation')
-                                countFirstOperation = countFirstOperation + 1
-                            tmp.append('score:' + '' + tmpMatrix[i][1])
-                            tmpResult.append(tmp)
-                            atLeastOneOp = True
-                        tmp = []
-                        tmpOp = []
-                        countOperations = 0
-                        found = False
-                        lastOp = None
-                    if atLeastOneOp == True:
-                        result.append(tmpResult)
-                    tmpResult = []
-                    atLeastOneOp = False
-                for k in range(len(previousOperations)):
-                    for s in range(len(occurrence)):
-                        if previousOperations[k] == occurrence[s][0]:
-                            duplicate = True
-                    if duplicate == False:
-                        for n in range(len(previousOperations)):
-                            if previousOperations[k] == previousOperations[n]:
-                                count = count + 1
-                        tmpOcc.append(previousOperations[k])
-                        tmpOcc.append(count)
-                        occurrence.append(tmpOcc)
-                        tmpOcc = []
-                    count = 0
-                    duplicate = False
-                finalResult.append(currentOperation)
+                    if float(tmpMatrix[i][s]) >= score and float(tmpMatrix[i][s]) < score2:
+                        atLeastOneOp,tmpResult,countFirstOperation = _scoreFilter2(i,tmpMatrix,currentOperation,previousOperations,countFirstOperation)
+                        if atLeastOneOp == True:
+                            result.append(tmpResult)
+                occurrence = countOccurrence(previousOperations)
+                finalResult.append(currentOperation +'  '+ 'N Times First Operations: ' + str(countFirstOperation))
                 finalResult.append(occurrence)
                 previousOperations = []
                 occurrence = []
-                print('Operation: '+ str(currentOperation)+', N times first operation: '+ str(countFirstOperation))
-                print("")
-                countFirstOperation = 0              
-               
-
+                countFirstOperation = 0
+                      
         elif (score != -1) and (score < 0):
             print('errore,inserire parametri corretti')
             return None, None
@@ -1018,7 +632,7 @@ def scoreFilter2(finalScorePath, opHistoryPath, score, opFilter, operator='null'
             except IndexError:
                 continue
 
-        return result, finalResult
+        return result,finalResult
 
     else:
 
@@ -1044,6 +658,54 @@ def allOperations(finalScorePath, opHistoryPath):
     all_operations.sort()
     printInColumn(all_operations)
 
+def countcamera(V):
+    flag = False
+    tmp = []
+    cameraOccurrence = []
+    for i in range(len(V)):
+        for j in range(len(cameraOccurrence)):
+            if V[i] == cameraOccurrence[j][0]:
+                flag = True
+        if flag == False:   
+            count = V.count(V[i])
+            tmp.append(V[i])
+            tmp.append((count/len(V))*100)
+            cameraOccurrence.append(tmp)
+        tmp = []
+        flag = False
+    cameraOccurrence = sortScoreMatrix(cameraOccurrence)
+    printInColumn(cameraOccurrence)
+
+def cameraControl(finalScorePath,opHistoryPath,valoresoglia,valoreoptout):
+    score = CSVreader(finalScorePath)
+    score.remove(score[0])
+    with open(opHistoryPath) as f:
+        history = json.load(f)
+
+    M = []
+    for i in range(len(history['probesFileID'])):
+        for j in range(len(score)):
+            if history['probesFileID'][i]['probeID'] == score[j][0]:
+                tmp=[]
+                tmp=[score[j][0],score[j][1],score[j][3]]
+                M.append(tmp)
+    equal1 = []
+    under50 = []
+    over50 = []
+    for i in range(len(M)):
+        if float(M[i][2]) == valoreoptout:
+            equal1.append(M[i][1])
+        elif float(M[i][2]) < valoresoglia and float(M[i][2])!= valoreoptout :
+            under50.append(M[i][1])
+        elif float(M[i][2]) >= valoresoglia:
+            over50.append(M[i][1])
+    print("\n score =",valoreoptout)
+    countcamera(equal1)
+    print("\n score <",valoresoglia)
+    countcamera(under50)
+    print("\n score >",valoresoglia)
+    countcamera(over50)
+    print("")
 
 def get_parser():
     parser = argparse.ArgumentParser(description="", formatter_class=RawTextHelpFormatter)
@@ -1066,14 +728,20 @@ def get_parser():
     division_parse.add_argument("-vs", "--valoresoglia", type=int, required=True, help="valore di soglia")
     division_parse.add_argument("-vo", "--valoreoptout", type=int, required=True, help="valore di optout")
 
-    # subcommand manipulation-name
+    # subcommand manipulation-analysis
     manipulation_parser = subparser.add_parser('manipulation-analysis', help='List all possible manipulations')
     manipulation_parser.add_argument("-sp", "--scorepath", required=True, help="path of score csv")
     manipulation_parser.add_argument("-hp", "--probehistory", required=True, help="path of probe history")
     manipulation_parser.add_argument("-cp", "--camerapath", required=True, help="path of camera reference")
-    manipulation_parser.add_argument("-o", "--operations", required=True, help="insert json file path contains all operations")
     manipulation_parser.add_argument("-vs", "--valoresoglia",type=int, required=True, help="valore di soglia")
     manipulation_parser.add_argument("-vo", "--valoreoptout", type=int, required=True, help="valore di optout")
+
+    # subcommand manipulation-analysis
+    camera_parset = subparser.add_parser('camera-analysis', help='List all possible manipulations')
+    camera_parset.add_argument("-sp", "--scorepath", required=True, help="path of score csv")
+    camera_parset.add_argument("-hp", "--probehistory", required=True, help="path of probe history")
+    camera_parset.add_argument("-vs", "--valoresoglia",type=int, required=True, help="valore di soglia")
+    camera_parset.add_argument("-vo", "--valoreoptout", type=int, required=True, help="valore di optout")
 
     # subcommand filter1
     filter1_parser = subparser.add_parser('filter1', help='Mostra la seguente tabella'
@@ -1096,7 +764,6 @@ def get_parser():
     filter2_parser.add_argument("-op", "--operator", required=True, help="insert operator like over,under,equal,range")
     filter2_parser.add_argument("-s2", "--score2", required=False , type=int, help="insert score2")
     filter2_parser.add_argument("-o", "--operation", required=True, nargs='+', help="insert operation filter")
-    #filter2_parser.add_argument("-po", "--prevop", type=int, required=True, help="insert preview operations")
 
     # subcommand alloperations
     all_operations_parser = subparser.add_parser('alloperations', help='Mostra tutte le operazioni che sono state fatte in tutte le probe')
@@ -1116,7 +783,9 @@ def main():
     elif args.subcommand == 'division':
         division(finalScorePath=args.scorepath, opHistoryPath=args.probehistory, cameraPath=args.camerapath, valore_soglia=args.valoresoglia, valore_optout=args.valoreoptout)
     elif args.subcommand == 'manipulation-analysis':
-        manipulation_analysis(finalScorePath=args.scorepath, opHistoryPath=args.probehistory, cameraPath=args.camerapath, allOperationsPath=args.operations, valore_soglia=args.valoresoglia, valore_optout=args.valoreoptout)
+        manipulation_analysis(finalScorePath=args.scorepath, opHistoryPath=args.probehistory, cameraPath=args.camerapath, valore_soglia=args.valoresoglia, valore_optout=args.valoreoptout)
+    elif args.subcommand == 'camera-analysis':
+        cameraControl(finalScorePath=args.scorepath, opHistoryPath=args.probehistory, valoresoglia=args.valoresoglia, valoreoptout=args.valoreoptout)
     elif args.subcommand == 'filter1':
         result = scoreFilter1(finalScorePath=args.scorepath, opHistoryPath=args.probehistory, score=args.score, opFilter=args.operation, operator=args.operator, score2 = args.score2)
         printInColumn(result)
@@ -1138,11 +807,12 @@ def mainInterattivo():
     print('4) Filter2')
     print('5) Divison score in optout,matched and no matched')
     print('6) All operations')
-    print('7) Exit')
+    print('7) Camera Analysis')
+    print('8) Exit')
 
     mainScelta = int(input())
 
-    if (mainScelta < 1) or (mainScelta > 6):
+    if (mainScelta < 1) or (mainScelta > 7):
         sys.exit()
 
     elif (mainScelta == 1):
@@ -1164,14 +834,12 @@ def mainInterattivo():
         opHistoryPath = input().strip()
         print('Insert camera reference path: ')
         cameraPath = input().strip()
-        print('insert operations reference path: ')
-        operationsPath = input().strip()
         print('insert valore di soglia: ')
         valore_soglia = int(input())
         print('insert valore di optout: ')
         valore_optout = int(input())
 
-        manipulation_analysis(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, cameraPath=cameraPath, allOperationsPath=operationsPath, valore_soglia=valore_soglia, valore_optout=valore_optout)
+        manipulation_analysis(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, cameraPath=cameraPath, valore_soglia=valore_soglia, valore_optout=valore_optout)
 
     elif (mainScelta == 3) or (mainScelta == 4):
         # score.csv
@@ -1221,21 +889,18 @@ def mainInterattivo():
     
             if (mainScelta == 3):
                 if operator == 'range':
-                    result = scoreFilter1(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, score = score, opFilter=[opFilter], operator=operator, score2 = score2)
+                    result = scoreFilter1(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, score = score, opFilter=opFilter, operator=operator, score2 = score2)
                     printInColumn(result)
                 else:
-                    result = scoreFilter1(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, score=score, opFilter=[opFilter], operator=operator)
+                    result = scoreFilter1(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, score=score, opFilter=opFilter, operator=operator)
                     printInColumn(result)
 
             if (mainScelta == 4):
-                # inserimento numero di operazioni precedenti
-                print('Insert number of previews operations to view: ')
-                prevOp = int(input())
                 if operator == 'range':
-                    result = scoreFilter2(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, score=score, opFilter=[opFilter], operator=operator,  score2=score2)
+                    result = scoreFilter2(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, score=score, opFilter=opFilter, operator=operator,  score2=score2)
                     printInColumn(result)
                 else:
-                    result,previousOccurrence = scoreFilter2(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, score=score, opFilter=[opFilter], operator=operator)
+                    result,previousOccurrence = scoreFilter2(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath, score=score, opFilter=opFilter, operator=operator)
                     printInColumn(previousOccurrence)
 
     elif (mainScelta == 5):
@@ -1257,6 +922,18 @@ def mainInterattivo():
         print('Insert probe history path: ')
         opHistoryPath = input().strip()
         allOperations(finalScorePath=finalScorePath, opHistoryPath=opHistoryPath)
+
+
+    elif (mainScelta == 7):
+        print('Insert score path: ')
+        finalScorePath = input().strip()
+        print('Insert probe history path: ')
+        opHistoryPath = input().strip()
+        print('insert valore di soglia: ')
+        valore_soglia = int(input())
+        print('insert valore di optout: ')
+        valore_optout = int(input())
+        cameraControl(finalScorePath=finalScorePath,opHistoryPath=opHistoryPath,valoresoglia=valore_soglia,valoreoptout=valore_optout)
 
 if __name__ == '__main__':
     if sys.argv[1:] != []:

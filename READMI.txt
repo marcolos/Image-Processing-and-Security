@@ -1,0 +1,104 @@
+PRNU_test.py
+	Versione da terminale:
+ 		python PRNU_test.py OPZIONE [argomenti ...]
+
+ 		dove OPZIONE può essere:	
+ 			create-json-probe-history
+ 			division
+ 			manipulation-analysis
+ 			camera-analysis
+ 			filter1
+ 			filter2
+ 			alloperations
+ 		mentre i parametri variano a seconda dell'OPZIONE
+
+ 		1) create-json-probe-history: crea un json contenti le history di ogni probe
+ 			$ python PRNU_test.py create-json-probe-history [-h] -p PROBEJOURNALJOINPATH -j JOURNALMASKPATH -o OPERATIONSPATH
+ 		2) divison: divide tutte le probe in base agli score
+ 			$ python PRNU_test.py division [-h] -sp SCOREPATH -hp PROBEHISTORYPATH -cp CAMERAPATH -vs VALORESOGLIA -vo VALOREOPTOUT
+ 		3) manipulation-analysis: analizza le ricorrenze delle operazioni 
+ 			$ python PRNU_test.py manipulation-analysis [-h] -sp SCOREPATH -hp PROBEHISTORY -cp CAMERAPATH -vs VALORESOGLIA -vo VALOREOPTOUT
+ 		4) camera-analysis: esegue un analisi sulle camera riportando in base agli score quali camere sono state utilizzate in percentuale
+ 			$ python PRNU_test.py camera-analysis [-h] -sp SCOREPATH -hp PROBEHISTORY -vs VALORESOGLIA -vo VALOREOPTOUT
+ 		5) filter1: Filtra per l'operazione target e riporta la sua posizione e il numero di operazioni totali presenti in ciascuna probe contenete l'operazione target
+ 			$ python PRNU_test.py filter1 [-h] -sp SCOREPATH -hp PROBEHISTORY -s SCORE -op OPERATOR [-s2 SCORE2] -o OPERATION [OPERATION ...]
+ 		6) filter2: Filtra per operazione target e riporta le ricorrenze delle operazioni precedenti a quella target
+ 			$ python PRNU_test.py filter2 [-h] -sp SCOREPATH -hp PROBEHISTORY -s SCORE -op OPERATOR [-s2 SCORE2] -o OPERATION [OPERATION ...]
+ 		7) allOperations: Mostra tutte le operazioni che sono state fatte in tutte le probe
+ 			$ python PRNU_test.py alloperations [-h] -sp SCOREPATH -hp PROBEHISTORY
+
+ 		NB. Sarà possibile visulizzare l'help tramite il comando -h
+ 			$ python PRNU_test.py -h
+ 			Mostra le OPZIONI possibili e cosa fanno:
+	 			usage: PRNU_test.py [-h]
+	                    {create-json-probe-history,division,manipulation-analysis,camera-analysis,filter1,filter2,alloperations}
+	                    ...
+
+						positional arguments:
+						  {create-json-probe-history,division,manipulation-analysis,camera-analysis,filter1,filter2,alloperations}
+						    create-json-probe-history
+						                        Create a json file containing the probe history
+						    division            Mostra la seguente tabella:
+						                        |ID_probe|Camera|Score|Manip/NonManip|Formato|
+						                           aaa      xx   46.15      Y          .avi
+						    manipulation-analysis
+						                        List all possible manipulations
+						    camera-analysis     List all possible manipulations
+						    filter1             Mostra la seguente tabella
+						                        |ID_probe|Camera|Filtro|n° di quando è stato applicato|n° di operaziono subite|
+						                            aaa    xxx    Blur                2                           5
+						    filter2             Mostra la seguente tabella
+						                        |ID_probe|Filtro|Operazioni precedenti in base al numero passato|
+						                            aaa    Blur       OutputAVI,AddNoise   2
+						    alloperations       Mostra tutte le operazioni che sono state fatte in tutte le probe
+
+						optional arguments:
+						  -h, --help            show this help message and exit
+
+ 			$ python PRNU_test.py filter1 -h
+ 			Mostra come usare ogni OPZIONE(ad esempio per filter1):
+	 			usage: PRNU_test.py filter1 [-h] -sp SCOREPATH -hp PROBEHISTORY -s SCORE -op OPERATOR [-s2 SCORE2] -o OPERATION [OPERATION ...]
+
+				optional arguments:
+				  -h, --help            show this help message and exit
+				  -sp SCOREPATH, --scorepath SCOREPATH
+				                        path of score csv
+				  -hp PROBEHISTORY, --probehistory PROBEHISTORY
+				                        path of probe history
+				  -s SCORE, --score SCORE
+				                        insert score
+				  -op OPERATOR, --operator OPERATOR
+				                        insert operator like over,under,equal,range
+				  -s2 SCORE2, --score2 SCORE2
+				                        insert score2
+				  -o OPERATION [OPERATION ...], --operation OPERATION [OPERATION ...]
+				                        insert operation filter
+
+	Versione interattiva: Versione guidata 
+
+	Which operation do you want use?
+	1) Create json file containing probe history
+	2) Manipulation analysis and operations recurrence
+	3) Filter1
+	4) Filter2
+	5) Divison score in optout,matched and no matched
+	6) All operations
+	7) Camera Analysis
+	8) Exit			
+
+	Se si digita 3 o 4 (dunque per filtro1 e filtro2), dopo aver immesso i vari path, chiederà il valore il score:
+	Choose score options:
+	1) score = [valore]
+	2) score >= [valore]
+	3) score < [valore]
+	4) range[val1,val2]
+	5) Exit
+
+	Allora:
+		-per score = valore digitare 1[valore]
+		-per score >= valore digitare 2[valore]
+		-per score < valore digitare 3[valore]
+		-per score compreso tra val1 e val2 digitare 4[val1,val2]
+
+Stesso cose per il file GAN_test.py
+

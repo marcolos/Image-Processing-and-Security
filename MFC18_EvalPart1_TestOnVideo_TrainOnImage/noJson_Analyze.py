@@ -1,6 +1,3 @@
-# abbiamo il json , lo score, e le manipolazioni
-# dobbiamo raggruppare per -1 e per i probe che non si trovano nel json
-
 import csv
 import json
 import matplotlib.pyplot as plt
